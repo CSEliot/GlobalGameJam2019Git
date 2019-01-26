@@ -94,6 +94,23 @@ public class PersonalityController : MonoBehaviour
     public void EndTest(){
 
     }
+
+    public int[] GetSCore()
+    {
+        var score = new int[9];
+
+        score[(int)PersonalityType.Perfectionist] = perfectionist;
+        score[(int)PersonalityType.Hoarder] = hoarder;
+        score[(int)PersonalityType.Nerd] = nerd;
+        score[(int)PersonalityType.Tacky] = tacky;
+        score[(int)PersonalityType.Cheap] = cheap;
+        score[(int)PersonalityType.Expensive] = expensive;
+        score[(int)PersonalityType.Hermit] = hermit;
+        score[(int)PersonalityType.Athletic] = athlete;
+        score[(int)PersonalityType.SoccerMom] = soccermom;
+
+        return score;
+    }
 }
 
 /* 

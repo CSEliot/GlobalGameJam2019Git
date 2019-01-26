@@ -5,7 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public enum PersonalityType
 {
-    Perfectionist, Hoarder, Nerd, Tacky, Cheap, Expensive, Hermit, Athletic
+    Perfectionist, Hoarder, Nerd, Tacky, Cheap, Expensive, Hermit, Athletic, SoccerMom
 }
 
 
