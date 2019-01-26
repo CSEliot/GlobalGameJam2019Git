@@ -54,12 +54,16 @@ public class PaulMovementPlaceholder : MonoBehaviour
         {
             Click();
         }
-        
+
+        if (Input.GetMouseButton(1))
+        {
+            RightClick();
+        }
+
         if (Input.GetButton("Jump"))
         {
             Debug.Log("simulate get hit");
         }
-
     }
 
     void Click()
@@ -68,62 +72,79 @@ public class PaulMovementPlaceholder : MonoBehaviour
         {
             case PlayerState.Normal:
                 {
-                    if (detector.hasNearObj)
-                    {
-                        cItem = detector.closeObj;
-                        cItem.transform.parent = this.transform;
-                        cItem.transform.position = holdPos.position;
-                       
-                        playerState = PlayerState.Holding;
-                    }
+                    PickupOrAttack();
                     break;
                 }
-            case PlayerState.Holding:
+            case PlayerState.Holding://click while holding
                 {
-                    //if (detector.nearHouse)
-                    //{
-                    int roomLocation = 0;
-
-                    switch (location)
-                    {
-                        case Location.Outside:
-                            {
-
-                                break;
-                            }
-                        case Location.LivingRoom:
-                            {
-                                roomLocation = 0;
-                                neighbourhoodMan.DropItemInHouseRoom(myPlayerID, myHome, roomLocation, cItem);
-                                break;
-                            }
-                        case Location.Kitchen:
-                            {
-                                roomLocation = 1;
-                                neighbourhoodMan.DropItemInHouseRoom(myPlayerID, myHome, roomLocation, cItem);
-                                break;
-                            }
-                        case Location.Bedroom:
-                            {
-                                roomLocation = 2;
-                                neighbourhoodMan.DropItemInHouseRoom(myPlayerID, myHome, roomLocation, cItem);
-                                break;
-                            }
-                        case Location.Bathroom:
-                            {
-                                roomLocation = 3;
-                                neighbourhoodMan.DropItemInHouseRoom(myPlayerID, myHome, roomLocation, cItem);
-                                break;
-                            }
-
-                    }
-
-
-                    
-                    playerState = PlayerState.Normal;
-                    //}
+                    DropOrPlace();
+                    break;
+                }
+            case PlayerState.Stunned:
+                {
+                    break;
+                }
+            case PlayerState.Boosted:
+                {
                     break;
                 }
         }
+    }
+
+    void RightClick()
+    {
+
+    }
+
+    void PickupOrAttack()
+    {
+        if (detector.hasNearObj)
+        {
+            cItem = detector.closeObj;
+            cItem.transform.parent = this.transform;
+            cItem.transform.position = holdPos.position;
+
+            playerState = PlayerState.Holding;
+        }
+    }
+
+    void DropOrPlace()
+    {
+        int roomLocation = 0;
+
+        switch (location)
+        {
+            case Location.Outside:
+                {
+
+                    break;
+                }
+            case Location.LivingRoom:
+                {
+                    roomLocation = 0;
+                    neighbourhoodMan.DropItemInHouseRoom(myPlayerID, myHome, roomLocation, cItem);
+                    break;
+                }
+            case Location.Kitchen:
+                {
+                    roomLocation = 1;
+                    neighbourhoodMan.DropItemInHouseRoom(myPlayerID, myHome, roomLocation, cItem);
+                    break;
+                }
+            case Location.Bedroom:
+                {
+                    roomLocation = 2;
+                    neighbourhoodMan.DropItemInHouseRoom(myPlayerID, myHome, roomLocation, cItem);
+                    break;
+                }
+            case Location.Bathroom:
+                {
+                    roomLocation = 3;
+                    neighbourhoodMan.DropItemInHouseRoom(myPlayerID, myHome, roomLocation, cItem);
+                    break;
+                }
+        }
+
+        playerState = PlayerState.Normal;
     }
 }
