@@ -1,62 +1,16 @@
 fileFormatVersion: 2
-guid: 54173023687856c408cebf1e822fb58d
+guid: ac67271995b53b140b53dc13f2ccaac9
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: //RootNode
-    100002: Cake
-    100004: Candle01
-    100006: Candle02
-    100008: Candle03
-    100010: Candle04
-    100012: Candle05
-    100014: Candle06
-    100016: Candle07
-    100018: Candle08
-    100020: Candle09
-    400000: //RootNode
-    400002: Cake
-    400004: Candle01
-    400006: Candle02
-    400008: Candle03
-    400010: Candle04
-    400012: Candle05
-    400014: Candle06
-    400016: Candle07
-    400018: Candle08
-    400020: Candle09
-    2100000: lambert1
-    2100002: lambert2
-    2300000: Cake
-    2300002: Candle01
-    2300004: Candle02
-    2300006: Candle03
-    2300008: Candle04
-    2300010: Candle05
-    2300012: Candle06
-    2300014: Candle07
-    2300016: Candle08
-    2300018: Candle09
-    3300000: Cake
-    3300002: Candle01
-    3300004: Candle02
-    3300006: Candle03
-    3300008: Candle04
-    3300010: Candle05
-    3300012: Candle06
-    3300014: Candle07
-    3300016: Candle08
-    3300018: Candle09
-    4300000: Cake
-    4300002: Candle01
-    4300004: Candle02
-    4300006: Candle03
-    4300008: Candle04
-    4300010: Candle05
-    4300012: Candle06
-    4300014: Candle07
-    4300016: Candle08
-    4300018: Candle09
+    100000: Couch
+    100002: //RootNode
+    400000: Couch
+    400002: //RootNode
+    2100000: CouchMat
+    2300000: Couch
+    3300000: Couch
+    4300000: Couch
   externalObjects: {}
   materials:
     importMaterials: 1
