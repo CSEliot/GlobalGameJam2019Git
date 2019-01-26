@@ -19,9 +19,9 @@ TagManager:
   - 
   - 
   - PostProcessing
-  - 
-  - 
-  - 
+  - DetectItems
+  - DetectLocation
+  - Collectable
   - 
   - 
   - 
