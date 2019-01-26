@@ -47,6 +47,8 @@ public class PaulMovementPlaceholder : MonoBehaviour
     public List<GameObject> hats = new List<GameObject>();
     private Vector3 rVelocity;
 
+    private bool lClickDown;
+
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -96,12 +98,20 @@ public class PaulMovementPlaceholder : MonoBehaviour
 
         
 
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButtonDown(0))
         {
-            Click();
+            if (!lClickDown)
+            {
+                lClickDown = true;
+                Click();
+            }
+        }
+        else
+        {
+            lClickDown = false;
         }
 
-        if (Input.GetMouseButton(1))
+        if (Input.GetMouseButtonDown(1))
         {
             RightClick();
         }
