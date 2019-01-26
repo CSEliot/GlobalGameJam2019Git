@@ -12,15 +12,19 @@ ModelImporter:
     400004: Pants
     400006: Shirt
     2100000: lambert1
+    2100002: initialShadingGroup
     2300000: Hangar
     2300002: Pants
     2300004: Shirt
+    2300006: //RootNode
     3300000: Hangar
     3300002: Pants
     3300004: Shirt
+    3300006: //RootNode
     4300000: Pants
     4300002: Shirt
     4300004: Hangar
+    4300006: Pants.002
   externalObjects: {}
   materials:
     importMaterials: 1
