@@ -126,6 +126,25 @@ public class PersonalityController : MonoBehaviour
         timeToCompleteTest = 60 - timeToCompleteTest;
         timeToCompleteTest = timeToCompleteTest * 1000;
         athlete = Mathf.RoundToInt(timeToCompleteTest);
+
+        var score = GetScore();
+    }
+
+    public int[] GetScore()
+    {
+        var score = new int[9];
+
+        score[(int)PersonalityType.Perfectionist] = perfectionist;
+        score[(int)PersonalityType.Hoarder] = hoarder;
+        score[(int)PersonalityType.Nerd] = nerd;
+        score[(int)PersonalityType.Tacky] = tacky;
+        score[(int)PersonalityType.Cheap] = cheap;
+        score[(int)PersonalityType.Expensive] = expensive;
+        score[(int)PersonalityType.Hermit] = hermit;
+        score[(int)PersonalityType.Athletic] = athlete;
+        score[(int)PersonalityType.SoccerMom] = soccermom;
+
+        return score;
     }
 }
 
