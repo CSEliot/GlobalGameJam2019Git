@@ -23,6 +23,8 @@ public class PaulMovementPlaceholder : MonoBehaviour
 
     public NeighbourhoodManager neighbourhoodMan;
 
+    public Animator charAnim;
+
     public int myPlayerID;//0-8
     public int myHome;//0-8
     public int currentHome;//0-8
@@ -42,6 +44,8 @@ public class PaulMovementPlaceholder : MonoBehaviour
 
     public TextMeshPro locationTxt;
 
+    public List<GameObject> hats = new List<GameObject>();
+
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -49,10 +53,34 @@ public class PaulMovementPlaceholder : MonoBehaviour
         PhotonArenaManager.instance.Connect();
     }
 
+    void SelectHat(int num)
+    {
+        for(int i = 0; i < hats.Count; i++)
+        {
+            if(i != num)
+            {
+                hats[i].SetActive(false);
+            }
+            else
+            {
+                hats[i].SetActive(true);
+            }
+        }
+    }
+
     void Update()
     {
         rby.velocity = ((this.transform.forward * speed) * Input.GetAxis("Vertical")) + 
             ((this.transform.right * speed) * Input.GetAxis("Horizontal"));
+
+        if(Input.GetAxis("Vertical") == 0 && Input.GetAxis("Horizontal") == 0)
+        {
+            charAnim.SetFloat("Speed", 0);
+        }
+        else
+        {
+            charAnim.SetFloat("Speed", 1);
+        }
 
         this.transform.Rotate(new Vector3(0, Input.GetAxis("Mouse X"), 0));
 
