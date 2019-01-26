@@ -12,6 +12,8 @@ public class Collectable : MonoBehaviour
 {
     public List<PersonalityType> traits = new List<PersonalityType>();
 
+    public BoxCollider collido;
+
     public Vector3 localPos; //for parenting to character 
     public Vector3 localErot;
 
