@@ -7,7 +7,9 @@ public class NetTest : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        PhotonArenaManager.instance.Connect();
+        CBUG.Do("Connecting ...");
+        PhotonArenaManager.Instance.Connect();
+        CBUG.Do("Connecting .......");
     }
 
     // Update is called once per frame
