@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class RoomHitbox : MonoBehaviour
 {
+    public int homeRef;
     public int roomRef;
     public RoomType rType;
 }

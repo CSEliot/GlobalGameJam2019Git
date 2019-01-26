@@ -545,6 +545,9 @@ MonoBehaviour:
   traits: 
   localPos: {x: 0, y: 0, z: 0}
   localErot: {x: 0, y: 0, z: 0}
+  currentPlace: 0
+  heldPlayer: 0
+  inHouse: 0
 --- !u!4 &46575855
 Transform:
   m_ObjectHideFlags: 0
@@ -3769,7 +3772,6 @@ MonoBehaviour:
   houseType: 0
   allRooms:
   - {fileID: 927641514}
-  currentRoom: 0
 --- !u!4 &405321298
 Transform:
   m_ObjectHideFlags: 0
@@ -4424,6 +4426,9 @@ MonoBehaviour:
   traits: 
   localPos: {x: 0, y: 0, z: 0}
   localErot: {x: 0, y: 0, z: 0}
+  currentPlace: 0
+  heldPlayer: 0
+  inHouse: 0
 --- !u!4 &527064809
 Transform:
   m_ObjectHideFlags: 0
@@ -4485,6 +4490,9 @@ MonoBehaviour:
   traits: 
   localPos: {x: 0, y: 0, z: 0}
   localErot: {x: 0, y: 0, z: 0}
+  currentPlace: 0
+  heldPlayer: 0
+  inHouse: 0
 --- !u!4 &543421515
 Transform:
   m_ObjectHideFlags: 0
@@ -5301,6 +5309,9 @@ MonoBehaviour:
   traits: 
   localPos: {x: 0, y: 0, z: 0}
   localErot: {x: 0, y: 0, z: 0}
+  currentPlace: 0
+  heldPlayer: 0
+  inHouse: 0
 --- !u!4 &656431102
 Transform:
   m_ObjectHideFlags: 0
@@ -5362,6 +5373,9 @@ MonoBehaviour:
   traits: 
   localPos: {x: 0, y: 0, z: 0}
   localErot: {x: 0, y: 0, z: 0}
+  currentPlace: 0
+  heldPlayer: 0
+  inHouse: 0
 --- !u!4 &656504152
 Transform:
   m_ObjectHideFlags: 0
@@ -5548,6 +5562,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1384542751}
+  - {fileID: 760128831}
   m_Father: {fileID: 0}
   m_RootOrder: 34
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5674,6 +5689,9 @@ MonoBehaviour:
   traits: 
   localPos: {x: 0, y: 0, z: 0}
   localErot: {x: 0, y: 0, z: 0}
+  currentPlace: 0
+  heldPlayer: 0
+  inHouse: 0
 --- !u!4 &707815151
 Transform:
   m_ObjectHideFlags: 0
@@ -6049,7 +6067,6 @@ MonoBehaviour:
   houseType: 0
   allRooms:
   - {fileID: 606189712}
-  currentRoom: 0
 --- !u!4 &750525947
 Transform:
   m_ObjectHideFlags: 0
@@ -6074,6 +6091,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: -48.276, z: 0}
+--- !u!4 &760128831 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 400000, guid: 5e682a3322eb89c49873f7e2dd65784b,
+    type: 3}
+  m_PrefabInstance: {fileID: 1899848317}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &762822797
 GameObject:
   m_ObjectHideFlags: 0
@@ -6468,8 +6491,8 @@ Transform:
   - {fileID: 762822798}
   - {fileID: 1770383150}
   - {fileID: 1263179924}
-  m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_Father: {fileID: 1113666128}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -48.276, z: 0}
 --- !u!114 &782968413
 MonoBehaviour:
@@ -6486,7 +6509,6 @@ MonoBehaviour:
   houseType: 0
   allRooms:
   - {fileID: 864946944}
-  currentRoom: 0
 --- !u!1 &799855281
 GameObject:
   m_ObjectHideFlags: 0
@@ -6932,9 +6954,10 @@ GameObject:
   - component: {fileID: 854632542}
   - component: {fileID: 854632541}
   - component: {fileID: 854632540}
-  m_Layer: 0
+  - component: {fileID: 854632543}
+  m_Layer: 12
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: Store
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6961,8 +6984,8 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 854632538}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
+  m_IsTrigger: 1
+  m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -7011,6 +7034,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 854632538}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &854632543
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 854632538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4aec45ffb457d854180ab5f48458b244, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  homeRef: 0
+  roomRef: 0
+  rType: 4
 --- !u!1 &857599920
 GameObject:
   m_ObjectHideFlags: 0
@@ -7840,6 +7878,9 @@ MonoBehaviour:
   traits: 
   localPos: {x: 0, y: 0, z: 0}
   localErot: {x: 0, y: 0, z: 0}
+  currentPlace: 0
+  heldPlayer: 0
+  inHouse: 0
 --- !u!4 &941676167
 Transform:
   m_ObjectHideFlags: 0
@@ -8391,6 +8432,9 @@ MonoBehaviour:
   traits: 
   localPos: {x: 0, y: 0, z: 0}
   localErot: {x: 0, y: 0, z: 0}
+  currentPlace: 0
+  heldPlayer: 0
+  inHouse: 0
 --- !u!4 &1087235275
 Transform:
   m_ObjectHideFlags: 0
@@ -8497,6 +8541,51 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1089282183}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1113666126
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1113666128}
+  - component: {fileID: 1113666127}
+  m_Layer: 0
+  m_Name: NeighbourhoodManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1113666127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1113666126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a43d683c51ccc2489215c5dd61b3fb9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  allHomes: []
+--- !u!4 &1113666128
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1113666126}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 782968412}
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1114586668
 GameObject:
   m_ObjectHideFlags: 0
@@ -9559,9 +9648,9 @@ GameObject:
   - component: {fileID: 1231205267}
   - component: {fileID: 1231205266}
   - component: {fileID: 1231205269}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: RoomHitbox
-  m_TagString: Home
+  m_TagString: Bedroom
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9650,6 +9739,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4aec45ffb457d854180ab5f48458b244, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  homeRef: 0
   roomRef: 2
   rType: 2
 --- !u!1 &1234641620
@@ -10965,7 +11055,6 @@ MonoBehaviour:
   houseType: 0
   allRooms:
   - {fileID: 2081071868}
-  currentRoom: 0
 --- !u!4 &1363491324
 Transform:
   m_ObjectHideFlags: 0
@@ -12009,6 +12098,9 @@ MonoBehaviour:
   traits: 
   localPos: {x: 0, y: 0, z: 0}
   localErot: {x: 0, y: 0, z: 0}
+  currentPlace: 0
+  heldPlayer: 0
+  inHouse: 0
 --- !u!4 &1432925749
 Transform:
   m_ObjectHideFlags: 0
@@ -12387,9 +12479,9 @@ GameObject:
   - component: {fileID: 1482367295}
   - component: {fileID: 1482367294}
   - component: {fileID: 1482367297}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: RoomHitbox
-  m_TagString: Home
+  m_TagString: LivingRoom
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12478,6 +12570,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4aec45ffb457d854180ab5f48458b244, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  homeRef: 0
   roomRef: 0
   rType: 0
 --- !u!1001 &1484036087
@@ -12735,7 +12828,6 @@ MonoBehaviour:
   houseType: 0
   allRooms:
   - {fileID: 1158766326}
-  currentRoom: 0
 --- !u!4 &1497591257
 Transform:
   m_ObjectHideFlags: 0
@@ -13701,7 +13793,6 @@ MonoBehaviour:
   houseType: 0
   allRooms:
   - {fileID: 1625085884}
-  currentRoom: 0
 --- !u!4 &1625321488
 Transform:
   m_ObjectHideFlags: 0
@@ -13828,8 +13919,9 @@ GameObject:
   - component: {fileID: 1640111009}
   - component: {fileID: 1640111011}
   - component: {fileID: 1640111010}
+  - component: {fileID: 1640111012}
   m_Layer: 11
-  m_Name: Collectable
+  m_Name: Couch
   m_TagString: Collectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13858,7 +13950,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1640111008}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 2.4502773, y: 1.299485, z: 1.1929209}
@@ -13878,6 +13970,25 @@ MonoBehaviour:
   traits: 00000000000000000000000000000000
   localPos: {x: 0, y: 0, z: 0}
   localErot: {x: 0, y: 0, z: 0}
+  currentPlace: 0
+  heldPlayer: 0
+  inHouse: 0
+--- !u!54 &1640111012
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1640111008}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1641313008
 GameObject:
   m_ObjectHideFlags: 0
@@ -13891,9 +14002,9 @@ GameObject:
   - component: {fileID: 1641313011}
   - component: {fileID: 1641313010}
   - component: {fileID: 1641313013}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: RoomHitbox
-  m_TagString: Home
+  m_TagString: Kitchen
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13982,6 +14093,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4aec45ffb457d854180ab5f48458b244, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  homeRef: 0
   roomRef: 1
   rType: 1
 --- !u!1 &1641313784
@@ -14740,7 +14852,6 @@ MonoBehaviour:
   houseType: 0
   allRooms:
   - {fileID: 1432888839}
-  currentRoom: 0
 --- !u!4 &1730662459
 Transform:
   m_ObjectHideFlags: 0
@@ -15523,6 +15634,9 @@ MonoBehaviour:
   traits: 
   localPos: {x: 0, y: 0, z: 0}
   localErot: {x: 0, y: 0, z: 0}
+  currentPlace: 0
+  heldPlayer: 0
+  inHouse: 0
 --- !u!4 &1787282653
 Transform:
   m_ObjectHideFlags: 0
@@ -16634,6 +16748,83 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1892043929}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1001 &1899848317
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 701700648}
+    m_Modifications:
+    - target: {fileID: 100000, guid: 5e682a3322eb89c49873f7e2dd65784b, type: 3}
+      propertyPath: m_Name
+      value: Chair (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 5e682a3322eb89c49873f7e2dd65784b, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 5e682a3322eb89c49873f7e2dd65784b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 5e682a3322eb89c49873f7e2dd65784b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 5e682a3322eb89c49873f7e2dd65784b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 5e682a3322eb89c49873f7e2dd65784b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 3.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 5e682a3322eb89c49873f7e2dd65784b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.30586776
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 5e682a3322eb89c49873f7e2dd65784b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.34740874
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 5e682a3322eb89c49873f7e2dd65784b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.033197254
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 5e682a3322eb89c49873f7e2dd65784b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.8858048
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 5e682a3322eb89c49873f7e2dd65784b, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 5e682a3322eb89c49873f7e2dd65784b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -31.253002
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 5e682a3322eb89c49873f7e2dd65784b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -48.048004
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 5e682a3322eb89c49873f7e2dd65784b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 18.505001
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 5e682a3322eb89c49873f7e2dd65784b, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 50.857677
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 5e682a3322eb89c49873f7e2dd65784b, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 50.857677
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 5e682a3322eb89c49873f7e2dd65784b, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 50.857677
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5e682a3322eb89c49873f7e2dd65784b, type: 3}
 --- !u!1 &1904205178
 GameObject:
   m_ObjectHideFlags: 0
@@ -17401,7 +17592,6 @@ MonoBehaviour:
   houseType: 0
   allRooms:
   - {fileID: 727871466}
-  currentRoom: 0
 --- !u!4 &1985896675
 Transform:
   m_ObjectHideFlags: 0
@@ -17646,9 +17836,9 @@ GameObject:
   - component: {fileID: 1991745062}
   - component: {fileID: 1991745061}
   - component: {fileID: 1991745064}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: RoomHitbox
-  m_TagString: Home
+  m_TagString: Bathroom
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17737,6 +17927,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4aec45ffb457d854180ab5f48458b244, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  homeRef: 0
   roomRef: 3
   rType: 3
 --- !u!1 &1991967971
@@ -18516,6 +18707,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2041452661}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &2055150286 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1373540790373168075, guid: f84b86dd8b94d184b9931c9ea9c81551,
+    type: 3}
+  m_PrefabInstance: {fileID: 1373540790231815738}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76568e1cd81589048b75ce03cb22fe74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2057831714
 GameObject:
   m_ObjectHideFlags: 0
@@ -19099,6 +19302,9 @@ MonoBehaviour:
   traits: 
   localPos: {x: 0, y: 0, z: 0}
   localErot: {x: 0, y: 0, z: 0}
+  currentPlace: 0
+  heldPlayer: 0
+  inHouse: 0
 --- !u!4 &2130588553
 Transform:
   m_ObjectHideFlags: 0
@@ -19393,5 +19599,10 @@ PrefabInstance:
       propertyPath: myHome
       value: 
       objectReference: {fileID: 782968413}
+    - target: {fileID: 356300128287000133, guid: f84b86dd8b94d184b9931c9ea9c81551,
+        type: 3}
+      propertyPath: playerRef
+      value: 
+      objectReference: {fileID: 2055150286}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f84b86dd8b94d184b9931c9ea9c81551, type: 3}
