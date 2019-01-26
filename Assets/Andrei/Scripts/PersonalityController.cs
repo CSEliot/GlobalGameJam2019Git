@@ -16,12 +16,8 @@ public class PersonalityController : MonoBehaviour
     public int hoarder = 0;
     public int nerd = 0;
 
-    [Header("Questions")]
-    public string question1 = "";
-    public string question2 = "";
-    public string question3 = "";
-    public string question4 = "";
-    public string question5 = "";
+    private float secondsCount = 60;
+    public Text timerText;
 
     [Header("Other display information")]
     public int money = 1000;
@@ -63,19 +59,41 @@ public class PersonalityController : MonoBehaviour
         }
     }
 
-    void Start()
-    {
+    void Update(){
+        UpdateTimer();
     }
 
-    void Update()
-    {
-        
+    void UpdateTimer(){
+        if(secondsCount > 0){
+            secondsCount -= Time.deltaTime;
+            secondsCount = Mathf.Round(secondsCount * 100f) / 100f;
+            timerText.text = "" + secondsCount;
+        }else{
+            EndTest();
+        }
     }
 
     public void UpdateMoneyDisplay(){
         moneyText.text = "$" + money;
     }
 
+    public void AddDogMoney(){
+        money += 1200;
+        UpdateMoneyDisplay();
+    }
+
+    public void SubtractMoney(){
+        money -= 200;
+        UpdateMoneyDisplay();
+
+        if(money <= 0 && moneyText){
+            Destroy(moneyText.GetComponent<GameObject>());
+        }
+    }
+
+    public void EndTest(){
+
+    }
 }
 
 /* 
