@@ -13,13 +13,12 @@ public class PlayerHome : MonoBehaviour
 {
     public PersonalityType houseType;
     public List<Room> allRooms = new List<Room>();
-    public int currentRoom = 0;
 
     //public List<objItems> needs = new List<objItems>();
 
     public void DropItemInRoom(int roomInt, Collectable cItem)
     {
-        allRooms[currentRoom].TakeThisObject(cItem);
+        allRooms[0].TakeThisObject(cItem);
         
     }
 }
