@@ -12,6 +12,7 @@ public class Collectable : MonoBehaviour
 {
     public List<PersonalityType> traits = new List<PersonalityType>();
 
+    public Rigidbody rby;
     public BoxCollider collido;
 
     public Vector3 localPos; //for parenting to character 
@@ -20,4 +21,6 @@ public class Collectable : MonoBehaviour
     public CurrentPlace currentPlace;
     public int heldPlayer; //0-8
     public int inHouse; //0-8
+
+
 }
