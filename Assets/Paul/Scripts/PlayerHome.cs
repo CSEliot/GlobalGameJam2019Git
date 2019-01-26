@@ -11,6 +11,7 @@ public enum PersonalityType
 
 public class PlayerHome : MonoBehaviour
 {
+    public int homeRef;
     public PersonalityType houseType;
     public List<Room> allRooms = new List<Room>();
 
