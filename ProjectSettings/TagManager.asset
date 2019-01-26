@@ -4,9 +4,16 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - PhotonArenaManager
   - MUSIC
   - CBUG
+  - Bullet
+  - Collectable
+  - Home
+  - LivingRoom
+  - Kitchen
+  - Bedroom
+  - Bathroom
+  - Store
   layers:
   - Default
   - TransparentFX
@@ -17,10 +24,10 @@ TagManager:
   - 
   - 
   - PostProcessing
-  - 
-  - 
-  - 
-  - 
+  - DetectItems
+  - DetectLocation
+  - Collectable
+  - Location
   - 
   - 
   - 

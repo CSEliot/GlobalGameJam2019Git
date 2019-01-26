@@ -6,7 +6,7 @@ using UnityEngine;
 [System.Serializable]
 public enum RoomType
 {
-    LivingRoom, Kitchen, Bedroom, Bathroom
+    LivingRoom, Kitchen, Bedroom, Bathroom, Store
 }
 
 
