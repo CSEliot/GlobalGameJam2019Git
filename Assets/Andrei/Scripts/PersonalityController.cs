@@ -1,8 +1,4 @@
-﻿// Athlete Done
-// Cheap done
-// Expensive done
-
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
