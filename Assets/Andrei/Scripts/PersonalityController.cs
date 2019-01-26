@@ -1,4 +1,8 @@
-﻿using System.Collections;
+﻿// Athlete Done
+// Cheap done
+// Expensive done
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -16,7 +20,11 @@ public class PersonalityController : MonoBehaviour
     public int hoarder = 0;
     public int nerd = 0;
 
-    private float secondsCount = 60;
+    private float secondsCountDown = 60;
+    private float timeToCompleteTest = 0;
+    private bool timerRunning = false;
+    private bool hasSoldDog = false;
+
     public Text timerText;
 
     [Header("Other display information")]
@@ -60,16 +68,37 @@ public class PersonalityController : MonoBehaviour
     }
 
     void Update(){
-        UpdateTimer();
+        if(timerRunning){
+            UpdateTimer();
+        }
     }
 
     void UpdateTimer(){
-        if(secondsCount > 0){
-            secondsCount -= Time.deltaTime;
-            secondsCount = Mathf.Round(secondsCount * 100f) / 100f;
-            timerText.text = "" + secondsCount;
+        if(secondsCountDown > 0){
+            secondsCountDown -= Time.deltaTime;
+            secondsCountDown = Mathf.Round(secondsCountDown * 100f) / 100f;
+            timerText.text = "" + secondsCountDown;
         }else{
             EndTest();
+        }
+    }
+
+
+    // a few options only have 1 determining factor to reach personality 
+    // type, so they have to give the most points
+    public void AddExpensivePoints(){
+        expensive += 10;
+    }
+
+    public void AddHoarderPoints(){
+        hoarder += 10;
+    }
+
+    public void CheckForCheapPoints(){
+        if(hasSoldDog && money >= 1600){ // means you skipped 3 or more questions
+            cheap += 10;
+        }else if(!hasSoldDog && money <= 400){ // not expensive, but skipped 3 or more so cheap
+            cheap += 10;
         }
     }
 
@@ -82,6 +111,10 @@ public class PersonalityController : MonoBehaviour
         UpdateMoneyDisplay();
     }
 
+    public void StartTimer(){
+        timerRunning = true;
+    }
+
     public void SubtractMoney(){
         money -= 200;
         UpdateMoneyDisplay();
@@ -92,7 +125,11 @@ public class PersonalityController : MonoBehaviour
     }
 
     public void EndTest(){
-
+        timerRunning = false;
+        timeToCompleteTest = secondsCountDown;
+        timeToCompleteTest = 60 - timeToCompleteTest;
+        timeToCompleteTest = timeToCompleteTest * 1000;
+        athlete = Mathf.RoundToInt(timeToCompleteTest);
     }
 }
 
