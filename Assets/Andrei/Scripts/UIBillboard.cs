@@ -8,7 +8,8 @@ public class UIBillboard : MonoBehaviour
 
     void Update()
     {
-        if(mainCam)
-        transform.LookAt(transform.position + mainCam.transform.rotation * Vector3.forward, mainCam.transform.rotation * Vector3.up);
+        if(mainCam){
+            transform.LookAt(transform.position + mainCam.transform.rotation * Vector3.forward, mainCam.transform.rotation * Vector3.up);
+        }
     }
 }
