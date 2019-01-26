@@ -14,7 +14,7 @@ public class NeighbourhoodManager : MonoBehaviour
 
     public void DropItemInHouseRoom(int player, int house, int room, Collectable collecto)
     {
-
+        //allHomes[house].
     }
 
     public void TakeItemFromHouseRoom()

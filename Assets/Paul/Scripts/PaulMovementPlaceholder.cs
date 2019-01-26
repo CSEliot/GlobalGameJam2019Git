@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 [System.Serializable]
 public enum PlayerState
 {
@@ -32,11 +33,16 @@ public class PaulMovementPlaceholder : MonoBehaviour
     public DetectCollects detector;
 
     public Transform holdPos;
+    public Transform tempAtk;
+    public Transform tempNorm;
 
     public Collectable cItem;
+    public bool canAttack;
 
     void Start()
     {
+        PhotonArenaManager.instance.Connect();
+
         Cursor.lockState = CursorLockMode.Locked;
     }
 
@@ -72,7 +78,36 @@ public class PaulMovementPlaceholder : MonoBehaviour
         {
             case PlayerState.Normal:
                 {
-                    PickupOrAttack();
+                    Pickup();
+                    break;
+                }
+            case PlayerState.Holding://click while holding
+                {
+                    if (canAttack)
+                    {
+                        Attack();
+                        canAttack = false;
+                    }
+                    break;
+                }
+            case PlayerState.Stunned:
+                {
+                    break;
+                }
+            case PlayerState.Boosted:
+                {
+                    break;
+                }
+        }
+    }
+
+    void RightClick()
+    {
+        switch (playerState)
+        {
+            case PlayerState.Normal:
+                {
+                    //yell
                     break;
                 }
             case PlayerState.Holding://click while holding
@@ -91,21 +126,39 @@ public class PaulMovementPlaceholder : MonoBehaviour
         }
     }
 
-    void RightClick()
-    {
-
-    }
-
-    void PickupOrAttack()
+    void Pickup()
     {
         if (detector.hasNearObj)
         {
             cItem = detector.closeObj;
-            cItem.transform.parent = this.transform;
-            cItem.transform.position = holdPos.position;
+            cItem.transform.parent = holdPos;
+            cItem.transform.localPosition = cItem.localPos;
+            cItem.transform.localEulerAngles = cItem.localErot;
+            cItem.collido.enabled = false;
 
             playerState = PlayerState.Holding;
         }
+    }
+
+    void Attack()
+    {
+        holdPos.rotation = tempAtk.rotation;
+        StartCoroutine(ResetAttack());
+    }
+
+    IEnumerator ResetAttack()
+    {
+        float t = 0;
+
+        while(t < 1f)
+        {
+            t += Time.deltaTime * 2.5f;
+
+            holdPos.rotation = Quaternion.Slerp(holdPos.rotation, tempNorm.rotation, t);
+            yield return null;
+        }
+
+        canAttack = true;
     }
 
     void DropOrPlace()
@@ -116,7 +169,7 @@ public class PaulMovementPlaceholder : MonoBehaviour
         {
             case Location.Outside:
                 {
-
+                    neighbourhoodMan.DropItemOutside(myPlayerID, cItem);
                     break;
                 }
             case Location.LivingRoom:
@@ -147,4 +200,5 @@ public class PaulMovementPlaceholder : MonoBehaviour
 
         playerState = PlayerState.Normal;
     }
+
 }
