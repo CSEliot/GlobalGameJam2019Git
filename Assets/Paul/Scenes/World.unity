@@ -6954,9 +6954,10 @@ GameObject:
   - component: {fileID: 854632542}
   - component: {fileID: 854632541}
   - component: {fileID: 854632540}
-  m_Layer: 0
+  - component: {fileID: 854632543}
+  m_Layer: 12
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: Store
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6983,8 +6984,8 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 854632538}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
+  m_IsTrigger: 1
+  m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -7033,6 +7034,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 854632538}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &854632543
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 854632538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4aec45ffb457d854180ab5f48458b244, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  homeRef: 0
+  roomRef: 0
+  rType: 4
 --- !u!1 &857599920
 GameObject:
   m_ObjectHideFlags: 0
@@ -9632,9 +9648,9 @@ GameObject:
   - component: {fileID: 1231205267}
   - component: {fileID: 1231205266}
   - component: {fileID: 1231205269}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: RoomHitbox
-  m_TagString: Home
+  m_TagString: Bedroom
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9723,6 +9739,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4aec45ffb457d854180ab5f48458b244, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  homeRef: 0
   roomRef: 2
   rType: 2
 --- !u!1 &1234641620
@@ -12462,9 +12479,9 @@ GameObject:
   - component: {fileID: 1482367295}
   - component: {fileID: 1482367294}
   - component: {fileID: 1482367297}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: RoomHitbox
-  m_TagString: Home
+  m_TagString: LivingRoom
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12553,6 +12570,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4aec45ffb457d854180ab5f48458b244, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  homeRef: 0
   roomRef: 0
   rType: 0
 --- !u!1001 &1484036087
@@ -13967,9 +13985,9 @@ GameObject:
   - component: {fileID: 1641313011}
   - component: {fileID: 1641313010}
   - component: {fileID: 1641313013}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: RoomHitbox
-  m_TagString: Home
+  m_TagString: Kitchen
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14058,6 +14076,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4aec45ffb457d854180ab5f48458b244, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  homeRef: 0
   roomRef: 1
   rType: 1
 --- !u!1 &1641313784
@@ -17800,9 +17819,9 @@ GameObject:
   - component: {fileID: 1991745062}
   - component: {fileID: 1991745061}
   - component: {fileID: 1991745064}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: RoomHitbox
-  m_TagString: Home
+  m_TagString: Bathroom
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17891,6 +17910,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4aec45ffb457d854180ab5f48458b244, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  homeRef: 0
   roomRef: 3
   rType: 3
 --- !u!1 &1991967971
