@@ -10,6 +10,7 @@ ModelImporter:
     400002: //RootNode
     400004: ToiletSeat
     2100000: lambert1
+    2100002: lambert3
     2300000: Toilet
     2300002: ToiletSeat
     3300000: Toilet
