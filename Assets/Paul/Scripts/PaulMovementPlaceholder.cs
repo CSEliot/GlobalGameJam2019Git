@@ -122,6 +122,11 @@ public class PaulMovementPlaceholder : MonoBehaviour
         }
     }
 
+    void GetHit()
+    {
+        //
+    }
+
     void Click()
     {
         switch (playerState)
