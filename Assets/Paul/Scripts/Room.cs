@@ -34,8 +34,10 @@ public class Room : MonoBehaviour
 
     public void TakeThisObject(Collectable collecto)
     {
+        collecto.collido.enabled = true;
         collecto.transform.parent = slots[nextSlot].anchorSpot;
         collecto.transform.localPosition = new Vector3(0, 0, 0);
+        collecto.transform.localRotation = Quaternion.identity;
         slots[nextSlot].taken = true;
         nextSlot++;
     }
