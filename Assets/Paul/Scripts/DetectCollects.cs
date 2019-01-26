@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class DetectCollects : MonoBehaviour
 {
-    public bool nearHouse;
+    
     public bool hasNearObj;
-    public Transform closeObj;
+    public Collectable closeObj;
 
     void OnTriggerEnter(Collider col)
     {
@@ -14,13 +14,13 @@ public class DetectCollects : MonoBehaviour
         {
             case "Collectable":
                 {
-                    closeObj = col.gameObject.transform;
+                    closeObj = col.gameObject.GetComponent<Collectable>();
                     hasNearObj = true;
                     break;
                 }
             case "Home":
                 {
-                    nearHouse = true;
+                    //nearHouse = true;
                     break;
                 }
         }
@@ -38,7 +38,7 @@ public class DetectCollects : MonoBehaviour
                 }
             case "Home":
                 {
-                    nearHouse = false;
+                   // nearHouse = false;
                     break;
                 }
         }

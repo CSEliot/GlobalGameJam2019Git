@@ -5,12 +5,19 @@ using UnityEngine;
 [System.Serializable]
 public enum PlayerState
 {
-    Normal, Holding
+    Normal, Holding, Stunned, Boosted
+}
+
+public enum Location
+{
+    Outside, Store, LivingRoom, Kitchen, Bedroom, Bathroom
 }
 
 public class PaulMovementPlaceholder : MonoBehaviour
 {
     public PlayerState playerState;
+    public Location location;
+
 
     public PlayerHome myHome;
 
@@ -21,7 +28,6 @@ public class PaulMovementPlaceholder : MonoBehaviour
     public DetectCollects detector;
 
     public Transform holdPos;
-    public Transform heldObj;
 
     public Collectable cItem;
 
@@ -57,21 +63,21 @@ public class PaulMovementPlaceholder : MonoBehaviour
                 {
                     if (detector.hasNearObj)
                     {
-                        heldObj = detector.closeObj;
-                        heldObj.parent = this.transform;
-                        heldObj.position = holdPos.position;
-                        cItem = heldObj.GetComponent<Collectable>();
+                        cItem = detector.closeObj;
+                        cItem.transform.parent = this.transform;
+                        cItem.transform.position = holdPos.position;
+                       
                         playerState = PlayerState.Holding;
                     }
                     break;
                 }
             case PlayerState.Holding:
                 {
-                    if (detector.nearHouse)
-                    {
+                    //if (detector.nearHouse)
+                    //{
                         myHome.DropItemInRoom(0, cItem);
                         playerState = PlayerState.Normal;
-                    }
+                    //}
                     break;
                 }
         }
