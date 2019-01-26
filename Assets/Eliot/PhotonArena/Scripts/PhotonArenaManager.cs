@@ -15,14 +15,14 @@ public class PhotonArenaManager : Singleton<PhotonArenaManager>
     /// <summary>
     /// 
     /// </summary>
-    enum ServerDepthLevel {
+    public enum ServerDepthLevel {
         Offline,
         InServer,
         InLobby,
         InRoom
     }
 
-    ServerDepthLevel currentServerUserDepth = ServerDepthLevel.Offline;
+    public ServerDepthLevel currentServerUserDepth = ServerDepthLevel.Offline;
 
     void Awake() {
         if (SceneManager.GetActiveScene().name != "Eliot Test") {
