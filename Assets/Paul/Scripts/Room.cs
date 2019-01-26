@@ -29,6 +29,7 @@ public class SlotSpace
 public class Room : MonoBehaviour
 {
     public List<SlotSpace> slots = new List<SlotSpace>();
+    public RoomHitbox roomHitbox;
 
     public int nextSlot = 0;
 
