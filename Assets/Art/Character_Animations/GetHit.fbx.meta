@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 509667dd8c6c2164b867ff7c16705aa7
+guid: e78041059c6a1af4581fc646b9c7e7a6
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -7,66 +7,66 @@ ModelImporter:
     100002: BODY
     100004: cheap
     100006: expensive
-    100008: hermit
-    100010: hoarder
-    100012: L_Ankle
-    100014: L_Clav
-    100016: L_Fingertip
-    100018: L_Hip
-    100020: L_Shoulder
-    100022: L_Thigh
-    100024: L_Toe
-    100026: L_wrist
-    100028: nerd
-    100030: perfectionist
-    100032: R_Ankle
-    100034: R_Clav
-    100036: R_Fingertip
-    100038: R_Hip
-    100040: R_Shoulder
-    100042: R_Thigh
-    100044: R_Toe
-    100046: R_wrist
-    100048: soccermom
-    100050: Spine_Chest
-    100052: Spine_Collar
-    100054: Spine_headTip
-    100056: Spine_Hip_Base
-    100058: Spine_Neck
-    100060: tacky
-    100062: //RootNode
+    100008: //RootNode
+    100010: hermit
+    100012: hoarder
+    100014: L_Ankle
+    100016: L_Clav
+    100018: L_Fingertip
+    100020: L_Hip
+    100022: L_Shoulder
+    100024: L_Thigh
+    100026: L_Toe
+    100028: L_wrist
+    100030: nerd
+    100032: perfectionist
+    100034: R_Ankle
+    100036: R_Clav
+    100038: R_Fingertip
+    100040: R_Hip
+    100042: R_Shoulder
+    100044: R_Thigh
+    100046: R_Toe
+    100048: R_wrist
+    100050: soccermom
+    100052: Spine_Chest
+    100054: Spine_Collar
+    100056: Spine_headTip
+    100058: Spine_Hip_Base
+    100060: Spine_Neck
+    100062: tacky
     400000: athlete
     400002: BODY
     400004: cheap
     400006: expensive
-    400008: hermit
-    400010: hoarder
-    400012: L_Ankle
-    400014: L_Clav
-    400016: L_Fingertip
-    400018: L_Hip
-    400020: L_Shoulder
-    400022: L_Thigh
-    400024: L_Toe
-    400026: L_wrist
-    400028: nerd
-    400030: perfectionist
-    400032: R_Ankle
-    400034: R_Clav
-    400036: R_Fingertip
-    400038: R_Hip
-    400040: R_Shoulder
-    400042: R_Thigh
-    400044: R_Toe
-    400046: R_wrist
-    400048: soccermom
-    400050: Spine_Chest
-    400052: Spine_Collar
-    400054: Spine_headTip
-    400056: Spine_Hip_Base
-    400058: Spine_Neck
-    400060: tacky
-    400062: //RootNode
+    400008: //RootNode
+    400010: hermit
+    400012: hoarder
+    400014: L_Ankle
+    400016: L_Clav
+    400018: L_Fingertip
+    400020: L_Hip
+    400022: L_Shoulder
+    400024: L_Thigh
+    400026: L_Toe
+    400028: L_wrist
+    400030: nerd
+    400032: perfectionist
+    400034: R_Ankle
+    400036: R_Clav
+    400038: R_Fingertip
+    400040: R_Hip
+    400042: R_Shoulder
+    400044: R_Thigh
+    400046: R_Toe
+    400048: R_wrist
+    400050: soccermom
+    400052: Spine_Chest
+    400054: Spine_Collar
+    400056: Spine_headTip
+    400058: Spine_Hip_Base
+    400060: Spine_Neck
+    400062: tacky
     2100000: Material.000
     2300000: athlete
     2300002: cheap
@@ -97,7 +97,6 @@ ModelImporter:
     4300016: cheap
     4300018: athlete
     7400000: Take 001
-    7400002: Take 001 (1)
     9500000: //RootNode
     13700000: BODY
   externalObjects: {}
@@ -127,63 +126,7 @@ ModelImporter:
     animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties: []
-    clipAnimations:
-    - serializedVersion: 16
-      name: Take 001
-      takeName: Take 001
-      firstFrame: 1
-      lastFrame: 30
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 1
-      loopBlend: 1
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
-    - serializedVersion: 16
-      name: Take 001 (1)
-      takeName: Take 001
-      firstFrame: 1
-      lastFrame: 1.7
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 0
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
+    clipAnimations: []
     isReadable: 1
   meshes:
     lODScreenPercentages: []

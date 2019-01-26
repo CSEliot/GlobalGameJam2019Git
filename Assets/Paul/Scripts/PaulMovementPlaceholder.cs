@@ -45,12 +45,17 @@ public class PaulMovementPlaceholder : MonoBehaviour
     public TextMeshPro locationTxt;
 
     public List<GameObject> hats = new List<GameObject>();
+    private Vector3 rVelocity;
+
+    private bool lClickDown;
 
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
-
+        SelectHat(Random.Range(0, 8));
         PhotonArenaManager.instance.Connect();
+
+       
     }
 
     void SelectHat(int num)
@@ -70,7 +75,9 @@ public class PaulMovementPlaceholder : MonoBehaviour
 
     void Update()
     {
-        rby.velocity = ((this.transform.forward * speed) * Input.GetAxis("Vertical")) + 
+        float GravY = rby.velocity.y;
+
+        rVelocity = ((this.transform.forward * speed) * Input.GetAxis("Vertical")) + 
             ((this.transform.right * speed) * Input.GetAxis("Horizontal"));
 
         if(Input.GetAxis("Vertical") == 0 && Input.GetAxis("Horizontal") == 0)
@@ -82,17 +89,29 @@ public class PaulMovementPlaceholder : MonoBehaviour
             charAnim.SetFloat("Speed", 1);
         }
 
+
+        rVelocity.y = GravY;
+        rby.velocity = rVelocity;
+
         this.transform.Rotate(new Vector3(0, Input.GetAxis("Mouse X"), 0));
 
 
         
 
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButtonDown(0))
         {
-            Click();
+            if (!lClickDown)
+            {
+                lClickDown = true;
+                Click();
+            }
+        }
+        else
+        {
+            lClickDown = false;
         }
 
-        if (Input.GetMouseButton(1))
+        if (Input.GetMouseButtonDown(1))
         {
             RightClick();
         }
@@ -166,7 +185,9 @@ public class PaulMovementPlaceholder : MonoBehaviour
             cItem.transform.localPosition = cItem.localPos;
             cItem.transform.localEulerAngles = cItem.localErot;
             cItem.collido.enabled = false;
+            cItem.rby.isKinematic = true;
             canAttack = true;
+            charAnim.SetBool("Packing", true);
 
             playerState = PlayerState.Holding;
         }
@@ -174,7 +195,9 @@ public class PaulMovementPlaceholder : MonoBehaviour
 
     void Attack()
     {
-        holdPos.rotation = tempAtk.rotation;
+        //holdPos.position = tempAtk.position;
+        //holdPos.rotation = tempAtk.rotation;
+        charAnim.SetTrigger("Attack");
         StartCoroutine(ResetAttack());
     }
 
@@ -186,7 +209,8 @@ public class PaulMovementPlaceholder : MonoBehaviour
         {
             t += Time.deltaTime * 2.5f;
 
-            holdPos.rotation = Quaternion.Slerp(holdPos.rotation, tempNorm.rotation, t);
+            //holdPos.position = Vector3.Lerp(holdPos.position, tempNorm.position, t);
+            //holdPos.rotation = Quaternion.Slerp(holdPos.rotation, tempNorm.rotation, t);
             yield return null;
         }
 
@@ -231,6 +255,7 @@ public class PaulMovementPlaceholder : MonoBehaviour
         }
 
         StopAllCoroutines();
+        charAnim.SetBool("Packing", false);
         detector.hasNearObj = false;
         canAttack = false;
         cItem = null;
