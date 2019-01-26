@@ -6,6 +6,9 @@ TagManager:
   tags:
   - MUSIC
   - CBUG
+  - Bullet
+  - Collectable
+  - Home
   layers:
   - Default
   - TransparentFX
