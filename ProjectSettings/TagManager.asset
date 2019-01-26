@@ -4,11 +4,9 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - PhotonArenaManager
   - MUSIC
   - CBUG
-  - Bullet
-  - Collectable
-  - Home
   layers:
   - Default
   - TransparentFX
