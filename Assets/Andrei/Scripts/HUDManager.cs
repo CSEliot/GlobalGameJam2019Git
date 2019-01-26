@@ -10,6 +10,10 @@ public class HUDManager : MonoBehaviour
     int pageIndex = 0;
     int startingChecklist = 0;
 
+    [Header("Popups")]
+    public GameObject blueCouchPopup;
+    public GameObject countdownPopup;
+
     [Header("Countdown Timer Settings")]
     public Text timerText;
     private float time = 1200;
@@ -106,11 +110,21 @@ public class HUDManager : MonoBehaviour
         }
     }
 
+
+    // Animation methods
     public void ScoreAnimate(bool scoreType){
         if(scoreType){
             scoreAnim.SetTrigger("Positive");
         }else{
             scoreAnim.SetTrigger("Negative");
         }
+    }
+
+    public void BlueCouchAnimate(){
+        blueCouchPopup.SetActive(true);
+    }
+
+    public void CountdownPopup(){
+        countdownPopup.SetActive(true);
     }
 }
