@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 
 [System.Serializable]
@@ -39,11 +40,13 @@ public class PaulMovementPlaceholder : MonoBehaviour
     public Collectable cItem;
     public bool canAttack;
 
+    public TextMeshPro locationTxt;
+
     void Start()
     {
-        PhotonArenaManager.instance.Connect();
-
         Cursor.lockState = CursorLockMode.Locked;
+
+        PhotonArenaManager.instance.Connect();
     }
 
     void Update()
@@ -135,6 +138,7 @@ public class PaulMovementPlaceholder : MonoBehaviour
             cItem.transform.localPosition = cItem.localPos;
             cItem.transform.localEulerAngles = cItem.localErot;
             cItem.collido.enabled = false;
+            canAttack = true;
 
             playerState = PlayerState.Holding;
         }
@@ -198,6 +202,10 @@ public class PaulMovementPlaceholder : MonoBehaviour
                 }
         }
 
+        StopAllCoroutines();
+        detector.hasNearObj = false;
+        canAttack = false;
+        cItem = null;
         playerState = PlayerState.Normal;
     }
 

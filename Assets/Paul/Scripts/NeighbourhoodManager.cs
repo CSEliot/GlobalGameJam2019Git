@@ -9,12 +9,23 @@ public class NeighbourhoodManager : MonoBehaviour
 
     public void DropItemOutside(int player, Collectable collecto)
     {
-
+        collecto.transform.parent = null;
+        collecto.collido.enabled = true;
+        collecto.rby.isKinematic = false;
     }
 
     public void DropItemInHouseRoom(int player, int house, int room, Collectable collecto)
     {
-        //allHomes[house].
+        if(player == house)//placing in their house evaluate for postive points
+        {
+
+        }
+        else //placing in someone elses house
+        {
+
+        }
+
+        allHomes[house].allRooms[room].TakeThisObject(collecto);
     }
 
     public void TakeItemFromHouseRoom()

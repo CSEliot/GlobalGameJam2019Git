@@ -1,15 +1,14 @@
 fileFormatVersion: 2
-guid: 99f708a58872d9c44bcd7fc93618bccf
+guid: 3db478fab75535b4f9cbaa00c66e0ae4
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
     400000: //RootNode
-    2100000: lambert1
-    2100002: lambert2
+    2100000: Material.000
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Blender
+    4300000: BODY
   externalObjects: {}
   materials:
     importMaterials: 1
