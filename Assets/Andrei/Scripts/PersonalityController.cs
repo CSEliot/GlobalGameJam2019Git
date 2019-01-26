@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System.Linq;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -128,6 +129,33 @@ public class PersonalityController : MonoBehaviour
         athlete = Mathf.RoundToInt(timeToCompleteTest);
 
         var score = GetScore();
+
+        //test code
+        var scores = new Dictionary<int, int[]>();
+        scores.Add(0, score);
+
+        var soccermom = new PersonalityController();
+        soccermom.soccermom = 8;
+        soccermom.athlete = 99999;
+        scores.Add(11, soccermom.GetScore());
+
+        var hoarder = new PersonalityController();
+        hoarder.hoarder = 10;
+        hoarder.athlete = 88888;
+        scores.Add(22, hoarder.GetScore());
+
+        var expensive = new PersonalityController();
+        expensive.expensive = 10;
+        expensive.athlete = 77777;
+        scores.Add(33, expensive.GetScore());
+
+        var cheap = new PersonalityController();
+        cheap.cheap = 10;
+        cheap.athlete = 66666;
+        scores.Add(44, cheap.GetScore());
+
+        var results = SortingHat(scores);
+
     }
 
     public int[] GetScore()
@@ -146,7 +174,82 @@ public class PersonalityController : MonoBehaviour
 
         return score;
     }
+
+
+    public static Dictionary<int, PersonalityType> SortingHat(Dictionary<int, int[]> scores)
+    {
+        var results = new Dictionary<int, PersonalityType>(scores.Count);
+
+        // Find athlete
+        if (scores.Count > 0)
+        {
+            var athlete = scores.OrderBy(s => s.Value[(int)PersonalityType.Athletic]).First();
+            scores.Remove(athlete.Key);
+            results.Add(athlete.Key, PersonalityType.Athletic);
+        }
+
+        // Find expensive
+        if (scores.Count > 0)
+        {
+            var expensive = scores.OrderByDescending(s => s.Value[(int)PersonalityType.Expensive]).ThenBy(s => s.Value[(int)PersonalityType.Athletic]).First();
+            scores.Remove(expensive.Key);
+            results.Add(expensive.Key, PersonalityType.Expensive);
+        }
+
+        // Find cheap
+        if (scores.Count > 0)
+        {
+            var cheap = scores.OrderByDescending(s => s.Value[(int)PersonalityType.Cheap]).ThenBy(s => s.Value[(int)PersonalityType.Athletic]).First();
+            scores.Remove(cheap.Key);
+            results.Add(cheap.Key, PersonalityType.Cheap);
+        }
+        // Find hoarder
+        if (scores.Count > 0)
+        {
+            var hoarder = scores.OrderByDescending(s => s.Value[(int)PersonalityType.Hoarder]).ThenBy(s => s.Value[(int)PersonalityType.Athletic]).First();
+            scores.Remove(hoarder.Key);
+            results.Add(hoarder.Key, PersonalityType.Hoarder);
+        }
+        // Find nerd
+        if (scores.Count > 0)
+        {
+            var nerd = scores.OrderByDescending(s => s.Value[(int)PersonalityType.Nerd]).ThenBy(s => s.Value[(int)PersonalityType.Athletic]).First();
+            scores.Remove(nerd.Key);
+            results.Add(nerd.Key, PersonalityType.Nerd);
+        }
+        // Find tacky
+        if (scores.Count > 0)
+        {
+            var tacky = scores.OrderByDescending(s => s.Value[(int)PersonalityType.Tacky]).ThenBy(s => s.Value[(int)PersonalityType.Athletic]).First();
+            scores.Remove(tacky.Key);
+            results.Add(tacky.Key, PersonalityType.Tacky);
+        }
+        // Find Perfectionist
+        if (scores.Count > 0)
+        {
+            var perfectionist = scores.OrderByDescending(s => s.Value[(int)PersonalityType.Perfectionist]).ThenBy(s => s.Value[(int)PersonalityType.Athletic]).First();
+            scores.Remove(perfectionist.Key);
+            results.Add(perfectionist.Key, PersonalityType.Perfectionist);
+        }
+        // Find hermit
+        if (scores.Count > 0)
+        {
+            var hermit = scores.OrderByDescending(s => s.Value[(int)PersonalityType.Hermit]).ThenBy(s => s.Value[(int)PersonalityType.Athletic]).First();
+            scores.Remove(hermit.Key);
+            results.Add(hermit.Key, PersonalityType.Hermit);
+        }
+        // Find soccermom
+        if (scores.Count > 0)
+        {
+            var soccermom = scores.OrderByDescending(s => s.Value[(int)PersonalityType.SoccerMom]).ThenBy(s => s.Value[(int)PersonalityType.Athletic]).First();
+            scores.Remove(soccermom.Key);
+            results.Add(soccermom.Key, PersonalityType.SoccerMom);
+        }
+        return results;
+    }
 }
+
+
 
 /* 
 using System.Collections;
