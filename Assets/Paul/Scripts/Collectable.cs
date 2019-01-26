@@ -11,6 +11,7 @@ public enum CurrentPlace
 public class Collectable : MonoBehaviour
 {
     public List<PersonalityType> traits = new List<PersonalityType>();
+    public RoomType roomAffinity = RoomType.Store;
 
     public Vector3 localPos; //for parenting to character 
     public Vector3 localErot;
