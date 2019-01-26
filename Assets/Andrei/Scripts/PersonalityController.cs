@@ -22,6 +22,8 @@ public class PersonalityController : MonoBehaviour
     private bool timerRunning = false;
     private bool hasSoldDog = false;
 
+    private long startTime;
+
     public Text timerText;
 
     [Header("Other display information")]
@@ -109,6 +111,7 @@ public class PersonalityController : MonoBehaviour
     }
 
     public void StartTimer(){
+        startTime = 
         timerRunning = true;
     }
 
