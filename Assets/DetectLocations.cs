@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class DetectLocations : MonoBehaviour
 {
+    public PaulMovementPlaceholder playerRef;
+
     public List<Location> locations = new List<Location>();
 
 
@@ -11,17 +13,18 @@ public class DetectLocations : MonoBehaviour
     {
         switch (col.tag)
         {
-            case "Collectable":
+            case "LivingRoom":
                 {
                     if (!locations.Contains(Location.LivingRoom))
                     {
                         locations.Add(Location.LivingRoom);
+                        playerRef.location = Location.LivingRoom;
+                        playerRef.currentHome = col.GetComponent<RoomHitbox>().homeRef;
                     }
                     break;
                 }
-            case "Home":
+            case "Kitchen":
                 {
-                    //nearHouse = true;
                     break;
                 }
         }

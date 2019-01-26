@@ -23,6 +23,7 @@ public class PaulMovementPlaceholder : MonoBehaviour
 
     public int myPlayerID;//0-8
     public int myHome;//0-8
+    public int currentHome;//0-8
 
     public Transform camRef;
     public Rigidbody rby;
@@ -52,6 +53,11 @@ public class PaulMovementPlaceholder : MonoBehaviour
         if (Input.GetMouseButton(0))
         {
             Click();
+        }
+        
+        if (Input.GetButton("Jump"))
+        {
+            Debug.Log("simulate get hit");
         }
 
     }
