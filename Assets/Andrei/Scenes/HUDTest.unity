@@ -322,11 +322,14 @@ MonoBehaviour:
   pageIndex: 0
   startingChecklist: 0
   timerText: {fileID: 384081985}
+  scoreAnim: {fileID: 906880824}
+  scoreText: {fileID: 906880822}
   instructionText: {fileID: 1452891127}
-  inst1: Go find an item that matches your personality!
-  inst2: Bring the item back to your house!
-  inst3: Go get the blue couch for MEGA points!
-  inst4: This item doesn't match your personality, but it will give you some points!
+  instgetitem: Go find an item that matches your personality!
+  instcorrectitem: Bring this item back to your house for points!
+  instbluecouch: Bring the blue couch back to your home for MEGA points!
+  instwrongitem: This item does not match your personality but it will still give
+    you some points!
   mainCam: {fileID: 1572684143}
 --- !u!1 &286762999
 GameObject:
@@ -991,7 +994,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: /4
+  m_Text: /9
 --- !u!222 &654739601
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1032,10 +1035,10 @@ RectTransform:
   m_Father: {fileID: 214970980}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 1}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -1374.41, y: -71.67}
-  m_SizeDelta: {x: 415.81, y: 111.84}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 225.58997, y: -71.67}
+  m_SizeDelta: {x: 415.81006, y: 111.84}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &677601130
 MonoBehaviour:
@@ -1250,6 +1253,7 @@ GameObject:
   - component: {fileID: 906880821}
   - component: {fileID: 906880823}
   - component: {fileID: 906880822}
+  - component: {fileID: 906880824}
   m_Layer: 5
   m_Name: ScoreText
   m_TagString: Untagged
@@ -1271,10 +1275,10 @@ RectTransform:
   m_Father: {fileID: 214970980}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 1}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -1229.8, y: -69.50998}
-  m_SizeDelta: {x: 341.09, y: 111.84}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 370.19995, y: -69.50998}
+  m_SizeDelta: {x: 341.08997, y: 111.84}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &906880822
 MonoBehaviour:
@@ -1318,6 +1322,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 906880820}
   m_CullTransparentMesh: 0
+--- !u!95 &906880824
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 906880820}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: fdb691ec017179048912c370937bce5d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1133565771
 GameObject:
   m_ObjectHideFlags: 0
@@ -1424,15 +1447,15 @@ RectTransform:
   m_GameObject: {fileID: 1175932298}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.64757, y: 0.64757, z: 0.64757}
   m_Children: []
   m_Father: {fileID: 214970980}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -133, y: -75}
-  m_SizeDelta: {x: 118.1, y: 139}
+  m_AnchoredPosition: {x: -124.5, y: -77.600006}
+  m_SizeDelta: {x: 181.54, y: 221.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1175932300
 MonoBehaviour:
@@ -1456,11 +1479,11 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: e2e31804948013d44832046d50e59aa8, type: 3}
-    m_FontSize: 102
+    m_FontSize: 158
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 10
-    m_MaxSize: 122
+    m_MaxSize: 208
     m_Alignment: 5
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -1488,7 +1511,7 @@ GameObject:
   - component: {fileID: 1452891128}
   - component: {fileID: 1452891127}
   m_Layer: 5
-  m_Name: InstructionText (3)
+  m_Name: InstructionText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1552,7 +1575,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -434.3, y: -379.7}
+  m_AnchoredPosition: {x: -443, y: -371}
   m_SizeDelta: {x: 660.5, y: 112.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1572684141

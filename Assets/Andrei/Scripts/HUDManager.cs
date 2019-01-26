@@ -5,16 +5,18 @@ using UnityEngine.UI;
 
 public class HUDManager : MonoBehaviour
 {
-     [Header("Player Object Checklists")]
-    public GameObject[] checklistPanels;
-    public int pageIndex = 0;
-    public int startingChecklist = 0;
+    [Header("Player Object Checklists")]
+    GameObject[] checklistPanels;
+    int pageIndex = 0;
+    int startingChecklist = 0;
 
     [Header("Countdown Timer Settings")]
     public Text timerText;
     private float time = 1200;
 
     [Header("HUD Settings")]
+    public Animator scoreAnim;
+    public Text scoreText;
     public Text instructionText;
     public string instgetitem = "";
     public string instcorrectitem = "";
@@ -61,10 +63,18 @@ public class HUDManager : MonoBehaviour
                 checklistPanels[pageIndex].SetActive(true);
             }
         }
-        Debug.Log(pageIndex);
+        
+        
+        if(Input.GetKeyDown("o")){
+            ScoreAnimate(false);
+        }
+         if(Input.GetKeyDown("p")){
+            ScoreAnimate(true);
+        }
     }
 
-    void StartCoundownTimer()
+    // To start countdown clock locally
+    public void StartCoundownTimer()
     {
         if (timerText != null)
         {
@@ -94,6 +104,14 @@ public class HUDManager : MonoBehaviour
             instructionText.text = instbluecouch;
         }else if(instructionNum == 3){
             instructionText.text = instwrongitem;
+        }
+    }
+
+    public void ScoreAnimate(bool scoreType){
+        if(scoreType){
+            scoreAnim.SetTrigger("Positive");
+        }else{
+            scoreAnim.SetTrigger("Negative");
         }
     }
 }

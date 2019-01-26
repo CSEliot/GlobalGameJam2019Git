@@ -8,6 +8,7 @@ public enum PlayerState
     Normal, Holding, Stunned, Boosted
 }
 
+[System.Serializable]
 public enum Location
 {
     Outside, Store, LivingRoom, Kitchen, Bedroom, Bathroom
@@ -18,8 +19,10 @@ public class PaulMovementPlaceholder : MonoBehaviour
     public PlayerState playerState;
     public Location location;
 
+    public NeighbourhoodManager neighbourhoodMan;
 
-    public PlayerHome myHome;
+    public int myPlayerID;//0-8
+    public int myHome;//0-8
 
     public Transform camRef;
     public Rigidbody rby;
@@ -31,13 +34,11 @@ public class PaulMovementPlaceholder : MonoBehaviour
 
     public Collectable cItem;
 
-    // Start is called before the first frame update
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
     }
 
-    // Update is called once per frame
     void Update()
     {
         rby.velocity = ((this.transform.forward * speed) * Input.GetAxis("Vertical")) + 
@@ -75,8 +76,45 @@ public class PaulMovementPlaceholder : MonoBehaviour
                 {
                     //if (detector.nearHouse)
                     //{
-                        myHome.DropItemInRoom(0, cItem);
-                        playerState = PlayerState.Normal;
+                    int roomLocation = 0;
+
+                    switch (location)
+                    {
+                        case Location.Outside:
+                            {
+
+                                break;
+                            }
+                        case Location.LivingRoom:
+                            {
+                                roomLocation = 0;
+                                neighbourhoodMan.DropItemInHouseRoom(myPlayerID, myHome, roomLocation, cItem);
+                                break;
+                            }
+                        case Location.Kitchen:
+                            {
+                                roomLocation = 1;
+                                neighbourhoodMan.DropItemInHouseRoom(myPlayerID, myHome, roomLocation, cItem);
+                                break;
+                            }
+                        case Location.Bedroom:
+                            {
+                                roomLocation = 2;
+                                neighbourhoodMan.DropItemInHouseRoom(myPlayerID, myHome, roomLocation, cItem);
+                                break;
+                            }
+                        case Location.Bathroom:
+                            {
+                                roomLocation = 3;
+                                neighbourhoodMan.DropItemInHouseRoom(myPlayerID, myHome, roomLocation, cItem);
+                                break;
+                            }
+
+                    }
+
+
+                    
+                    playerState = PlayerState.Normal;
                     //}
                     break;
                 }
