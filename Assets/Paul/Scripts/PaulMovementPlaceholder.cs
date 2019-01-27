@@ -67,18 +67,23 @@ public class PaulMovementPlaceholder : MonoBehaviourPun, IPunObservable {
     }
 
     void Start() {
-        Cursor.lockState = CursorLockMode.Locked;
+        
 //        SelectHat(Random.Range(0, 8));
-        PhotonArenaManager.Instance.ConnectAndJoinRoom("MY NAME");
+        //PhotonArenaManager.Instance.ConnectAndJoinRoom("MY NAME");
 
         myPlayerID = PhotonArenaManager.Instance.GetLocalPlayerID();
         myPersonality = GetMyPersonality();
 
         SelectHat((int)myPersonality);
 
+
         if (!photonView.IsMine)
         {
-            camRef.GetComponent<Camera>().enabled = false;
+            camRef.gameObject.SetActive(false);
+        }
+        else
+        {
+            //Cursor.lockState = CursorLockMode.Locked;
         }
     }
 
