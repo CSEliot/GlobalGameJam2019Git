@@ -6,7 +6,6 @@ using System.Collections.Generic;
 
 public class PhotonArenaManager : Singleton<PhotonArenaManager>
 {
-    public static PhotonArenaManager instance;
 
     #region Spoof Server
     Dictionary<string, System.Object> DataStore = new Dictionary<string, object>();
@@ -100,7 +99,6 @@ public class PhotonArenaManager : Singleton<PhotonArenaManager>
     }
 
     public void SaveData(string label, System.Object data) {
-        bool containsData = true;
         if (currentServerUserDepth == ServerDepthLevel.Offline) {
             DataStore.Add(label, data);
         }
@@ -114,10 +112,10 @@ public class PhotonArenaManager : Singleton<PhotonArenaManager>
     }
 
     #region PUN OVERRIDES
-    //public override void OnConnected() {
-    //    base.OnConnected();
+    public override void OnConnected() {
+        base.OnConnected();
 
-    //    CBUG.Do("Connected!");
-    //}
+        CBUG.Do("Connected!");
+    }
     #endregion
 }

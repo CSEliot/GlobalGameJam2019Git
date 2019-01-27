@@ -53,7 +53,7 @@ public class PaulMovementPlaceholder : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         SelectHat(Random.Range(0, 8));
-        PhotonArenaManager.instance.Connect();
+        PhotonArenaManager.Instance.Connect();
 
        
     }
@@ -120,6 +120,11 @@ public class PaulMovementPlaceholder : MonoBehaviour
         {
             Debug.Log("simulate get hit");
         }
+    }
+
+    void GetHit()
+    {
+        //
     }
 
     void Click()
@@ -231,25 +236,25 @@ public class PaulMovementPlaceholder : MonoBehaviour
             case Location.LivingRoom:
                 {
                     roomLocation = 0;
-                    neighbourhoodMan.DropItemInHouseRoom(myPlayerID, myHome, roomLocation, cItem);
+                    neighbourhoodMan.DropItemInHouseRoom(myPlayerID, currentHome, roomLocation, cItem);
                     break;
                 }
             case Location.Kitchen:
                 {
                     roomLocation = 1;
-                    neighbourhoodMan.DropItemInHouseRoom(myPlayerID, myHome, roomLocation, cItem);
+                    neighbourhoodMan.DropItemInHouseRoom(myPlayerID, currentHome, roomLocation, cItem);
                     break;
                 }
             case Location.Bedroom:
                 {
                     roomLocation = 2;
-                    neighbourhoodMan.DropItemInHouseRoom(myPlayerID, myHome, roomLocation, cItem);
+                    neighbourhoodMan.DropItemInHouseRoom(myPlayerID, currentHome, roomLocation, cItem);
                     break;
                 }
             case Location.Bathroom:
                 {
                     roomLocation = 3;
-                    neighbourhoodMan.DropItemInHouseRoom(myPlayerID, myHome, roomLocation, cItem);
+                    neighbourhoodMan.DropItemInHouseRoom(myPlayerID, currentHome, roomLocation, cItem);
                     break;
                 }
         }

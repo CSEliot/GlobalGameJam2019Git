@@ -5,7 +5,7 @@ using Photon.Pun;
 /// http://wiki.unity3d.com/index.php/Singleton
 /// </summary>
 /// <typeparam name="T">Same as Inheriting class.</typeparam>
-public class Singleton<T> : MonoBehaviour where T : MonoBehaviour {
+public class Singleton<T> : MonoBehaviourPunCallbacks where T : MonoBehaviourPunCallbacks {
     // Check to see if we're about to be destroyed.
     private static bool m_ShuttingDown = false;
     private static object m_Lock = new object();

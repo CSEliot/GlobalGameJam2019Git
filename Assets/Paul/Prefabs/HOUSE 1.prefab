@@ -226,6 +226,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f41fee04e72bf24d96dc881c9a059d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  homeRef: 0
   houseType: 0
   allRooms:
   - {fileID: 8200295674705981207}
@@ -657,6 +658,7 @@ MonoBehaviour:
     anchorSpot: {fileID: 8200295674954661051}
   - taken: 0
     anchorSpot: {fileID: 8200295675065322582}
+  roomHitbox: {fileID: 8200295676246000982}
   nextSlot: 0
 --- !u!1 &8200295674712323340
 GameObject:
@@ -1222,6 +1224,7 @@ MonoBehaviour:
     anchorSpot: {fileID: 8200295674712323339}
   - taken: 0
     anchorSpot: {fileID: 8200295674330519573}
+  roomHitbox: {fileID: 8200295675962398594}
   nextSlot: 0
 --- !u!1 &8200295674954661052
 GameObject:
@@ -1832,6 +1835,7 @@ MonoBehaviour:
     anchorSpot: {fileID: 8200295675783851005}
   - taken: 0
     anchorSpot: {fileID: 8200295675319418789}
+  roomHitbox: {fileID: 8200295675550750434}
   nextSlot: 0
 --- !u!1 &8200295675299131212
 GameObject:
@@ -3434,6 +3438,7 @@ MonoBehaviour:
   slots:
   - taken: 0
     anchorSpot: {fileID: 8200295676059324676}
+  roomHitbox: {fileID: 8200295675867183679}
   nextSlot: 0
 --- !u!1 &8200295675783851006
 GameObject:
