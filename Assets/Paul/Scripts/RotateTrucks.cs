@@ -14,6 +14,6 @@ public class RotateTrucks : MonoBehaviour
     {
         inner.Rotate(new Vector3(0, speed,0));
 
-        inner.Rotate(new Vector3(0, -speed * .8f, 0));
+        outer.Rotate(new Vector3(0, -speed * .8f, 0));
     }
 }

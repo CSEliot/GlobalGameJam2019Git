@@ -55,6 +55,8 @@ public class PaulMovementPlaceholder : MonoBehaviour
 
     public Transform meshRotater;
 
+    public bool waitForStart;
+
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -113,57 +115,60 @@ public class PaulMovementPlaceholder : MonoBehaviour
     {
         float GravY = rby.velocity.y;
 
-        rVelocity = ((this.transform.forward * speed) * Input.GetAxis("Vertical")) + 
-            ((this.transform.right * speed) * Input.GetAxis("Horizontal"));
-
-        if(Input.GetAxis("Vertical") == 0 && Input.GetAxis("Horizontal") == 0)
+        if (!waitForStart)
         {
-            targetSpeed = 0f;
-        }
-        else
-        {
-            targetSpeed = 1f;
-        }
+            rVelocity = ((this.transform.forward * speed) * Input.GetAxis("Vertical")) +
+                ((this.transform.right * speed) * Input.GetAxis("Horizontal"));
 
-        animSpeed = Mathf.Lerp(animSpeed, targetSpeed, Time.deltaTime * 5f);
-        charAnim.SetFloat("Speed", animSpeed);
-
-        rVelocity.y = GravY;
-        rby.velocity = rVelocity;
-
-        this.transform.Rotate(new Vector3(0, Input.GetAxis("Mouse X"), 0));
-
-        if (rVelocity.x == 0 && rVelocity.z == 0)
-        {
-            meshRotater.rotation = Quaternion.LookRotation(this.transform.forward, Vector3.up);
-        }
-        else
-        {
-            meshRotater.rotation = Quaternion.LookRotation(new Vector3(rVelocity.x, 0, rVelocity.z), Vector3.up);
-        }
-
-
-        if (Input.GetMouseButtonDown(0))
-        {
-            if (!lClickDown)
+            if (Input.GetAxis("Vertical") == 0 && Input.GetAxis("Horizontal") == 0)
             {
-                lClickDown = true;
-                Click();
+                targetSpeed = 0f;
             }
-        }
-        else
-        {
-            lClickDown = false;
-        }
+            else
+            {
+                targetSpeed = 1f;
+            }
 
-        if (Input.GetMouseButtonDown(1))
-        {
-            RightClick();
-        }
+            animSpeed = Mathf.Lerp(animSpeed, targetSpeed, Time.deltaTime * 5f);
+            charAnim.SetFloat("Speed", animSpeed);
 
-        if (Input.GetButton("Jump"))
-        {
-            Debug.Log("simulate get hit");
+            rVelocity.y = GravY;
+            rby.velocity = rVelocity;
+
+            this.transform.Rotate(new Vector3(0, Input.GetAxis("Mouse X"), 0));
+
+            if (rVelocity.x == 0 && rVelocity.z == 0)
+            {
+                meshRotater.rotation = Quaternion.LookRotation(this.transform.forward, Vector3.up);
+            }
+            else
+            {
+                meshRotater.rotation = Quaternion.LookRotation(new Vector3(rVelocity.x, 0, rVelocity.z), Vector3.up);
+            }
+
+
+            if (Input.GetMouseButtonDown(0))
+            {
+                if (!lClickDown)
+                {
+                    lClickDown = true;
+                    Click();
+                }
+            }
+            else
+            {
+                lClickDown = false;
+            }
+
+            if (Input.GetMouseButtonDown(1))
+            {
+                RightClick();
+            }
+
+            if (Input.GetButton("Jump"))
+            {
+                Debug.Log("simulate get hit");
+            }
         }
     }
 

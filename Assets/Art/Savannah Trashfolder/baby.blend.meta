@@ -6,19 +6,25 @@ ModelImporter:
     100000: //RootNode
     100002: Cube_004
     100004: trainBody_group1
+    100006: Plant
     400000: //RootNode
     400002: Cube_004
     400004: trainBody_group1
+    400006: Plant
     2100000: None__baby
     2100002: initialShadingGroup__train
+    2100004: initialShadingGroup_001__plant
     2300000: //RootNode
     2300002: Cube_004
     2300004: trainBody_group1
+    2300006: Plant
     3300000: //RootNode
     3300002: Cube_004
     3300004: trainBody_group1
+    3300006: Plant
     4300000: Cube_004
     4300002: trainBody_group1
+    4300004: Plant
     7400000: Default Take
     9500000: //RootNode
     2186277476908879412: ImportLogs
