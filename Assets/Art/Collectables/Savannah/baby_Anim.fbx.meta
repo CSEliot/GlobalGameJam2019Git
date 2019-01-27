@@ -1,51 +1,43 @@
 fileFormatVersion: 2
-guid: f260c2295397a3e459a921cae64e86e4
+guid: c578adffbbb3c1446b74cb1b187d3cfc
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: Truck
+    100000: Baby
     100002: //RootNode
-    100004: Wheel1
-    100006: Wheel2
-    100008: Wheel3
-    100010: Wheel4
-    100012: Wheel5
-    100014: Wheel7
-    400000: Truck
+    100004: Head
+    100006: L_Arm
+    100008: L_Leg
+    100010: R_Arm
+    100012: R_Leg
+    400000: Baby
     400002: //RootNode
-    400004: Wheel1
-    400006: Wheel2
-    400008: Wheel3
-    400010: Wheel4
-    400012: Wheel5
-    400014: Wheel7
+    400004: Head
+    400006: L_Arm
+    400008: L_Leg
+    400010: R_Arm
+    400012: R_Leg
     2100000: lambert1
-    2100002: initialShadingGroup.002
-    2300000: Truck
-    2300002: Wheel1
-    2300004: Wheel2
-    2300006: Wheel3
-    2300008: Wheel4
-    2300010: Wheel5
-    2300012: Wheel7
-    2300014: //RootNode
-    3300000: Truck
-    3300002: Wheel1
-    3300004: Wheel2
-    3300006: Wheel3
-    3300008: Wheel4
-    3300010: Wheel5
-    3300012: Wheel7
-    3300014: //RootNode
-    4300000: Wheel2
-    4300002: Truck
-    4300004: Wheel1
-    4300006: Wheel4
-    4300008: Wheel3
-    4300010: Wheel5
-    4300012: Wheel7
-    4300014: Truck_Grp Truck
-    4300016: Truck_Grp Truck.001
+    2300000: Baby
+    2300002: Head
+    2300004: L_Arm
+    2300006: L_Leg
+    2300008: R_Arm
+    2300010: R_Leg
+    3300000: Baby
+    3300002: Head
+    3300004: L_Arm
+    3300006: L_Leg
+    3300008: R_Arm
+    3300010: R_Leg
+    4300000: Baby
+    4300002: Head
+    4300004: L_Arm
+    4300006: R_Arm
+    4300008: L_Leg
+    4300010: R_Leg
+    7400000: Take 001
+    9500000: //RootNode
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -98,8 +90,8 @@ ModelImporter:
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 1
-    previousCalculatedGlobalScale: 1
-    hasPreviousCalculatedGlobalScale: 0
+    previousCalculatedGlobalScale: 0.01
+    hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
@@ -126,7 +118,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  animationType: 2
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
