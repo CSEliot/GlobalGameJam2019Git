@@ -218,7 +218,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76568e1cd81589048b75ce03cb22fe74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  photonView: {fileID: 7149345767027710829}
   myPersonality: 0
   playerState: 0
   location: 0
@@ -247,7 +246,7 @@ MonoBehaviour:
   - {fileID: 878523592955271537}
   - {fileID: 878523592955271523}
   - {fileID: 878523592955271535}
-  meshRotater: {fileID: 0}
+  meshRotater: {fileID: 878523592954971453}
   waitForStart: 0
 --- !u!54 &1373540790373168072
 Rigidbody:
@@ -284,7 +283,7 @@ MonoBehaviour:
   OwnershipTransfer: 0
   ObservedComponents:
   - {fileID: 1373540790373168075}
-  viewIdField: 2
+  viewIdField: 0
   InstantiationId: 2
   isRuntimeInstantiated: 0
 --- !u!114 &6634831885614516738

@@ -21763,7 +21763,7 @@ GameObject:
   - component: {fileID: 2140056170}
   - component: {fileID: 2140056171}
   m_Layer: 0
-  m_Name: SEtEveryonesPlace
+  m_Name: SetEveryonesPlace
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -21795,6 +21795,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c30fc7b31929b144a1a0818a2056255, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainPlayer: {fileID: 0}
+  characterObjects: []
+  places: []
 --- !u!1001 &1373540790231815738
 PrefabInstance:
   m_ObjectHideFlags: 0

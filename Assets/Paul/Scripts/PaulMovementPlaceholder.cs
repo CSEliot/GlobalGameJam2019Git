@@ -75,6 +75,11 @@ public class PaulMovementPlaceholder : MonoBehaviourPun, IPunObservable {
         myPersonality = GetMyPersonality();
 
         SelectHat((int)myPersonality);
+
+        if (!photonView.IsMine)
+        {
+            camRef.GetComponent<Camera>().enabled = false;
+        }
     }
 
 

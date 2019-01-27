@@ -4,19 +4,10 @@ using UnityEngine;
 
 public class SPAWNPLAYERTEST : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+   
 
     public void SPAWNDUDE() {
         PhotonArenaManager.Instance.SpawnPlayer();
+        this.gameObject.SetActive(false);
     }
 }
