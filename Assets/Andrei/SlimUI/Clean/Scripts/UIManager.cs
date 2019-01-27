@@ -59,6 +59,9 @@ public class UIManager : MonoBehaviour {
 	[Header("Debug")]
 	[Tooltip("If this is true, pressing 'R' will reload the scene.")]
 	public bool reloadSceneButton = true;
+
+	public string onlineTag = "";
+	public InputField tagInputField;
 	
 	// Just for reloading the scene! You can delete this function entirely if you want to
 	void Update(){
@@ -200,6 +203,16 @@ public class UIManager : MonoBehaviour {
 			loadingBar.value = progress;
 
 			yield return null;
+		}
+	}
+
+	public void UpdateOnlineTag(){
+		onlineTag = tagInputField.text;
+	}
+
+	public void ConfirmOnlineTag(){
+		if(tagInputField.text != ""){
+            PhotonArenaManager.Instance.ConnectAndJoinRoom(onlineTag);
 		}
 	}
 }

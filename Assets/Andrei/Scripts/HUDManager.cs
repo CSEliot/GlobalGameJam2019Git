@@ -31,9 +31,9 @@ public class HUDManager : MonoBehaviour
 
     void Start()
     {
-        for(int i = 0; i < checklistPanels.Length; i++){
-            checklistPanels[i].SetActive(false);
-        }
+        //for(int i = 0; i < checklistPanels.Length; i++){
+        //    checklistPanels[i].SetActive(false);
+        //}
 
         //pageIndex = startingChecklist;
         //checklistPanels[startingChecklist].SetActive(true);
