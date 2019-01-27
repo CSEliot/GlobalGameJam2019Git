@@ -9,28 +9,38 @@ ModelImporter:
     100006: Wheel2
     100008: Wheel3
     100010: Wheel4
+    100012: Wheel5
+    100014: Wheel7
     400000: Truck
     400002: //RootNode
     400004: Wheel1
     400006: Wheel2
     400008: Wheel3
     400010: Wheel4
+    400012: Wheel5
+    400014: Wheel7
     2100000: lambert1
     2300000: Truck
     2300002: Wheel1
     2300004: Wheel2
     2300006: Wheel3
     2300008: Wheel4
+    2300010: Wheel5
+    2300012: Wheel7
     3300000: Truck
     3300002: Wheel1
     3300004: Wheel2
     3300006: Wheel3
     3300008: Wheel4
+    3300010: Wheel5
+    3300012: Wheel7
     4300000: Wheel2
     4300002: Truck
     4300004: Wheel1
     4300006: Wheel4
     4300008: Wheel3
+    4300010: Wheel5
+    4300012: Wheel7
   externalObjects: {}
   materials:
     importMaterials: 1

@@ -53,6 +53,8 @@ public class PaulMovementPlaceholder : MonoBehaviour
 
     private bool lClickDown;
 
+    public Transform meshRotater;
+
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -125,8 +127,15 @@ public class PaulMovementPlaceholder : MonoBehaviour
 
         this.transform.Rotate(new Vector3(0, Input.GetAxis("Mouse X"), 0));
 
+        if (rVelocity.x == 0 && rVelocity.z == 0)
+        {
+            meshRotater.rotation = Quaternion.LookRotation(this.transform.forward, Vector3.up);
+        }
+        else
+        {
+            meshRotater.rotation = Quaternion.LookRotation(new Vector3(rVelocity.x, 0, rVelocity.z), Vector3.up);
+        }
 
-        
 
         if (Input.GetMouseButtonDown(0))
         {
