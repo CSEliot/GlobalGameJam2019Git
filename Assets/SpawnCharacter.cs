@@ -15,7 +15,6 @@ public class SpawnCharacter : MonoBehaviour
     {
         isPlayerCreated = false;
         PhotonArenaManager.Instance.ConnectAndJoinRoom("paul");
-
     }
 
     void Update()
