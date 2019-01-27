@@ -319,7 +319,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 1373540790373168075}
   - {fileID: 6634831885614516738}
-  viewIdField: 25
+  viewIdField: 0
   InstantiationId: 25
   isRuntimeInstantiated: 0
 --- !u!114 &6634831885614516738
@@ -643,7 +643,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9061044100947699612}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.120000005, z: 2.37}
+  m_LocalPosition: {x: 0, y: 0.120000005, z: 4.78}
   m_LocalScale: {x: 2.3720999, y: 3.7048998, z: 2.3720999}
   m_Children: []
   m_Father: {fileID: 1373540790373168074}
