@@ -214,6 +214,7 @@ public class UIManager : MonoBehaviour {
 	public void ConfirmOnlineTag(){
 		if(tagInputField.text != ""){
             PhotonArenaManager.Instance.ConnectAndJoinRoom(onlineTag);
+            SceneManager.LoadScene("PersonalitySelection");
 		}
 	}
 }

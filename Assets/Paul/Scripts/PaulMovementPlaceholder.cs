@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using Photon.Pun;
+using UnityEngine.SceneManagement;
 
 [System.Serializable]
 public enum PlayerState
@@ -79,7 +80,6 @@ public class PaulMovementPlaceholder : MonoBehaviourPun, IPunObservable {
 
         if (!blockNet)
         {
-
             StartCoroutine("StartNet");
         }
     }
@@ -173,6 +173,11 @@ public class PaulMovementPlaceholder : MonoBehaviourPun, IPunObservable {
 
             if (!waitForStart)
             {
+
+                if (Input.GetKeyDown(KeyCode.P))
+                {
+                    SceneManager.LoadScene(1);
+                }
                 //RAY
                 // Check if on ground
                 /*

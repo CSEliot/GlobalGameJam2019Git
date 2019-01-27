@@ -284,6 +284,7 @@ MonoBehaviour:
   downCaster: {fileID: 138098611}
   blockNet: 0
   hitboxAttack: {fileID: 6663650706251732078}
+  myScore: 0
 --- !u!54 &1373540790373168072
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -320,8 +321,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 1373540790373168075}
   - {fileID: 6634831885614516738}
-  viewIdField: 38
-  InstantiationId: 38
+  viewIdField: 49
+  InstantiationId: 49
   isRuntimeInstantiated: 0
 --- !u!114 &6634831885614516738
 MonoBehaviour:
