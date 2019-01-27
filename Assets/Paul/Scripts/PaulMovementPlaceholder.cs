@@ -89,7 +89,7 @@ public class PaulMovementPlaceholder : MonoBehaviourPun, IPunObservable {
         SelectHat((int)myPersonality);
         hitboxAttack.parent = meshRotater;
 
-        hudMan = GameObject.FindGameObjectWithTag("HugManager").GetComponent<HUDManager>();
+        hudMan = GameObject.FindGameObjectWithTag("HudManager").GetComponent<HUDManager>();
         hudMan.scoreText.text = "0";
 
 
