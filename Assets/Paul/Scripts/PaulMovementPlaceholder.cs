@@ -308,28 +308,23 @@ public class PaulMovementPlaceholder : MonoBehaviourPun, IPunObservable {
                 case Location.LivingRoom:
                     {
                         roomLocation = 0;
-                        AddScore();
-                        
                         neighbourhoodMan.DropItemInHouseRoom(myPlayerID, currentHome, roomLocation, cItem);
                         break;
                     }
                 case Location.Kitchen:
                     {
-                        AddScore();
                         roomLocation = 1;
                         neighbourhoodMan.DropItemInHouseRoom(myPlayerID, currentHome, roomLocation, cItem);
                         break;
                     }
                 case Location.Bedroom:
                     {
-                        AddScore();
                         roomLocation = 2;
                         neighbourhoodMan.DropItemInHouseRoom(myPlayerID, currentHome, roomLocation, cItem);
                         break;
                     }
                 case Location.Bathroom:
                     {
-                        AddScore();
                         roomLocation = 3;
                         neighbourhoodMan.DropItemInHouseRoom(myPlayerID, currentHome, roomLocation, cItem);
                         break;
@@ -474,21 +469,25 @@ public class PaulMovementPlaceholder : MonoBehaviourPun, IPunObservable {
             case Location.LivingRoom: {
                     roomLocation = 0;
                     neighbourhoodMan.DropItemInHouseRoom(myPlayerID, currentHome, roomLocation, cItem);
+                    AddScore();
                     break;
                 }
             case Location.Kitchen: {
                     roomLocation = 1;
                     neighbourhoodMan.DropItemInHouseRoom(myPlayerID, currentHome, roomLocation, cItem);
+                    AddScore();
                     break;
                 }
             case Location.Bedroom: {
                     roomLocation = 2;
                     neighbourhoodMan.DropItemInHouseRoom(myPlayerID, currentHome, roomLocation, cItem);
+                    AddScore();
                     break;
                 }
             case Location.Bathroom: {
                     roomLocation = 3;
                     neighbourhoodMan.DropItemInHouseRoom(myPlayerID, currentHome, roomLocation, cItem);
+                    AddScore();
                     break;
                 }
         }
