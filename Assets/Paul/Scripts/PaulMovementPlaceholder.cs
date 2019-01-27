@@ -30,6 +30,8 @@ public class PaulMovementPlaceholder : MonoBehaviourPun, IPunObservable {
     public int myHome;//0-8
     public int currentHome;//0-8
 
+    private bool _playerInitialized = false;
+
     public Transform camRef;
     public Rigidbody rby;
     public float speed = 1f;
@@ -80,11 +82,7 @@ public class PaulMovementPlaceholder : MonoBehaviourPun, IPunObservable {
     void Start() {
         
 //        SelectHat(Random.Range(0, 8));
-        //PhotonArenaManager.Instance.ConnectAndJoinRoom("MY NAME");
-
-        myPlayerID = PhotonArenaManager.Instance.GetLocalPlayerID();
-        myPersonality = GetMyPersonality();
-
+        PhotonArenaManager.Instance.ConnectAndJoinRoom(PhotonArenaManager.Instance.GetLocalUsername());
         SelectHat((int)myPersonality);
 
 
@@ -104,8 +102,27 @@ public class PaulMovementPlaceholder : MonoBehaviourPun, IPunObservable {
     }
 
 
-    private PersonalityType GetMyPersonality() {
-        var playerNums = new List<int>(8); // Replace with call to get Player Numbers
+    private void InitPlayer()
+    {
+        var status = PhotonArenaManager.Instance.GetCurrentDepthLevel();
+
+        if (status == PhotonArenaManager.ServerDepthLevel.InRoom)
+        {
+            myPlayerID = PhotonArenaManager.Instance.GetLocalPlayerID();
+            myPersonality = GetMyPersonality();
+
+            SelectHat((int)myPersonality);
+
+            _playerInitialized = true;
+        }
+    }
+
+    private PersonalityType GetMyPersonality()
+    {
+        var room = PhotonArenaManager.Instance.GetRoom();
+
+//        var playerNums = new List<int>(8); // Replace with call to get Player Numbers
+        var playerNums = room.Players.Keys;
         var playerScores = new Dictionary<int, int[]>();
 
         foreach (var playerNum in playerNums) {
@@ -139,6 +156,12 @@ public class PaulMovementPlaceholder : MonoBehaviourPun, IPunObservable {
     }
 
     void Update() {
+
+        if (!_playerInitialized)
+        {
+            InitPlayer();
+        }
+
         float GravY = rby.velocity.y;
 
         if (photonView.IsMine || blockNet) {
