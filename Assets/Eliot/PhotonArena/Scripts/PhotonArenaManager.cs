@@ -29,7 +29,12 @@ public class PhotonArenaManager : Singleton<PhotonArenaManager>
         InRoom
     }
 
+    public static Vector3 DefaultSpawnLocation = new Vector3(0f, 15f, 0f);
+
     public ServerDepthLevel CurrentServerUserDepth = ServerDepthLevel.Offline;
+    public static class Constants {
+        public static readonly Vector3 DefaultSpawnLoc = Vector3.one;
+    }
 
     void Awake() {
         _fakeServer.DataStore = new Dictionary<string, object>();
@@ -130,6 +135,31 @@ public class PhotonArenaManager : Singleton<PhotonArenaManager>
         }
         else {
             CBUG.Error("SaveData only available when Offline or InRoom, this was called at " + CurrentServerUserDepth.ToString() + ".");
+        }
+    }
+
+    public void SpawnObject(string resourceName) {
+        if (CurrentServerUserDepth == ServerDepthLevel.Offline) {
+            GameObject instance = Instantiate(Resources.Load(resourceName, typeof(GameObject)), DefaultSpawnLocation, Quaternion.Euler(Vector3.zero)) as GameObject;
+            /// ??? todo make playerlist local ref 
+        }
+        else if (CurrentServerUserDepth == ServerDepthLevel.InRoom) {
+            GameObject PlayerObj = PhotonNetwork.Instantiate(resourceName, DefaultSpawnLocation, Quaternion.Euler(Vector3.zero));
+        }
+        else {
+            CBUG.Error("SpawnObject only available when Offline or InRoom, this was called at " + CurrentServerUserDepth.ToString() + ".");
+        }
+    }
+    public void SpawnObject(string resourceName, Vector3 spawnLoc, Quaternion spawnRot) {
+        if (CurrentServerUserDepth == ServerDepthLevel.Offline) {
+            GameObject instance = Instantiate(Resources.Load(resourceName, typeof(GameObject)), spawnLoc, spawnRot) as GameObject;
+            /// ??? todo make playerlist local ref 
+        }
+        else if (CurrentServerUserDepth == ServerDepthLevel.InRoom) {
+            GameObject PlayerObj = PhotonNetwork.Instantiate(resourceName, spawnLoc, spawnRot);
+        }
+        else {
+            CBUG.Error("SpawnObject only available when Offline or InRoom, this was called at " + CurrentServerUserDepth.ToString() + ".");
         }
     }
 

@@ -32,8 +32,8 @@ TagManager:
   - DetectLocation
   - Collectable
   - Location
-  - 
-  - 
+  - Ground
+  - DetectGround
   - 
   - 
   - 

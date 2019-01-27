@@ -58,6 +58,8 @@ public class PaulMovementPlaceholder : MonoBehaviourPun, IPunObservable {
 
     public bool waitForStart;
 
+    public Transform downCaster;
+
 
     /// <summary>
     /// flag to force latest data to avoid initial drifts when player is instantiated.
@@ -164,7 +166,20 @@ public class PaulMovementPlaceholder : MonoBehaviourPun, IPunObservable {
 
             if (!waitForStart)
             {
-                
+                //RAY
+                bool grounded = (Physics.Raycast(downCaster.position, Vector3.down, 2f, LayerMask.NameToLayer("Ground"))); // raycast down to look for ground is not detecting ground? only works if allowing jump when grounded = false; // return "Ground" layer as layer
+                if (grounded == true)
+                {
+                    GravY += 80f;
+                    
+                    Debug.Log("grounded!");
+                    //jump();
+                }
+                else
+                {
+                    GravY -= 9.81f * Time.deltaTime;
+                }
+                //CAST
 
                 if (playerState == PlayerState.Normal || playerState == PlayerState.Holding)
                 {
@@ -224,6 +239,8 @@ public class PaulMovementPlaceholder : MonoBehaviourPun, IPunObservable {
         }
     }
 
+    
+
     void GetHit()
     {
         
@@ -231,9 +248,71 @@ public class PaulMovementPlaceholder : MonoBehaviourPun, IPunObservable {
         if(playerState == PlayerState.Holding)
         {
             //DROP IT
+            int roomLocation = 0;
+
+            switch (location)
+            {
+                case Location.Store:
+                    {
+                        neighbourhoodMan.DropItemOutside(myPlayerID, cItem);
+                        break;
+                    }
+                case Location.Outside:
+                    {
+                        neighbourhoodMan.DropItemOutside(myPlayerID, cItem);
+                        break;
+                    }
+                case Location.LivingRoom:
+                    {
+                        roomLocation = 0;
+                        neighbourhoodMan.DropItemInHouseRoom(myPlayerID, currentHome, roomLocation, cItem);
+                        break;
+                    }
+                case Location.Kitchen:
+                    {
+                        roomLocation = 1;
+                        neighbourhoodMan.DropItemInHouseRoom(myPlayerID, currentHome, roomLocation, cItem);
+                        break;
+                    }
+                case Location.Bedroom:
+                    {
+                        roomLocation = 2;
+                        neighbourhoodMan.DropItemInHouseRoom(myPlayerID, currentHome, roomLocation, cItem);
+                        break;
+                    }
+                case Location.Bathroom:
+                    {
+                        roomLocation = 3;
+                        neighbourhoodMan.DropItemInHouseRoom(myPlayerID, currentHome, roomLocation, cItem);
+                        break;
+                    }
+            }
+
+            StopAllCoroutines();
+            charAnim.SetBool("Packing", false);
+            detector.hasNearObj = false;
+            canAttack = false;
+            cItem = null;
         }
 
         playerState = PlayerState.Stunned;
+        StartCoroutine(ResetStunned());
+    }
+
+    IEnumerator ResetStunned()
+    {
+        float t = 0;
+
+        while (t < 1f)
+        {
+            t += Time.deltaTime * 2.5f;
+
+            //holdPos.position = Vector3.Lerp(holdPos.position, tempNorm.position, t);
+            //holdPos.rotation = Quaternion.Slerp(holdPos.rotation, tempNorm.rotation, t);
+            yield return null;
+        }
+
+        canAttack = true;
     }
 
     void Click() {
