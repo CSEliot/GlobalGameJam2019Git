@@ -27,6 +27,7 @@ public class PersonalityController : MonoBehaviour
 
     private uint _startTime;
     private uint _timer = 65000;
+    private int _gameStartTime;
 
     public Text timerText;
 
@@ -70,8 +71,18 @@ public class PersonalityController : MonoBehaviour
         }
     }
 
-    void Update(){
-        if(timerRunning){
+    void Update()
+    {
+        var gameStartData = PhotonArenaManager.Instance.GetData("GameStartTime");
+
+        if (gameStartData == null)
+        {
+//            var gameStartTime
+        }
+
+
+
+        if (timerRunning){
             UpdateTimer();
         }
 

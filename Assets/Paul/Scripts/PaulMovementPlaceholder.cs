@@ -103,7 +103,7 @@ public class PaulMovementPlaceholder : MonoBehaviourPun, IPunObservable {
     {
         var status = PhotonArenaManager.Instance.GetCurrentDepthLevel();
 
-        if (status == PhotonArenaManager.ServerDepthLevel.InRoom)
+        if ((status == PhotonArenaManager.ServerDepthLevel.InRoom) && (neighbourhoodMan != null))
         {
             myPlayerID = PhotonArenaManager.Instance.GetLocalPlayerID();
             myPersonality = GetMyPersonality();
