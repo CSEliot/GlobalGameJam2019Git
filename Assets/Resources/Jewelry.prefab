@@ -54,7 +54,7 @@ MonoBehaviour:
   roomAffinity: 4
   rby: {fileID: 1807097290623552042}
   collido: {fileID: 1807097290623552043}
-  localPos: {x: 3.94, y: -0.4, z: -1.6}
+  localPos: {x: 1.37, y: -2.09, z: -0.58}
   localErot: {x: 5.6, y: 20, z: 140}
   currentPlace: 0
   heldPlayer: 0

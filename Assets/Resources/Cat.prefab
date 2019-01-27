@@ -54,8 +54,8 @@ MonoBehaviour:
   roomAffinity: 4
   rby: {fileID: 6114816982501910061}
   collido: {fileID: 6114816982501910050}
-  localPos: {x: 3.94, y: -0.4, z: -1.6}
-  localErot: {x: 5.6, y: 20, z: 140}
+  localPos: {x: 1.86, y: -1.25, z: 0.6}
+  localErot: {x: -51.01, y: -203.9, z: 239.18}
   currentPlace: 0
   heldPlayer: 0
   inHouse: 0
@@ -108,8 +108,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 1473087046}
   - {fileID: 1473087045}
-  viewIdField: 44
-  InstantiationId: 44
+  viewIdField: 46
+  InstantiationId: 46
   isRuntimeInstantiated: 0
 --- !u!114 &1473087046
 MonoBehaviour:
