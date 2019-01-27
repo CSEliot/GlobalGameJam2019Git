@@ -1,26 +1,14 @@
 fileFormatVersion: 2
-guid: c65dc4947064296408c0238d5e86f292
+guid: 9f6125b70802f6e48a4f954666dbeedb
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
-    100002: Cube_004
-    100004: trainBody_group1
     400000: //RootNode
-    400002: Cube_004
-    400004: trainBody_group1
-    2100000: None__baby
-    2100002: initialShadingGroup__train
+    2100000: initialShadingGroup
     2300000: //RootNode
-    2300002: Cube_004
-    2300004: trainBody_group1
     3300000: //RootNode
-    3300002: Cube_004
-    3300004: trainBody_group1
-    4300000: Cube_004
-    4300002: trainBody_group1
-    7400000: Default Take
-    9500000: //RootNode
+    4300000: trainBody group1
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -74,7 +62,7 @@ ModelImporter:
     secondaryUVPackMargin: 4
     useFileScale: 1
     previousCalculatedGlobalScale: 1
-    hasPreviousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
@@ -101,7 +89,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 0
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
