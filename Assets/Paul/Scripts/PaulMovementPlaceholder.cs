@@ -259,8 +259,8 @@ public class PaulMovementPlaceholder : MonoBehaviourPun, IPunObservable {
 
                     if (Input.GetButton("Jump"))
                     {
-                        Debug.Log("simulate get hit");
-                        GetHit();
+                        //Debug.Log("simulate get hit");
+                        //GetHit();
                     }
                 }
             }

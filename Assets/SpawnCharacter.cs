@@ -7,11 +7,14 @@ public class SpawnCharacter : MonoBehaviour
     public Transform placePos;
     private bool isPlayerCreated;
     public GameObject cam;
+
+    public Transform compPlace;
     // Start is called before the first frame update
     void Start()
     {
         isPlayerCreated = false;
         PhotonArenaManager.Instance.ConnectAndJoinRoom("paul");
+
     }
 
     void Update()
@@ -28,6 +31,11 @@ public class SpawnCharacter : MonoBehaviour
                     cam.SetActive(false);
                 }
             }
+        }
+
+        if (Input.GetKeyDown(KeyCode.K) && isPlayerCreated)
+        {
+            PhotonArenaManager.Instance.SpawnObject("Computer", compPlace.position, compPlace.rotation);
         }
     }
 }
