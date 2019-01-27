@@ -7,12 +7,16 @@ public class NetTest : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        PhotonArenaManager.instance.Connect();
+        CBUG.Do("Connecting ...");
+        PhotonArenaManager.Instance.ConnectAndJoinRoomSingle();
+        CBUG.Do("Connecting .......");
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if(PhotonArenaManager.Instance.CurrentServerUserDepth == PhotonArenaManager.ServerDepthLevel.InRoom) {
+
+        }
     }
 }
