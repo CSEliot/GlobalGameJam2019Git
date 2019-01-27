@@ -169,10 +169,10 @@ public class PaulMovementPlaceholder : MonoBehaviourPun, IPunObservable {
             if (!waitForStart)
             {
                 //RAY
-                bool grounded = (Physics.Raycast(downCaster.position, Vector3.down, 4f, LayerMask.NameToLayer("Ground"))); // raycast down to look for ground is not detecting ground? only works if allowing jump when grounded = false; // return "Ground" layer as layer
+                bool grounded = (Physics.Raycast(downCaster.position, Vector3.down, 2f, LayerMask.NameToLayer("Ground"))); // raycast down to look for ground is not detecting ground? only works if allowing jump when grounded = false; // return "Ground" layer as layer
                 if (grounded == true)
                 {
-                    GravY = 2.8f;
+                    GravY += 80f;
                     
                     Debug.Log("grounded!");
                     //jump();
