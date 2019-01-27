@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SpawnCharacter : MonoBehaviour
 {
+    public NeighbourhoodManager nMan;
     public Transform placePos;
     private bool isPlayerCreated;
     public GameObject cam;
@@ -27,6 +28,7 @@ public class SpawnCharacter : MonoBehaviour
 
                 if(newPlayer != null)
                 {
+                    newPlayer.GetComponent<PaulMovementPlaceholder>().neighbourhoodMan = nMan;
                     isPlayerCreated = true;
                     cam.SetActive(false);
                 }

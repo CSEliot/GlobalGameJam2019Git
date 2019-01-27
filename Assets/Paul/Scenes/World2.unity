@@ -5711,6 +5711,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc81f0a8270a60f42b34cba791ad0c11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nMan: {fileID: 1113666127}
   placePos: {fileID: 1478776098}
   cam: {fileID: 1813364921}
   compPlace: {fileID: 146644643}
@@ -20562,5 +20563,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8557126166979641237, guid: 82fbbcf559ffef646940e0b86438f851,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f70637a09c62f9a4c946f6637759a009, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 82fbbcf559ffef646940e0b86438f851, type: 3}
