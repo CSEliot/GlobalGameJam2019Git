@@ -8725,6 +8725,18 @@ Transform:
   m_Father: {fileID: 603219020}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 175.16501, z: 0}
+--- !u!114 &928202175 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1373540790373168075, guid: f84b86dd8b94d184b9931c9ea9c81551,
+    type: 3}
+  m_PrefabInstance: {fileID: 1373540790231815738}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76568e1cd81589048b75ce03cb22fe74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &930693583 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8200295674388972106, guid: bfc053b4b252f41449c10323ebd76bc9,
@@ -11655,6 +11667,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: b50843c72d1143849b6172863f8be79b,
     type: 3}
   m_PrefabInstance: {fileID: 1674096857}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1205588335 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1373540790409306388, guid: f84b86dd8b94d184b9931c9ea9c81551,
+    type: 3}
+  m_PrefabInstance: {fileID: 1373540790231815738}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1223331806
 PrefabInstance:
@@ -17885,7 +17903,7 @@ GameObject:
   - component: {fileID: 1813364922}
   - component: {fileID: 1813364925}
   m_Layer: 0
-  m_Name: Camera
+  m_Name: CAMwaitforgame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17967,6 +17985,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69e3b099bab08254b95a18cae951facb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerGuy: {fileID: 928202175}
+  waitTime: 2
+  camWait: {fileID: 1813364921}
+  pCam: {fileID: 1205588335}
 --- !u!1 &1823760086
 GameObject:
   m_ObjectHideFlags: 0
