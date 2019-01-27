@@ -65,6 +65,8 @@ public class PaulMovementPlaceholder : MonoBehaviourPun, IPunObservable {
     private bool m_firstTake = true; //PHoton-y thing
 
     public bool blockNet;
+    private bool onGround;
+    public CapsuleCollider capCol;
 
     void Awake() {
 
@@ -164,6 +166,7 @@ public class PaulMovementPlaceholder : MonoBehaviourPun, IPunObservable {
 
             if (!waitForStart)
             {
+                
 
                 if (playerState == PlayerState.Normal || playerState == PlayerState.Holding)
                 {
