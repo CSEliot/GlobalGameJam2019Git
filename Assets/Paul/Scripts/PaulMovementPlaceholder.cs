@@ -80,8 +80,12 @@ public class PaulMovementPlaceholder : MonoBehaviourPun, IPunObservable {
     }
 
 
-    private PersonalityType GetMyPersonality() {
-        var playerNums = new List<int>(8); // Replace with call to get Player Numbers
+    private PersonalityType GetMyPersonality()
+    {
+        var room = PhotonArenaManager.Instance.GetRoom();
+
+//        var playerNums = new List<int>(8); // Replace with call to get Player Numbers
+        var playerNums = room.Players.Keys;
         var playerScores = new Dictionary<int, int[]>();
 
         foreach (var playerNum in playerNums) {
