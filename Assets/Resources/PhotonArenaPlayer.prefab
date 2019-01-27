@@ -218,7 +218,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76568e1cd81589048b75ce03cb22fe74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  photonView: {fileID: 7149345767027710829}
   myPersonality: 0
   playerState: 0
   location: 0
@@ -227,7 +226,7 @@ MonoBehaviour:
   myPlayerID: 0
   myHome: 0
   currentHome: 0
-  camRef: {fileID: 1373540790373168074}
+  camRef: {fileID: 1373540790409306379}
   rby: {fileID: 1373540790373168072}
   speed: 15
   detector: {fileID: 1373540790134053541}
@@ -247,7 +246,7 @@ MonoBehaviour:
   - {fileID: 878523592955271537}
   - {fileID: 878523592955271523}
   - {fileID: 878523592955271535}
-  meshRotater: {fileID: 0}
+  meshRotater: {fileID: 878523592954971453}
   waitForStart: 0
 --- !u!54 &1373540790373168072
 Rigidbody:
@@ -300,8 +299,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_SynchronizeVelocity: 1
-  m_SynchronizeAngularVelocity: 0
-  m_TeleportEnabled: 0
+  m_SynchronizeAngularVelocity: 1
+  m_TeleportEnabled: 1
   m_TeleportIfDistanceGreaterThan: 3
 --- !u!1 &1373540790409306388
 GameObject:

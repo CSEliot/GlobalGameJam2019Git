@@ -1,43 +1,22 @@
 fileFormatVersion: 2
-guid: c578adffbbb3c1446b74cb1b187d3cfc
+guid: 5a4bc5a3b73d64b40ba8fc96723fe2e2
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: Baby
+    100000: Dog
     100002: //RootNode
-    100004: Head
-    100006: L_Arm
-    100008: L_Leg
-    100010: R_Arm
-    100012: R_Leg
-    400000: Baby
+    100004: Tail
+    400000: Dog
     400002: //RootNode
-    400004: Head
-    400006: L_Arm
-    400008: L_Leg
-    400010: R_Arm
-    400012: R_Leg
+    400004: Tail
     2100000: lambert1
-    2300000: Baby
-    2300002: Head
-    2300004: L_Arm
-    2300006: L_Leg
-    2300008: R_Arm
-    2300010: R_Leg
-    3300000: Baby
-    3300002: Head
-    3300004: L_Arm
-    3300006: L_Leg
-    3300008: R_Arm
-    3300010: R_Leg
-    4300000: Baby
-    4300002: Head
-    4300004: L_Arm
-    4300006: R_Arm
-    4300008: L_Leg
-    4300010: R_Leg
+    2300000: Tail
+    3300000: Tail
+    4300000: Tail
+    4300002: Dog
     7400000: Take 001
     9500000: //RootNode
+    13700000: Dog
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -70,7 +49,7 @@ ModelImporter:
       name: Take 001
       takeName: Take 001
       firstFrame: 1
-      lastFrame: 30
+      lastFrame: 55
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
