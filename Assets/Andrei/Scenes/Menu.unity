@@ -2100,7 +2100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.11089354, g: 0.18369079, b: 0.26415092, a: 0.6901961}
+  m_Color: {r: 0.11089354, g: 0.18369079, b: 0.26415092, a: 0.89411765}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -8974,8 +8974,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -0.4500122, y: -377.6}
-  m_SizeDelta: {x: 926.4, y: 1003.5}
+  m_AnchoredPosition: {x: -0.4500122, y: -439.1}
+  m_SizeDelta: {x: 1497.7, y: 1156.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &608386696
 MonoBehaviour:
@@ -9000,21 +9000,29 @@ MonoBehaviour:
   m_text: 'CREDITS
 
 
-    Name Name
+    PROGRAMMERS
 
-    Name Name
+    Eliot Leo Carney-Seim - Networking
 
-    Name Name
+    Paul Tschirgi - Gameplay
 
-    Name Name
+    Tad Klopcic - Systems Design
 
-    Name Name
+    Andrei Shulgach - UI & UX
 
-    Name Name
 
-    Name Name
+    ARTISTS
 
-    Name Name
+    Savannah Tschirgi - 3D Modeling & Texturing
+
+    Thom Swanson - 3D Modeling & Animation
+
+    Erica Szalkowski - Illustrations & Texturing
+
+
+    ADDITIONAL DESIGN
+
+    Chris Williams - Gameplay
 
 '
   m_isRightToLeft: 0
@@ -9056,7 +9064,7 @@ MonoBehaviour:
   m_isAlignmentEnumConverted: 1
   m_characterSpacing: 0
   m_wordSpacing: 0
-  m_lineSpacing: -16.1
+  m_lineSpacing: -31.6
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
@@ -9086,12 +9094,12 @@ MonoBehaviour:
   m_margin: {x: 2.267718, y: -1.3429852, z: 0.24955729, w: 1.3410397}
   m_textInfo:
     textComponent: {fileID: 608386696}
-    characterCount: 89
+    characterCount: 318
     spriteCount: 0
-    spaceCount: 18
-    wordCount: 17
+    spaceCount: 52
+    wordCount: 45
     linkCount: 0
-    lineCount: 10
+    lineCount: 15
     pageCount: 1
     materialCount: 1
   m_havePropertiesChanged: 0
@@ -15785,7 +15793,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.05473478, g: 0.12068353, b: 0.2830189, a: 0.7058824}
+  m_Color: {r: 0.03355287, g: 0.09561171, b: 0.24528301, a: 0.8117647}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -15828,8 +15836,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -24, y: -90.9}
-  m_SizeDelta: {x: 833.8, y: 771.1}
+  m_AnchoredPosition: {x: 142.85, y: -34.3}
+  m_SizeDelta: {x: 1167.5, y: 884.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &908726756
 GameObject:
@@ -16267,6 +16275,7 @@ GameObject:
   - component: {fileID: 1019467816}
   - component: {fileID: 1019467815}
   - component: {fileID: 1019467814}
+  - component: {fileID: 1019467817}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -16339,6 +16348,102 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &1019467817
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1019467813}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 1ce0b66492b45744f935bb01fbea1935, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 0.6
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1021684571
 GameObject:
   m_ObjectHideFlags: 0
@@ -22551,7 +22656,7 @@ RectTransform:
   m_GameObject: {fileID: 1960900526}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
+  m_LocalScale: {x: 0.540204, y: 0.540204, z: 0.540204}
   m_Children:
   - {fileID: 1944319141}
   - {fileID: 2003982204}
@@ -22560,7 +22665,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.45001, y: -306}
+  m_AnchoredPosition: {x: 396, y: -383.23}
   m_SizeDelta: {x: 634.63, y: 117.74}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1960900528
@@ -28281,8 +28386,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 385.5}
-  m_SizeDelta: {x: 17.2, y: 788.6}
+  m_AnchoredPosition: {x: 0, y: 441.89996}
+  m_SizeDelta: {x: 17.2, y: 901.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2025190971
 MonoBehaviour:
@@ -32559,6 +32664,17 @@ MonoBehaviour:
       - m_Target: {fileID: 114814863975314604}
         m_MethodName: CheckSettings
         m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 866520722}
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
