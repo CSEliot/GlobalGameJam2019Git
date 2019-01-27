@@ -8,13 +8,15 @@ public class NetTest : MonoBehaviour
     void Start()
     {
         CBUG.Do("Connecting ...");
-        PhotonArenaManager.Instance.Connect();
+        PhotonArenaManager.Instance.ConnectAndJoinRoomSingle();
         CBUG.Do("Connecting .......");
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if(PhotonArenaManager.Instance.CurrentServerUserDepth == PhotonArenaManager.ServerDepthLevel.InRoom) {
+
+        }
     }
 }

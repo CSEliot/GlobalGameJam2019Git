@@ -8,7 +8,11 @@ public class PhotonArenaManager : Singleton<PhotonArenaManager>
 {
 
     #region Spoof Server
-    Dictionary<string, System.Object> DataStore = new Dictionary<string, object>();
+    public struct FakeServer {
+        public Dictionary<string, System.Object> DataStore;
+        public int totalPlayers;
+    }
+    FakeServer _fakeServer;
     #endregion
 
     /// <summary>
@@ -21,16 +25,14 @@ public class PhotonArenaManager : Singleton<PhotonArenaManager>
         InRoom
     }
 
-    public ServerDepthLevel currentServerUserDepth = ServerDepthLevel.Offline;
+    public ServerDepthLevel CurrentServerUserDepth = ServerDepthLevel.Offline;
 
     void Awake() {
-        if (SceneManager.GetActiveScene().name != "Eliot Test") {
-            return;
-        }
-
+        _fakeServer.DataStore = new Dictionary<string, object>();
+        _fakeServer.totalPlayers = 0;
     }
 
-    public void Connect() {
+    public void ConnectAndJoinRoomSingle() {
         if(SceneManager.GetActiveScene().name != "Eliot Test") {
             return;
         }
@@ -41,7 +43,7 @@ public class PhotonArenaManager : Singleton<PhotonArenaManager>
 
     public bool IsHost {
         get {
-            if (currentServerUserDepth == ServerDepthLevel.Offline) {
+            if (CurrentServerUserDepth == ServerDepthLevel.Offline) {
                 return true;
             } else {
                 return PhotonNetwork.LocalPlayer.IsMasterClient;
@@ -54,7 +56,7 @@ public class PhotonArenaManager : Singleton<PhotonArenaManager>
     /// </summary>
     /// <returns>Accurate down to 1/15 of a second.</returns>
     public int GetClock() {
-        if (currentServerUserDepth == ServerDepthLevel.Offline) {
+        if (CurrentServerUserDepth == ServerDepthLevel.Offline) {
             return DateTime.Now.TimeOfDay.Milliseconds;
         }
         else {
@@ -63,10 +65,10 @@ public class PhotonArenaManager : Singleton<PhotonArenaManager>
     }
 
     public Photon.Realtime.Room GetRoom() {
-        if (currentServerUserDepth == ServerDepthLevel.Offline) {
+        if (CurrentServerUserDepth == ServerDepthLevel.Offline) {
             return null; //??? TODO HANDLE BETTER
         }
-        else if ( currentServerUserDepth == ServerDepthLevel.InRoom) {
+        else if ( CurrentServerUserDepth == ServerDepthLevel.InRoom) {
             return PhotonNetwork.CurrentRoom;
         } else {
             return null; //??? TODO HANDLE BETTER!
@@ -75,14 +77,14 @@ public class PhotonArenaManager : Singleton<PhotonArenaManager>
 
     public System.Object GetData(string label) {
         bool containsData = true;
-        if (currentServerUserDepth == ServerDepthLevel.Offline) {
-            if (DataStore.ContainsKey(label)) {
-                return DataStore[label] as System.Object;
+        if (CurrentServerUserDepth == ServerDepthLevel.Offline) {
+            if (_fakeServer.DataStore.ContainsKey(label)) {
+                return _fakeServer.DataStore[label] as System.Object;
             } else {
                 containsData = false;
             }
         }
-        else if (currentServerUserDepth == ServerDepthLevel.InRoom) {
+        else if (CurrentServerUserDepth == ServerDepthLevel.InRoom) {
             ExitGames.Client.Photon.Hashtable roomProps = PhotonNetwork.CurrentRoom.CustomProperties;
             if (roomProps.ContainsKey(label)) {
                 return roomProps[label] as System.Object;
@@ -90,7 +92,7 @@ public class PhotonArenaManager : Singleton<PhotonArenaManager>
                 containsData = false;
             }
         } else {
-            CBUG.Error("GetData only available when Offline or InRoom, this was called at " + currentServerUserDepth.ToString() + ".");
+            CBUG.Error("GetData only available when Offline or InRoom, this was called at " + CurrentServerUserDepth.ToString() + ".");
         }
         if(containsData == false) {
             CBUG.Error("No data was found for " + label + ".");
@@ -99,15 +101,55 @@ public class PhotonArenaManager : Singleton<PhotonArenaManager>
     }
 
     public void SaveData(string label, System.Object data) {
-        if (currentServerUserDepth == ServerDepthLevel.Offline) {
-            DataStore.Add(label, data);
+        if (CurrentServerUserDepth == ServerDepthLevel.Offline) {
+            _fakeServer.DataStore.Add(label, data);
         }
-        else if (currentServerUserDepth == ServerDepthLevel.InRoom) {
+        else if (CurrentServerUserDepth == ServerDepthLevel.InRoom) {
             ExitGames.Client.Photon.Hashtable roomProps = PhotonNetwork.CurrentRoom.CustomProperties;
             roomProps.Add(label, data);
         }
         else {
-            CBUG.Error("SaveData only available when Offline or InRoom, this was called at " + currentServerUserDepth.ToString() + ".");
+            CBUG.Error("SaveData only available when Offline or InRoom, this was called at " + CurrentServerUserDepth.ToString() + ".");
+        }
+    }
+
+    public int SpawnPlayer(string ResourceName="PhotonArenaPlayer") {
+        if (CurrentServerUserDepth == ServerDepthLevel.Offline) {
+            _fakeServer.totalPlayers++;
+            return _fakeServer.totalPlayers;
+        }
+        else if (CurrentServerUserDepth == ServerDepthLevel.InRoom) {
+            //ExitGames.Client.Photon.Hashtable roomProps = PhotonNetwork.CurrentRoom.CustomProperties;
+            //roomProps.Add(label, data);
+        }
+        else {
+            //CBUG.Error("SaveData only available when Offline or InRoom, this was called at " + CurrentServerUserDepth.ToString() + ".");
+        }
+        return -1;
+    }
+
+    public bool IsLocalClient(PhotonView playerView) {
+        if (CurrentServerUserDepth == ServerDepthLevel.Offline) {
+            return true;
+        }
+        else if (CurrentServerUserDepth == ServerDepthLevel.InRoom) {
+            return playerView.IsMine;
+        } else {
+            CBUG.Error("This can only be called when player is in a room or offline! You're currently in: " + CurrentServerUserDepth.ToString());
+            return false;
+        }
+    }
+
+    public int GetLocalPlayerID() {
+        if (CurrentServerUserDepth == ServerDepthLevel.Offline) {
+            return 1;
+        }
+        else if (CurrentServerUserDepth == ServerDepthLevel.InRoom) {
+            return PhotonNetwork.LocalPlayer.ActorNumber; //??? unchanging? Unique? Todo;
+        }
+        else {
+            CBUG.Error("This can only be called when player is in a room or offline! You're currently in: " + CurrentServerUserDepth.ToString());
+            return PhotonNetwork.LocalPlayer.ActorNumber;
         }
     }
 
