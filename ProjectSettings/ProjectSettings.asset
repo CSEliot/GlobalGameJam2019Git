@@ -14,7 +14,7 @@ PlayerSettings:
   accelerometerFrequency: 60
   companyName: GGJ UMBC Team 1
   productName: My Blue Couch
-  defaultCursor: {fileID: 2800000, guid: 2e506ec77ff5ad3438c85352eeaac925, type: 3}
+  defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.0729797, g: 0.14576596, b: 0.3773585, a: 1}
   m_ShowUnitySplashScreen: 1
