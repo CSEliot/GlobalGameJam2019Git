@@ -178,21 +178,21 @@ public class PhotonArenaManager : Singleton<PhotonArenaManager>
         }
     }
 
-    public int SpawnPlayer(string ResourceName="PhotonArenaPlayer") {
+    public GameObject SpawnPlayer(Vector3 pos, Quaternion rot, string ResourceName="PhotonArenaPlayer") {
         if (CurrentServerUserDepth == ServerDepthLevel.Offline) {
             _fakeServer.totalPlayers++;
             //spawn player? ???todo
-            return _fakeServer.totalPlayers;
+            return null;
         }
         else if (CurrentServerUserDepth == ServerDepthLevel.InRoom) {
             //ExitGames.Client.Photon.Hashtable roomProps = PhotonNetwork.CurrentRoom.CustomProperties;
             //roomProps.Add(label, data);
-            PhotonNetwork.Instantiate("PhotonArenaPlayer", new Vector3(0.0f, 16.4f, 0.0f), Quaternion.Euler(Vector3.zero));
+           return PhotonNetwork.Instantiate("PhotonArenaPlayer", pos, rot);
         }
         else {
-            //CBUG.Error("SaveData only available when Offline or InRoom, this was called at " + CurrentServerUserDepth.ToString() + ".");
+            CBUG.Error("Spawn Player only available when Offline or InRoom, this was called at " + CurrentServerUserDepth.ToString() + ".");
         }
-        return -1;
+        return null;
     }
 
     public bool IsLocalClient(PhotonView playerView) {
