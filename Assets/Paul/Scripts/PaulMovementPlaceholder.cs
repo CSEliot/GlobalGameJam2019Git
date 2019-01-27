@@ -32,6 +32,8 @@ public class PaulMovementPlaceholder : MonoBehaviour
     public Transform camRef;
     public Rigidbody rby;
     public float speed = 1f;
+    private float animSpeed;
+    private float targetSpeed = 0f;
 
     public DetectCollects detector;
 
@@ -53,9 +55,8 @@ public class PaulMovementPlaceholder : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         SelectHat(Random.Range(0, 8));
-        PhotonArenaManager.Instance.Connect();
+        PhotonArenaManager.Instance.ConnectAndJoinRoomSingle();
 
-       
     }
 
     void SelectHat(int num)
@@ -82,13 +83,15 @@ public class PaulMovementPlaceholder : MonoBehaviour
 
         if(Input.GetAxis("Vertical") == 0 && Input.GetAxis("Horizontal") == 0)
         {
-            charAnim.SetFloat("Speed", 0);
+            targetSpeed = 0f;
         }
         else
         {
-            charAnim.SetFloat("Speed", 1);
+            targetSpeed = 1f;
         }
 
+        animSpeed = Mathf.Lerp(animSpeed, targetSpeed, Time.deltaTime * 5f);
+        charAnim.SetFloat("Speed", animSpeed);
 
         rVelocity.y = GravY;
         rby.velocity = rVelocity;
@@ -228,6 +231,11 @@ public class PaulMovementPlaceholder : MonoBehaviour
 
         switch (location)
         {
+            case Location.Store:
+                {
+                    neighbourhoodMan.DropItemOutside(myPlayerID, cItem);
+                    break;
+                }
             case Location.Outside:
                 {
                     neighbourhoodMan.DropItemOutside(myPlayerID, cItem);
