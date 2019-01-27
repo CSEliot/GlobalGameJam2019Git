@@ -10,4 +10,8 @@ public class SPAWNPLAYERTEST : MonoBehaviour
         PhotonArenaManager.Instance.SpawnPlayer();
         this.gameObject.SetActive(false);
     }
+
+    public void spawnobject () {
+        PhotonArenaManager.Instance.SpawnObject("TestOBJ");
+    }
 }
