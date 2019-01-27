@@ -85,6 +85,7 @@ public class UIManager : MonoBehaviour {
 		// Get quality settings names
 		qualityNames = QualitySettings.names;
 
+		/* 
 		// Get screens possible resolutions
 		resolutions = Screen.resolutions;
 
@@ -99,7 +100,7 @@ public class UIManager : MonoBehaviour {
 			 [ResolutionDropDown.value].width, resolutions[ResolutionDropDown.value].height, true);});
          
          }
-		 
+		 */
 		 // Check if first time so the volume can be set to MAX
 		 if(PlayerPrefs.GetInt("firsttime")==0){
 			 // it's the player's first time. Set to false now...
