@@ -315,18 +315,21 @@ public class PaulMovementPlaceholder : MonoBehaviourPun, IPunObservable {
                     }
                 case Location.Kitchen:
                     {
+                        AddScore();
                         roomLocation = 1;
                         neighbourhoodMan.DropItemInHouseRoom(myPlayerID, currentHome, roomLocation, cItem);
                         break;
                     }
                 case Location.Bedroom:
                     {
+                        AddScore();
                         roomLocation = 2;
                         neighbourhoodMan.DropItemInHouseRoom(myPlayerID, currentHome, roomLocation, cItem);
                         break;
                     }
                 case Location.Bathroom:
                     {
+                        AddScore();
                         roomLocation = 3;
                         neighbourhoodMan.DropItemInHouseRoom(myPlayerID, currentHome, roomLocation, cItem);
                         break;
