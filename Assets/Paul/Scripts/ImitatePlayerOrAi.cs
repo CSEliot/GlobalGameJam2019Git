@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ImitatePlayerOrAi : MonoBehaviour
 {
-
+    public PersonalityType aiPersonality;
     public Transform currentTarget;
     public Rigidbody rby;
 
