@@ -68,6 +68,7 @@ public class PaulMovementPlaceholder : MonoBehaviourPun, IPunObservable {
 
     public bool blockNet;
     private bool onGround;
+    private bool previouslyInAir;
     public CapsuleCollider capCol;
 
     void Awake() {
@@ -169,16 +170,23 @@ public class PaulMovementPlaceholder : MonoBehaviourPun, IPunObservable {
             if (!waitForStart)
             {
                 //RAY
-                bool grounded = (Physics.Raycast(downCaster.position, Vector3.down, 2f, LayerMask.NameToLayer("Ground"))); // raycast down to look for ground is not detecting ground? only works if allowing jump when grounded = false; // return "Ground" layer as layer
+                bool grounded = (Physics.Raycast(downCaster.position, Vector3.down, .5f, LayerMask.NameToLayer("Ground"))); // raycast down to look for ground is not detecting ground? only works if allowing jump when grounded = false; // return "Ground" layer as layer
+
                 if (grounded == true)
                 {
-                    GravY += 80f;
-                    
+                    if (previouslyInAir)
+                    {
+                        GravY = 0;
+                        previouslyInAir = false;
+                    }
+                    GravY += 1f;
+
                     Debug.Log("grounded!");
                     //jump();
                 }
                 else
                 {
+                    previouslyInAir = true;
                     GravY -= 9.81f * Time.deltaTime;
                 }
                 //CAST
@@ -191,6 +199,8 @@ public class PaulMovementPlaceholder : MonoBehaviourPun, IPunObservable {
 
                     if (Input.GetAxis("Vertical") == 0 && Input.GetAxis("Horizontal") == 0)
                     {
+                        //previouslyInAir = true;
+                        //GravY = -9.81f;
                         targetSpeed = 0f;
                     }
                     else
@@ -207,10 +217,14 @@ public class PaulMovementPlaceholder : MonoBehaviourPun, IPunObservable {
                     if (rVelocity.x == 0 && rVelocity.z == 0)
                     {
                         meshRotater.rotation = Quaternion.LookRotation(this.transform.forward, Vector3.up);
+                        
+                            
                     }
                     else
                     {
                         meshRotater.rotation = Quaternion.LookRotation(new Vector3(rVelocity.x, 0, rVelocity.z), Vector3.up);
+
+                        
                     }
 
                     if (Input.GetButtonDown("Attack"))
