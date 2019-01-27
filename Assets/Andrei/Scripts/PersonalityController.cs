@@ -149,7 +149,7 @@ public class PersonalityController : MonoBehaviour
 
         var score = GetScore();
 
-        int playerNum = 777;
+        int playerNum = PhotonArenaManager.Instance.GetLocalPlayerID();
         var data = new KeyValuePair<int, int[]>(playerNum, score);
         PhotonArenaManager.Instance.SaveData($"score!{playerNum}", score);
 

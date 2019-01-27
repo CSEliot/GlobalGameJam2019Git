@@ -58,7 +58,8 @@ public class PaulMovementPlaceholder : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         SelectHat(Random.Range(0, 8));
         PhotonArenaManager.Instance.ConnectAndJoinRoom("MY NAME");
-    
+
+        myPlayerID = PhotonArenaManager.Instance.GetLocalPlayerID();
         myPersonality = GetMyPersonality();
 
     }
