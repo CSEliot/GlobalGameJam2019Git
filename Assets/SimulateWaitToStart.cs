@@ -23,7 +23,7 @@ public class SimulateWaitToStart : MonoBehaviour
 
             if (timo >= waitTime)
             {
-                playerGuy.waitForStart = true;
+                playerGuy.waitForStart = false;
                 once = true;
                 pCam.SetActive(true);
                 camWait.SetActive(false);
