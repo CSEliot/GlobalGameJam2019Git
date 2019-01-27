@@ -69,7 +69,8 @@ public class PaulMovementPlaceholder : MonoBehaviourPun, IPunObservable {
     public bool blockNet;
     private bool onGround;
     private bool previouslyInAir;
-    public CapsuleCollider capCol;
+
+    public GameObject hitboxAttack;
 
     void Awake() {
 
@@ -409,6 +410,7 @@ public class PaulMovementPlaceholder : MonoBehaviourPun, IPunObservable {
     void Attack() {
         //holdPos.position = tempAtk.position;
         //holdPos.rotation = tempAtk.rotation;
+        hitboxAttack.SetActive(true);
         charAnim.SetTrigger("Attack");
         StartCoroutine(ResetAttack());
     }
@@ -424,6 +426,7 @@ public class PaulMovementPlaceholder : MonoBehaviourPun, IPunObservable {
             yield return null;
         }
 
+        hitboxAttack.SetActive(false);
         canAttack = true;
     }
 
@@ -462,6 +465,7 @@ public class PaulMovementPlaceholder : MonoBehaviourPun, IPunObservable {
         }
 
         StopAllCoroutines();
+        hitboxAttack.SetActive(false);
         charAnim.SetBool("Packing", false);
         detector.hasNearObj = false;
         canAttack = false;
