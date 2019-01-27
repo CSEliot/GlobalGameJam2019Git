@@ -15,6 +15,9 @@ TagManager:
   - Bedroom
   - Bathroom
   - Store
+  - LocalPlayer
+  - RemotePlayer
+  - AiPlayer
   layers:
   - Default
   - TransparentFX
