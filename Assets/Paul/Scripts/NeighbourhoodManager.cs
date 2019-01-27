@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+using System.Linq;
+
 public class NeighbourhoodManager : MonoBehaviour
 {
     public List<PlayerHome> allHomes = new List<PlayerHome>();
@@ -12,6 +14,14 @@ public class NeighbourhoodManager : MonoBehaviour
         collecto.transform.parent = null;
         collecto.collido.enabled = true;
         collecto.rby.isKinematic = false;
+
+        foreach (var room in allHomes.SelectMany(h => h.allRooms))
+        {
+            if (room.objects.Contains(collecto))
+            {
+                room.objects.Remove(collecto);
+            }
+        }
     }
 
     public void DropItemInHouseRoom(int player, int house, int room, Collectable collecto)

@@ -81,8 +81,6 @@ public class PaulMovementPlaceholder : MonoBehaviourPun, IPunObservable {
         
 //        SelectHat(Random.Range(0, 8));
         PhotonArenaManager.Instance.ConnectAndJoinRoom(PhotonArenaManager.Instance.GetLocalUsername());
-        SelectHat((int)myPersonality);
-
 
         if (!photonView.IsMine)
         {

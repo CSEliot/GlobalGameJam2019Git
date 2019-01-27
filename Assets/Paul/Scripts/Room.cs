@@ -31,6 +31,9 @@ public class Room : MonoBehaviour
     public List<SlotSpace> slots = new List<SlotSpace>();
     public RoomHitbox roomHitbox;
 
+    public readonly List<Collectable> objects = new List<Collectable>();
+
+
     public int nextSlot = 0;
 
     public void TakeThisObject(Collectable collecto)
@@ -41,6 +44,8 @@ public class Room : MonoBehaviour
         collecto.transform.localRotation = Quaternion.identity;
         slots[nextSlot].taken = true;
         nextSlot++;
+
+        objects.Add(collecto);
     }
 }
 
