@@ -10,6 +10,9 @@ public enum CurrentPlace
 
 public class Collectable : MonoBehaviour
 {
+    public int hitPts = 5;
+
+
     public List<PersonalityType> traits = new List<PersonalityType>();
 
     public RoomType roomAffinity = RoomType.Store;

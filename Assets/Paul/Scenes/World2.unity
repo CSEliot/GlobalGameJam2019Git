@@ -1437,6 +1437,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a5a7887576ebdb4585b9975b9a54dd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitPts: 5
   traits: 00000000000000000000000000000000
   roomAffinity: 4
   rby: {fileID: 126811507}
@@ -1557,6 +1558,36 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 128744007}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &138098610
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 138098611}
+  m_Layer: 0
+  m_Name: LookDown
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &138098611
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 138098610}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.71, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 165884129}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &154820916
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1646,6 +1677,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8061005897874924523, guid: 351a4db0b7eb55846b86f1f0ff9bd6e4,
     type: 3}
   m_PrefabInstance: {fileID: 154820916}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &165884129 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1373540790373168074, guid: f84b86dd8b94d184b9931c9ea9c81551,
+    type: 3}
+  m_PrefabInstance: {fileID: 1373540790231815738}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &176981036
 PrefabInstance:
@@ -2046,6 +2083,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a5a7887576ebdb4585b9975b9a54dd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitPts: 5
   traits: 00000000000000000000000000000000
   roomAffinity: 4
   rby: {fileID: 195636151}
@@ -2316,6 +2354,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a5a7887576ebdb4585b9975b9a54dd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitPts: 5
   traits: 00000000000000000000000000000000
   roomAffinity: 4
   rby: {fileID: 244512008}
@@ -3893,6 +3932,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a5a7887576ebdb4585b9975b9a54dd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitPts: 5
   traits: 00000000000000000000000000000000
   roomAffinity: 4
   rby: {fileID: 358027275}
@@ -5307,13 +5347,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: searsRAMPSONLY
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 441b22fd003fc604699bb9f84c3f0a2c, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 441b22fd003fc604699bb9f84c3f0a2c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 441b22fd003fc604699bb9f84c3f0a2c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.5173783
+      value: 0.88
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 441b22fd003fc604699bb9f84c3f0a2c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -6077,6 +6121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a5a7887576ebdb4585b9975b9a54dd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitPts: 5
   traits: 00000000000000000000000000000000
   roomAffinity: 4
   rby: {fileID: 602303636}
@@ -6519,6 +6564,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a5a7887576ebdb4585b9975b9a54dd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitPts: 5
   traits: 00000000000000000000000000000000
   roomAffinity: 4
   rby: {fileID: 665474298}
@@ -6693,6 +6739,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a5a7887576ebdb4585b9975b9a54dd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitPts: 5
   traits: 00000000000000000000000000000000
   roomAffinity: 4
   rby: {fileID: 675440059}
@@ -7061,6 +7108,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a5a7887576ebdb4585b9975b9a54dd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitPts: 5
   traits: 00000000000000000000000000000000
   roomAffinity: 4
   rby: {fileID: 733926980}
@@ -7151,6 +7199,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a5a7887576ebdb4585b9975b9a54dd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitPts: 5
   traits: 00000000000000000000000000000000
   roomAffinity: 4
   rby: {fileID: 757465799}
@@ -7338,6 +7387,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a5a7887576ebdb4585b9975b9a54dd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitPts: 5
   traits: 00000000000000000000000000000000
   roomAffinity: 4
   rby: {fileID: 770524789}
@@ -8617,6 +8667,10 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 40.2129
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: dd74c4c721f8c8e428262b25d88ce310, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 15cee17ebcd869047aeed5eb90009817, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dd74c4c721f8c8e428262b25d88ce310, type: 3}
 --- !u!1 &916837380
@@ -8679,6 +8733,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a5a7887576ebdb4585b9975b9a54dd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitPts: 5
   traits: 00000000000000000000000000000000
   roomAffinity: 4
   rby: {fileID: 916837381}
@@ -9406,6 +9461,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a5a7887576ebdb4585b9975b9a54dd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitPts: 5
   traits: 00000000000000000000000000000000
   roomAffinity: 4
   rby: {fileID: 962762280}
@@ -9707,6 +9763,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a5a7887576ebdb4585b9975b9a54dd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitPts: 5
   traits: 00000000000000000000000000000000
   roomAffinity: 4
   rby: {fileID: 972312189}
@@ -10527,6 +10584,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a5a7887576ebdb4585b9975b9a54dd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitPts: 5
   traits: 00000000000000000000000000000000
   roomAffinity: 4
   rby: {fileID: 1038393172}
@@ -12153,6 +12211,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 4c49875d4e0e7bc4187bcd5d411482ff, type: 3}
       propertyPath: m_Name
       value: mapRAMPSONLY
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 4c49875d4e0e7bc4187bcd5d411482ff, type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4c49875d4e0e7bc4187bcd5d411482ff, type: 3}
       propertyPath: m_LocalPosition.x
@@ -14159,6 +14221,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a5a7887576ebdb4585b9975b9a54dd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitPts: 5
   traits: 00000000000000000000000000000000
   roomAffinity: 4
   rby: {fileID: 1424378820}
@@ -14818,6 +14881,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a5a7887576ebdb4585b9975b9a54dd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitPts: 5
   traits: 00000000000000000000000000000000
   roomAffinity: 4
   rby: {fileID: 1515425015}
@@ -15071,6 +15135,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a5a7887576ebdb4585b9975b9a54dd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitPts: 5
   traits: 00000000000000000000000000000000
   roomAffinity: 4
   rby: {fileID: 1531388813}
@@ -15155,6 +15220,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a5a7887576ebdb4585b9975b9a54dd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitPts: 5
   traits: 00000000000000000000000000000000
   roomAffinity: 4
   rby: {fileID: 1543991034}
@@ -16392,6 +16458,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a5a7887576ebdb4585b9975b9a54dd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitPts: 5
   traits: 00000000000000000000000000000000
   roomAffinity: 4
   rby: {fileID: 1629599409}
@@ -16429,7 +16496,7 @@ MeshCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1638832868}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 6724e790fd2036d4193b67a386fd527b, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -16539,6 +16606,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a5a7887576ebdb4585b9975b9a54dd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitPts: 5
   traits: 00000000000000000000000000000000
   roomAffinity: 4
   rby: {fileID: 1640111012}
@@ -17119,6 +17187,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a5a7887576ebdb4585b9975b9a54dd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitPts: 5
   traits: 00000000000000000000000000000000
   roomAffinity: 4
   rby: {fileID: 1708456330}
@@ -17891,6 +17960,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a5a7887576ebdb4585b9975b9a54dd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitPts: 5
   traits: 00000000000000000000000000000000
   roomAffinity: 4
   rby: {fileID: 1761697289}
@@ -20909,6 +20979,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a5a7887576ebdb4585b9975b9a54dd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitPts: 5
   traits: 00000000000000000000000000000000
   roomAffinity: 4
   rby: {fileID: 2002974050}
@@ -21953,6 +22024,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a5a7887576ebdb4585b9975b9a54dd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitPts: 5
   traits: 00000000000000000000000000000000
   roomAffinity: 4
   rby: {fileID: 2091051852}
@@ -22128,6 +22200,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a5a7887576ebdb4585b9975b9a54dd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitPts: 5
   traits: 00000000000000000000000000000000
   roomAffinity: 4
   rby: {fileID: 2108460373}
@@ -22520,6 +22593,11 @@ PrefabInstance:
       propertyPath: blockNet
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1373540790373168075, guid: f84b86dd8b94d184b9931c9ea9c81551,
+        type: 3}
+      propertyPath: downCaster
+      value: 
+      objectReference: {fileID: 138098611}
     - target: {fileID: 1373540790409306388, guid: f84b86dd8b94d184b9931c9ea9c81551,
         type: 3}
       propertyPath: m_IsActive
@@ -22533,7 +22611,7 @@ PrefabInstance:
     - target: {fileID: 1373540790373168074, guid: f84b86dd8b94d184b9931c9ea9c81551,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.24
+      value: 0.515
       objectReference: {fileID: 0}
     - target: {fileID: 1373540790373168074, guid: f84b86dd8b94d184b9931c9ea9c81551,
         type: 3}
@@ -22584,11 +22662,22 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Material
       value: 
+      objectReference: {fileID: 13400000, guid: 6724e790fd2036d4193b67a386fd527b,
+        type: 2}
+    - target: {fileID: 1373540790373168087, guid: f84b86dd8b94d184b9931c9ea9c81551,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1373540790409306378, guid: f84b86dd8b94d184b9931c9ea9c81551,
         type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1373540790373168072, guid: f84b86dd8b94d184b9931c9ea9c81551,
+        type: 3}
+      propertyPath: m_UseGravity
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7149345767027710829, guid: f84b86dd8b94d184b9931c9ea9c81551,
         type: 3}
