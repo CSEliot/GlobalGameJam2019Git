@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Andrei/Scenes/PersonalitySelection.unity
     guid: b80b55878f5e4454097e79d1d204d02e
+  - enabled: 1
+    path: Assets/Andrei/Scenes/SplashScreen.unity
+    guid: 27ba233ac9472724c9ff8583d9e561aa
   m_configObjects: {}

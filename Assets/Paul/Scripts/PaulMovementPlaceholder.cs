@@ -18,6 +18,8 @@ public enum Location
 
 public class PaulMovementPlaceholder : MonoBehaviour
 {
+    
+    public PersonalityType myPersonality;
     public PlayerState playerState;
     public Location location;
 
