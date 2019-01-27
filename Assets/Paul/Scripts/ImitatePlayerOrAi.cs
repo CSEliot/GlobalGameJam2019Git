@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class ImitatePlayerOrAi : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
+    public Transform currentTarget;
+    public Rigidbody rby;
+
+    private Vector3 pVelocity;
+    
     void Update()
     {
-        
+        this.transform.LookAt(new Vector3(currentTarget.position.x, this.transform.position.y, currentTarget.position.z), Vector3.up);
+
+        pVelocity = this.transform.forward
     }
 }
