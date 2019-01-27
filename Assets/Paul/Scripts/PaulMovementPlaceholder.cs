@@ -68,6 +68,7 @@ public class PaulMovementPlaceholder : MonoBehaviourPun, IPunObservable {
 
     public bool blockNet;
     private bool onGround;
+    private bool previouslyInAir;
     public CapsuleCollider capCol;
 
     void Awake() {
@@ -81,23 +82,19 @@ public class PaulMovementPlaceholder : MonoBehaviourPun, IPunObservable {
 
     void Start() {
         
-//        SelectHat(Random.Range(0, 8));
-        PhotonArenaManager.Instance.ConnectAndJoinRoom(PhotonArenaManager.Instance.GetLocalUsername());
         SelectHat((int)myPersonality);
 
-
-        if (!photonView.IsMine)
-        {
-            camRef.gameObject.SetActive(false);
+        if (photonView.IsMine) {
+            Cursor.lockState = CursorLockMode.Locked;
         }
-        else
-        {
-            //Cursor.lockState = CursorLockMode.Locked;
+        else {
+            camRef.gameObject.SetActive(false);
         }
 
         if (blockNet)
         {
             Cursor.lockState = CursorLockMode.Locked;
+            camRef.gameObject.SetActive(true);
         }
     }
 
@@ -169,18 +166,41 @@ public class PaulMovementPlaceholder : MonoBehaviourPun, IPunObservable {
             if (!waitForStart)
             {
                 //RAY
-                bool grounded = (Physics.Raycast(downCaster.position, Vector3.down, 2f, LayerMask.NameToLayer("Ground"))); // raycast down to look for ground is not detecting ground? only works if allowing jump when grounded = false; // return "Ground" layer as layer
+                // Check if on ground
+                /*
+                if (!onGround && Physics.Raycast(transform.position + Vector3.down * 0.9f, Vector3.down, 0.5f))
+                {
+                    //fixNetGuessWork();
+                    onGround = true;
+                    //GravY += 1f;
+                }
+                else
+                {
+                    onGround = Physics.Raycast(transform.position + Vector3.down * 0.9f, Vector3.down, 0.5f);
+                    GravY -= 9.81f * Time.deltaTime;
+                }
+                */
+                
+                bool grounded = (Physics.Raycast(downCaster.position, Vector3.down, .5f, LayerMask.NameToLayer("Ground"))); // raycast down to look for ground is not detecting ground? only works if allowing jump when grounded = false; // return "Ground" layer as layer
+
                 if (grounded == true)
                 {
-                    GravY += 80f;
-                    
+                    if (previouslyInAir)
+                    {
+                        GravY = 0;
+                        previouslyInAir = false;
+                    }
+                    GravY += 1f;
+
                     Debug.Log("grounded!");
                     //jump();
                 }
                 else
                 {
+                    previouslyInAir = true;
                     GravY -= 9.81f * Time.deltaTime;
                 }
+                
                 //CAST
 
                 if (playerState == PlayerState.Normal || playerState == PlayerState.Holding)
@@ -191,6 +211,8 @@ public class PaulMovementPlaceholder : MonoBehaviourPun, IPunObservable {
 
                     if (Input.GetAxis("Vertical") == 0 && Input.GetAxis("Horizontal") == 0)
                     {
+                        //previouslyInAir = true;
+                        //GravY = -9.81f;
                         targetSpeed = 0f;
                     }
                     else
@@ -207,10 +229,14 @@ public class PaulMovementPlaceholder : MonoBehaviourPun, IPunObservable {
                     if (rVelocity.x == 0 && rVelocity.z == 0)
                     {
                         meshRotater.rotation = Quaternion.LookRotation(this.transform.forward, Vector3.up);
+                        
+                            
                     }
                     else
                     {
                         meshRotater.rotation = Quaternion.LookRotation(new Vector3(rVelocity.x, 0, rVelocity.z), Vector3.up);
+
+                        
                     }
 
                     if (Input.GetButtonDown("Attack"))
@@ -233,8 +259,8 @@ public class PaulMovementPlaceholder : MonoBehaviourPun, IPunObservable {
 
                     if (Input.GetButton("Jump"))
                     {
-                        Debug.Log("simulate get hit");
-                        GetHit();
+                        //Debug.Log("simulate get hit");
+                        //GetHit();
                     }
                 }
             }
@@ -361,7 +387,12 @@ public class PaulMovementPlaceholder : MonoBehaviourPun, IPunObservable {
     }
 
     void Pickup() {
+
+
         if (detector.hasNearObj) {
+
+
+
             cItem = detector.closeObj;
             cItem.transform.parent = holdPos;
             cItem.transform.localPosition = cItem.localPos;
