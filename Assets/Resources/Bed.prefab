@@ -30,7 +30,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1430482499137782210}
   m_LocalRotation: {x: 0, y: -0.1250994, z: 0, w: 0.9921442}
-  m_LocalPosition: {x: -1, y: 0.32, z: 0.64}
+  m_LocalPosition: {x: 0, y: 0.32, z: 0.64}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1430482499776093984}
@@ -54,8 +54,8 @@ MonoBehaviour:
   roomAffinity: 4
   rby: {fileID: 1430482499137782213}
   collido: {fileID: 1430482499137782212}
-  localPos: {x: 3.94, y: -0.4, z: -1.6}
-  localErot: {x: 5.6, y: 20, z: 140}
+  localPos: {x: -0.16, y: 2.01, z: -4.58}
+  localErot: {x: 39.625, y: 116.078, z: 181.13}
   currentPlace: 0
   heldPlayer: 0
   inHouse: 0
@@ -108,8 +108,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 883586270}
   - {fileID: 883586269}
-  viewIdField: 48
-  InstantiationId: 48
+  viewIdField: 50
+  InstantiationId: 50
   isRuntimeInstantiated: 0
 --- !u!114 &883586270
 MonoBehaviour:
