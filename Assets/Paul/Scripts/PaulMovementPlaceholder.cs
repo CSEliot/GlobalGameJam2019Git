@@ -133,6 +133,7 @@ public class PaulMovementPlaceholder : MonoBehaviourPun, IPunObservable {
         }
 
         var personalities = PersonalityController.SortingHat(playerScores);
+        neighbourhoodMan.Personalities = personalities;
 
         if (personalities.ContainsKey(myPlayerID))
         {

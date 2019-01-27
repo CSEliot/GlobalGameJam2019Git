@@ -8,6 +8,8 @@ public class NeighbourhoodManager : MonoBehaviour
 {
     public List<PlayerHome> allHomes = new List<PlayerHome>();
 
+    public Dictionary<int, PersonalityType> Personalities { get; set; }
+
 
     public void DropItemOutside(int player, Collectable collecto)
     {
@@ -15,13 +17,7 @@ public class NeighbourhoodManager : MonoBehaviour
         collecto.collido.enabled = true;
         collecto.rby.isKinematic = false;
 
-        foreach (var room in allHomes.SelectMany(h => h.allRooms))
-        {
-            if (room.objects.Contains(collecto))
-            {
-                room.objects.Remove(collecto);
-            }
-        }
+        RemoveFromAllRooms(collecto);
     }
 
     public void DropItemInHouseRoom(int player, int house, int room, Collectable collecto)
@@ -35,6 +31,7 @@ public class NeighbourhoodManager : MonoBehaviour
 
         }
 
+        RemoveFromAllRooms(collecto);
         allHomes[house].allRooms[room].TakeThisObject(collecto);
     }
 
@@ -42,4 +39,51 @@ public class NeighbourhoodManager : MonoBehaviour
     {
 
     }
+
+    public void RemoveFromAllRooms(Collectable collecto)
+    {
+        foreach (var room in allHomes.SelectMany(h => h.allRooms))
+        {
+            if (room.objects.Contains(collecto))
+            {
+                room.objects.Remove(collecto);
+            }
+        }
+    }
+
+
+ /*   Foreach(house.rooms)
+
+        Foreach(obj)
+
+            Add 1
+			Foreach(obj.traits.where(trait == player.type)
+
+                Add 4
+			foreach(obj.negtraits.where(trait == player.type)
+				Sub 6
+				
+		If(objs.count(obj.affinity == room.type) == room.slots)
+			Add room.points */
+
+
+    public int GetHouseScore(int house)
+    {
+        int score = 0;
+
+        foreach (var room in allHomes[house].allRooms)
+        {
+            foreach (var obj in room.objects)
+            {
+                score += 1;
+
+
+            }
+
+
+        }
+
+        return score;
+    }
+
 }
