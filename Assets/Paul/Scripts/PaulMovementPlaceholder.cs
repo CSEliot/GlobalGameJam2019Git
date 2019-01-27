@@ -62,8 +62,15 @@ public class PaulMovementPlaceholder : MonoBehaviourPun, IPunObservable {
     /// </summary>
     private bool m_firstTake = true; //PHoton-y thing
 
+    public bool blockNet;
+
     void Awake() {
+
+        if (!blockNet)
+        {
+
         StartCoroutine("StartNet");
+        }
     }
 
     void Start() {
@@ -84,6 +91,11 @@ public class PaulMovementPlaceholder : MonoBehaviourPun, IPunObservable {
         else
         {
             //Cursor.lockState = CursorLockMode.Locked;
+        }
+
+        if (blockNet)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
         }
     }
 
@@ -125,55 +137,79 @@ public class PaulMovementPlaceholder : MonoBehaviourPun, IPunObservable {
     void Update() {
         float GravY = rby.velocity.y;
 
-        if (photonView.IsMine) {
-            
-            if (!waitForStart) {
-                rVelocity = ((this.transform.forward * speed) * Input.GetAxis("Vertical")) +
-                    ((this.transform.right * speed) * Input.GetAxis("Horizontal"));
+        if (photonView.IsMine || blockNet) {
 
-                if (Input.GetAxis("Vertical") == 0 && Input.GetAxis("Horizontal") == 0) {
-                    targetSpeed = 0f;
-                }
-                else {
-                    targetSpeed = 1f;
-                }
-                animSpeed = Mathf.Lerp(animSpeed, targetSpeed, Time.deltaTime * 5f);
-                charAnim.SetFloat("Speed", animSpeed);
+            if (!waitForStart)
+            {
 
-                rVelocity.y = GravY;
-                rby.velocity = rVelocity;
-                this.transform.Rotate(new Vector3(0, Input.GetAxis("Mouse X"), 0));
+                if (playerState == PlayerState.Normal || playerState == PlayerState.Holding)
+                {
 
-                if (rVelocity.x == 0 && rVelocity.z == 0) {
-                    meshRotater.rotation = Quaternion.LookRotation(this.transform.forward, Vector3.up);
-                }
-                else {
-                    meshRotater.rotation = Quaternion.LookRotation(new Vector3(rVelocity.x, 0, rVelocity.z), Vector3.up);
-                }
+                    rVelocity = ((this.transform.forward * speed) * Input.GetAxis("Vertical")) +
+                        ((this.transform.right * speed) * Input.GetAxis("Horizontal"));
 
-                if (Input.GetButtonDown("Attack")) {
-                    if (!lClickDown) {
-                        lClickDown = true;
-                        Click();
+                    if (Input.GetAxis("Vertical") == 0 && Input.GetAxis("Horizontal") == 0)
+                    {
+                        targetSpeed = 0f;
                     }
-                }
-                else {
-                    lClickDown = false;
-                }
+                    else
+                    {
+                        targetSpeed = 1f;
+                    }
+                    animSpeed = Mathf.Lerp(animSpeed, targetSpeed, Time.deltaTime * 5f);
+                    charAnim.SetFloat("Speed", animSpeed);
 
-                if (Input.GetMouseButtonDown(1)) {
-                    RightClick();
-                }
+                    rVelocity.y = GravY;
+                    rby.velocity = rVelocity;
+                    this.transform.Rotate(new Vector3(0, Input.GetAxis("Mouse X"), 0));
 
-                if (Input.GetButton("Jump")) {
-                    Debug.Log("simulate get hit");
+                    if (rVelocity.x == 0 && rVelocity.z == 0)
+                    {
+                        meshRotater.rotation = Quaternion.LookRotation(this.transform.forward, Vector3.up);
+                    }
+                    else
+                    {
+                        meshRotater.rotation = Quaternion.LookRotation(new Vector3(rVelocity.x, 0, rVelocity.z), Vector3.up);
+                    }
+
+                    if (Input.GetButtonDown("Attack"))
+                    {
+                        if (!lClickDown)
+                        {
+                            lClickDown = true;
+                            Click();
+                        }
+                    }
+                    else
+                    {
+                        lClickDown = false;
+                    }
+
+                    if (Input.GetMouseButtonDown(1))
+                    {
+                        RightClick();
+                    }
+
+                    if (Input.GetButton("Jump"))
+                    {
+                        Debug.Log("simulate get hit");
+                        GetHit();
+                    }
                 }
             }
         }
     }
 
-    void GetHit() {
-        //
+    void GetHit()
+    {
+        
+
+        if(playerState == PlayerState.Holding)
+        {
+            //DROP IT
+        }
+
+        playerState = PlayerState.Stunned;
     }
 
     void Click() {
