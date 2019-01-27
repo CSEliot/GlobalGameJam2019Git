@@ -7348,8 +7348,8 @@ Transform:
   m_Children:
   - {fileID: 1296723192}
   - {fileID: 1752618380}
-  - {fileID: 1499148289}
   - {fileID: 1866811777}
+  - {fileID: 1499148289}
   m_Father: {fileID: 603219020}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 175.16501, z: 0}
@@ -11783,6 +11783,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: HUD
       objectReference: {fileID: 0}
+    - target: {fileID: 8522708322053583328, guid: cb1f4e5970d59db49a1205137b1d3a3e,
+        type: 3}
+      propertyPath: m_TagString
+      value: HudManager
+      objectReference: {fileID: 0}
     - target: {fileID: 8522708322053583332, guid: cb1f4e5970d59db49a1205137b1d3a3e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -15883,7 +15888,7 @@ Transform:
   m_LocalScale: {x: 2.7767293, y: 2.2836137, z: 4.496395}
   m_Children: []
   m_Father: {fileID: 927771510}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 90.115005, z: 0}
 --- !u!65 &1866811778
 BoxCollider:

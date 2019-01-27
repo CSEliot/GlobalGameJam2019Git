@@ -284,6 +284,7 @@ MonoBehaviour:
   downCaster: {fileID: 138098611}
   blockNet: 0
   hitboxAttack: {fileID: 6663650706251732078}
+  myScore: 0
 --- !u!54 &1373540790373168072
 Rigidbody:
   m_ObjectHideFlags: 0

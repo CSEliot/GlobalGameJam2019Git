@@ -1,15 +1,24 @@
-﻿using System.Collections;
+﻿using Photon.Pun;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 using System.Linq;
 
-public class NeighbourhoodManager : MonoBehaviour
+public class NeighbourhoodManager : MonoBehaviour, IPunObservable
 {
     public List<PlayerHome> allHomes = new List<PlayerHome>();
 
     public Dictionary<int, PersonalityType> Personalities { get; set; }
+ 
+        private void Awake() {
+        if(GameObject.FindGameObjectsWithTag("NeighbourhoodManager").Length > 1) {
+            PhotonNetwork.Destroy(gameObject);
+        }
+    }
 
+    void IPunObservable.OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
+
+    }
 
     public void DropItemOutside(int player, Collectable collecto)
     {
