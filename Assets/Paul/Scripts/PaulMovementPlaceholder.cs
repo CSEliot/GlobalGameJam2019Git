@@ -388,7 +388,12 @@ public class PaulMovementPlaceholder : MonoBehaviourPun, IPunObservable {
     }
 
     void Pickup() {
+
+
         if (detector.hasNearObj) {
+
+
+
             cItem = detector.closeObj;
             cItem.transform.parent = holdPos;
             cItem.transform.localPosition = cItem.localPos;

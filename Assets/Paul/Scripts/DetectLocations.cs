@@ -17,7 +17,7 @@ public class DetectLocations : MonoBehaviour
                 {
                     if (!locations.Contains(Location.LivingRoom))
                     {
-                        playerRef.locationTxt.text = "My LivingRoom";
+                        //playerRef.locationTxt.text = "My LivingRoom";
                         locations.Add(Location.LivingRoom);
                         playerRef.location = Location.LivingRoom;
                         playerRef.currentHome = col.GetComponent<RoomHitbox>().homeRef;
@@ -28,7 +28,7 @@ public class DetectLocations : MonoBehaviour
                 {
                     if (!locations.Contains(Location.Kitchen))
                     {
-                        playerRef.locationTxt.text = "My Kitchen";
+                        //playerRef.locationTxt.text = "My Kitchen";
                         locations.Add(Location.Kitchen);
                         playerRef.location = Location.Kitchen;
                         playerRef.currentHome = col.GetComponent<RoomHitbox>().homeRef;
@@ -39,7 +39,7 @@ public class DetectLocations : MonoBehaviour
                 {
                     if (!locations.Contains(Location.Bedroom))
                     {
-                        playerRef.locationTxt.text = "My Bedroom";
+                        //playerRef.locationTxt.text = "My Bedroom";
                         locations.Add(Location.Bedroom);
                         playerRef.location = Location.Bedroom;
                         playerRef.currentHome = col.GetComponent<RoomHitbox>().homeRef;
@@ -50,7 +50,7 @@ public class DetectLocations : MonoBehaviour
                 {
                     if (!locations.Contains(Location.Bathroom))
                     {
-                        playerRef.locationTxt.text = "My Bathroom";
+                        //playerRef.locationTxt.text = "My Bathroom";
                         locations.Add(Location.Bathroom);
                         playerRef.location = Location.Bathroom;
                         playerRef.currentHome = col.GetComponent<RoomHitbox>().homeRef;
@@ -61,7 +61,7 @@ public class DetectLocations : MonoBehaviour
                 {
                     if (!locations.Contains(Location.Store))
                     {
-                        playerRef.locationTxt.text = "Store";
+                        //playerRef.locationTxt.text = "Store";
                         locations.Add(Location.Store);
                         playerRef.location = Location.Store;
                         playerRef.currentHome = col.GetComponent<RoomHitbox>().homeRef;
@@ -83,12 +83,12 @@ public class DetectLocations : MonoBehaviour
                         if(locations.Count == 0)
                         {
                             playerRef.location = Location.Outside;
-                            playerRef.locationTxt.text = "Outside";
+                           // playerRef.locationTxt.text = "Outside";
                         }
                         else
                         {
                             playerRef.location = locations[0];
-                            playerRef.locationTxt.text = "My " + locations[0].ToString();
+                           // playerRef.locationTxt.text = "My " + locations[0].ToString();
                         }
                     }
                     break;
@@ -101,12 +101,12 @@ public class DetectLocations : MonoBehaviour
                         if (locations.Count == 0)
                         {
                             playerRef.location = Location.Outside;
-                            playerRef.locationTxt.text = "Outside";
+                            //playerRef.locationTxt.text = "Outside";
                         }
                         else
                         {
                             playerRef.location = locations[0];
-                            playerRef.locationTxt.text = "My " + locations[0].ToString();
+                           // playerRef.locationTxt.text = "My " + locations[0].ToString();
                         }
                     }
                     break;
@@ -119,12 +119,12 @@ public class DetectLocations : MonoBehaviour
                         if (locations.Count == 0)
                         {
                             playerRef.location = Location.Outside;
-                            playerRef.locationTxt.text = "Outside";
+                           // playerRef.locationTxt.text = "Outside";
                         }
                         else
                         {
                             playerRef.location = locations[0];
-                            playerRef.locationTxt.text = "My " + locations[0].ToString();
+                           // playerRef.locationTxt.text = "My " + locations[0].ToString();
                         }
                     }
                     break;
@@ -137,12 +137,12 @@ public class DetectLocations : MonoBehaviour
                         if (locations.Count == 0)
                         {
                             playerRef.location = Location.Outside;
-                            playerRef.locationTxt.text = "Outside";
+                            //playerRef.locationTxt.text = "Outside";
                         }
                         else
                         {
                             playerRef.location = locations[0];
-                            playerRef.locationTxt.text = "My " + locations[0].ToString();
+                           // playerRef.locationTxt.text = "My " + locations[0].ToString();
                         }
                     }
                     break;
@@ -155,12 +155,12 @@ public class DetectLocations : MonoBehaviour
                         if (locations.Count == 0)
                         {
                             playerRef.location = Location.Outside;
-                            playerRef.locationTxt.text = "Outside";
+                           // playerRef.locationTxt.text = "Outside";
                         }
                         else
                         {
                             playerRef.location = locations[0];
-                            playerRef.locationTxt.text = "My " + locations[0].ToString();
+                           // playerRef.locationTxt.text = "My " + locations[0].ToString();
                         }
                     }
                     break;
