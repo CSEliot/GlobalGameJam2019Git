@@ -70,15 +70,13 @@ public class PaulMovementPlaceholder : MonoBehaviourPun, IPunObservable {
 
     void Start() {
         Cursor.lockState = CursorLockMode.Locked;
-
-        SelectHat((int)myPersonality);
-
+//        SelectHat(Random.Range(0, 8));
         PhotonArenaManager.Instance.ConnectAndJoinRoom("MY NAME");
 
         myPlayerID = PhotonArenaManager.Instance.GetLocalPlayerID();
         myPersonality = GetMyPersonality();
 
-        //SelectHat((int)myPersonality);
+        SelectHat((int)myPersonality);
     }
 
 
@@ -96,7 +94,12 @@ public class PaulMovementPlaceholder : MonoBehaviourPun, IPunObservable {
 
         var personalities = PersonalityController.SortingHat(playerScores);
 
-        return personalities[myPlayerID];
+        if (personalities.ContainsKey(myPlayerID))
+        {
+            return personalities[myPlayerID];
+        }
+
+        return PersonalityType.Nerd;
     }
 
 
