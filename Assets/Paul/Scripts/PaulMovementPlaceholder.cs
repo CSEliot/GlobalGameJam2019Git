@@ -22,6 +22,7 @@ public class PaulMovementPlaceholder : MonoBehaviourPun, IPunObservable {
     public PlayerState playerState;
     public Location location;
 
+    public HUDManager hudMan;
     public NeighbourhoodManager neighbourhoodMan;
 
     public Animator charAnim;
@@ -70,7 +71,7 @@ public class PaulMovementPlaceholder : MonoBehaviourPun, IPunObservable {
     private bool onGround;
     private bool previouslyInAir;
 
-    public GameObject hitboxAttack;
+    public Transform hitboxAttack;
 
     void Awake() {
 
@@ -84,6 +85,7 @@ public class PaulMovementPlaceholder : MonoBehaviourPun, IPunObservable {
     void Start() {
         
         SelectHat((int)myPersonality);
+        hitboxAttack.parent = meshRotater;
 
         if (photonView.IsMine) {
             Cursor.lockState = CursorLockMode.Locked;
@@ -268,13 +270,20 @@ public class PaulMovementPlaceholder : MonoBehaviourPun, IPunObservable {
         }
     }
 
-    
+    void OnTriggerEnter(Collider col)
+    {
+        if(col.tag == "Attack")
+        {
+            GetHit();
+        }
+    }
 
     void GetHit()
     {
-        
+        charAnim.SetBool("Stunned", true);
+        charAnim.SetTrigger("GetHit");
 
-        if(playerState == PlayerState.Holding)
+        if (playerState == PlayerState.Holding)
         {
             //DROP IT
             int roomLocation = 0;
@@ -324,6 +333,7 @@ public class PaulMovementPlaceholder : MonoBehaviourPun, IPunObservable {
             cItem = null;
         }
 
+        rby.velocity = new Vector3(0, -5, 0);
         playerState = PlayerState.Stunned;
         StartCoroutine(ResetStunned());
     }
@@ -334,14 +344,15 @@ public class PaulMovementPlaceholder : MonoBehaviourPun, IPunObservable {
 
         while (t < 1f)
         {
-            t += Time.deltaTime * 2.5f;
+            t += Time.deltaTime;
 
             //holdPos.position = Vector3.Lerp(holdPos.position, tempNorm.position, t);
             //holdPos.rotation = Quaternion.Slerp(holdPos.rotation, tempNorm.rotation, t);
             yield return null;
         }
 
-        canAttack = true;
+        charAnim.SetBool("Stunned", false);
+        playerState = PlayerState.Normal;
     }
 
     void Click() {
@@ -402,7 +413,7 @@ public class PaulMovementPlaceholder : MonoBehaviourPun, IPunObservable {
             cItem.rby.isKinematic = true;
             canAttack = true;
             charAnim.SetBool("Packing", true);
-
+            hudMan.SetInstructionText(1);
             playerState = PlayerState.Holding;
         }
     }
@@ -410,7 +421,9 @@ public class PaulMovementPlaceholder : MonoBehaviourPun, IPunObservable {
     void Attack() {
         //holdPos.position = tempAtk.position;
         //holdPos.rotation = tempAtk.rotation;
-        hitboxAttack.SetActive(true);
+        //hitboxAttack.SetActive(true);
+
+        PhotonArenaManager.Instance.SpawnObject("AttackBox", hitboxAttack.position, hitboxAttack.rotation);
         charAnim.SetTrigger("Attack");
         StartCoroutine(ResetAttack());
     }
@@ -426,7 +439,7 @@ public class PaulMovementPlaceholder : MonoBehaviourPun, IPunObservable {
             yield return null;
         }
 
-        hitboxAttack.SetActive(false);
+        //hitboxAttack.SetActive(false);
         canAttack = true;
     }
 
@@ -465,12 +478,13 @@ public class PaulMovementPlaceholder : MonoBehaviourPun, IPunObservable {
         }
 
         StopAllCoroutines();
-        hitboxAttack.SetActive(false);
+        //hitboxAttack.SetActive(false);
         charAnim.SetBool("Packing", false);
         detector.hasNearObj = false;
         canAttack = false;
         cItem = null;
         playerState = PlayerState.Normal;
+        hudMan.SetInstructionText(0);
     }
     #region IPunObservable implementation
 
