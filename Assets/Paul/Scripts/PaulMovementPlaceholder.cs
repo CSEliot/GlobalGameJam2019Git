@@ -30,6 +30,8 @@ public class PaulMovementPlaceholder : MonoBehaviourPun, IPunObservable {
     public int myHome;//0-8
     public int currentHome;//0-8
 
+    private bool _playerInitialized = false;
+
     public Transform camRef;
     public Rigidbody rby;
     public float speed = 1f;
@@ -69,12 +71,23 @@ public class PaulMovementPlaceholder : MonoBehaviourPun, IPunObservable {
     void Start() {
         Cursor.lockState = CursorLockMode.Locked;
 //        SelectHat(Random.Range(0, 8));
-        PhotonArenaManager.Instance.ConnectAndJoinRoom("MY NAME");
+        PhotonArenaManager.Instance.ConnectAndJoinRoom(PhotonArenaManager.Instance.GetLocalUsername());
+    }
 
-        myPlayerID = PhotonArenaManager.Instance.GetLocalPlayerID();
-        myPersonality = GetMyPersonality();
 
-        SelectHat((int)myPersonality);
+    private void InitPlayer()
+    {
+        var status = PhotonArenaManager.Instance.GetCurrentDepthLevel();
+
+        if (status == PhotonArenaManager.ServerDepthLevel.InRoom)
+        {
+            myPlayerID = PhotonArenaManager.Instance.GetLocalPlayerID();
+            myPersonality = GetMyPersonality();
+
+            SelectHat((int)myPersonality);
+
+            _playerInitialized = true;
+        }
     }
 
 
@@ -117,6 +130,12 @@ public class PaulMovementPlaceholder : MonoBehaviourPun, IPunObservable {
     }
 
     void Update() {
+
+        if (!_playerInitialized)
+        {
+            InitPlayer();
+        }
+
         float GravY = rby.velocity.y;
 
         if (photonView.IsMine) {
