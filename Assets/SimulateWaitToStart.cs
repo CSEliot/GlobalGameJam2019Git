@@ -4,15 +4,30 @@ using UnityEngine;
 
 public class SimulateWaitToStart : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public PaulMovementPlaceholder playerGuy;
+    public float waitTime;
 
-    // Update is called once per frame
+    private float timo;
+    private bool once;
+
+    public GameObject camWait;
+    public GameObject pCam;
+
+
     void Update()
     {
-        
+        if (!once)
+        {
+
+            timo += Time.deltaTime;
+
+            if (timo >= waitTime)
+            {
+                playerGuy.waitForStart = false;
+                once = true;
+                pCam.SetActive(true);
+                camWait.SetActive(false);
+            }
+        }
     }
 }
