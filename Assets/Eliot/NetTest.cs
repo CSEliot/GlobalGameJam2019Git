@@ -8,7 +8,7 @@ public class NetTest : MonoBehaviour
     void Start()
     {
         CBUG.Do("Connecting ...");
-        PhotonArenaManager.Instance.ConnectAndJoinRoomSingle();
+        PhotonArenaManager.Instance.ConnectAndJoinRoom("MY NAME");
         CBUG.Do("Connecting .......");
     }
 

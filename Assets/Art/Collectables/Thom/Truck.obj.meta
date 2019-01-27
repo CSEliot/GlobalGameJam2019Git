@@ -1,27 +1,28 @@
 fileFormatVersion: 2
-guid: c65dc4947064296408c0238d5e86f292
+guid: 2562341e3f59348478fac5b689ce8ab8
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
-    100002: Cube_004
-    100004: trainBody_group1
+    100002: Truck_Grp_Truck
+    100004: Truck_Grp_Wheel4_Wheel3
+    100006: Wheel2_Truck_Grp_Wheel1
     400000: //RootNode
-    400002: Cube_004
-    400004: trainBody_group1
-    2100000: None__baby
-    2100002: initialShadingGroup__train
-    2300000: //RootNode
-    2300002: Cube_004
-    2300004: trainBody_group1
-    3300000: //RootNode
-    3300002: Cube_004
-    3300004: trainBody_group1
-    4300000: Cube_004
-    4300002: trainBody_group1
-    7400000: Default Take
-    9500000: //RootNode
-    2186277476908879412: ImportLogs
+    400002: Truck_Grp_Truck
+    400004: Truck_Grp_Wheel4_Wheel3
+    400006: Wheel2_Truck_Grp_Wheel1
+    2100000: Truck_Grp_TruckMat
+    2100002: Truck_Grp_Wheel4_Wheel3Mat
+    2100004: Wheel2_Truck_Grp_Wheel1Mat
+    2300000: Truck_Grp_Truck
+    2300002: Truck_Grp_Wheel4_Wheel3
+    2300004: Wheel2_Truck_Grp_Wheel1
+    3300000: Truck_Grp_Truck
+    3300002: Truck_Grp_Wheel4_Wheel3
+    3300004: Wheel2_Truck_Grp_Wheel1
+    4300000: Truck_Grp_Truck
+    4300002: Truck_Grp_Wheel4_Wheel3
+    4300004: Wheel2_Truck_Grp_Wheel1
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -75,7 +76,7 @@ ModelImporter:
     secondaryUVPackMargin: 4
     useFileScale: 1
     previousCalculatedGlobalScale: 1
-    hasPreviousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
@@ -102,7 +103,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 0
   humanoidOversampling: 1
   additionalBone: 0
   userData: 

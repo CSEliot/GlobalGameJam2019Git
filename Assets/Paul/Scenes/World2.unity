@@ -20213,6 +20213,11 @@ PrefabInstance:
       propertyPath: locationTxt
       value: 
       objectReference: {fileID: 1384542752}
+    - target: {fileID: 1373540790409306388, guid: f84b86dd8b94d184b9931c9ea9c81551,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f84b86dd8b94d184b9931c9ea9c81551, type: 3}
 --- !u!1001 &1875198051296606205
