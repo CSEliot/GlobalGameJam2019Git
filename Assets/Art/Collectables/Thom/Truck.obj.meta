@@ -7,22 +7,46 @@ ModelImporter:
     100002: Truck_Grp_Truck
     100004: Truck_Grp_Wheel4_Wheel3
     100006: Wheel2_Truck_Grp_Wheel1
+    100008: Truck_Grp_Wheel1
+    100010: Truck_Grp_Wheel3
+    100012: Truck_Grp_Wheel7
+    100014: Wheel5_Truck_Grp
     400000: //RootNode
     400002: Truck_Grp_Truck
     400004: Truck_Grp_Wheel4_Wheel3
     400006: Wheel2_Truck_Grp_Wheel1
+    400008: Truck_Grp_Wheel1
+    400010: Truck_Grp_Wheel3
+    400012: Truck_Grp_Wheel7
+    400014: Wheel5_Truck_Grp
     2100000: Truck_Grp_TruckMat
     2100002: Truck_Grp_Wheel4_Wheel3Mat
     2100004: Wheel2_Truck_Grp_Wheel1Mat
+    2100006: Truck_Grp_Wheel1Mat
+    2100008: Truck_Grp_Wheel3Mat
+    2100010: Truck_Grp_Wheel7Mat
+    2100012: Wheel5_Truck_GrpMat
     2300000: Truck_Grp_Truck
     2300002: Truck_Grp_Wheel4_Wheel3
     2300004: Wheel2_Truck_Grp_Wheel1
+    2300006: Truck_Grp_Wheel1
+    2300008: Truck_Grp_Wheel3
+    2300010: Truck_Grp_Wheel7
+    2300012: Wheel5_Truck_Grp
     3300000: Truck_Grp_Truck
     3300002: Truck_Grp_Wheel4_Wheel3
     3300004: Wheel2_Truck_Grp_Wheel1
+    3300006: Truck_Grp_Wheel1
+    3300008: Truck_Grp_Wheel3
+    3300010: Truck_Grp_Wheel7
+    3300012: Wheel5_Truck_Grp
     4300000: Truck_Grp_Truck
     4300002: Truck_Grp_Wheel4_Wheel3
     4300004: Wheel2_Truck_Grp_Wheel1
+    4300006: Truck_Grp_Wheel1
+    4300008: Truck_Grp_Wheel3
+    4300010: Truck_Grp_Wheel7
+    4300012: Wheel5_Truck_Grp
   externalObjects: {}
   materials:
     importMaterials: 1
