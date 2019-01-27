@@ -7,7 +7,7 @@ public class SPAWNPLAYERTEST : MonoBehaviour
    
 
     public void SPAWNDUDE() {
-        PhotonArenaManager.Instance.SpawnPlayer();
+       //GameObject holder = PhotonArenaManager.Instance.SpawnPlayer();
         this.gameObject.SetActive(false);
     }
 

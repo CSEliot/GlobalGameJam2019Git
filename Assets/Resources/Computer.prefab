@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 5505768784856409737}
   - component: {fileID: 5505768784856409736}
   - component: {fileID: 5505768784856409743}
+  - component: {fileID: 1875135770939499523}
+  - component: {fileID: 6614383653939607241}
   m_Layer: 11
   m_Name: Computer
   m_TagString: Collectable
@@ -26,7 +28,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5505768784856409742}
-  m_LocalRotation: {x: -0, y: 0.5399575, z: -0, w: 0.84169227}
+  m_LocalRotation: {x: 0, y: 0.5399612, z: 0, w: 0.8416899}
   m_LocalPosition: {x: 1.27, y: 0.444, z: -2.43}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -85,6 +87,44 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1875135770939499523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5505768784856409742}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 1
+  ObservedComponents:
+  - {fileID: 6614383653939607241}
+  viewIdField: 2
+  InstantiationId: 2
+  isRuntimeInstantiated: 0
+--- !u!114 &6614383653939607241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5505768784856409742}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64179f3720bbfe947b7724caa67b7c1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizeVelocity: 1
+  m_SynchronizeAngularVelocity: 1
+  m_TeleportEnabled: 1
+  m_TeleportIfDistanceGreaterThan: 3
 --- !u!1001 &5505768784880557237
 PrefabInstance:
   m_ObjectHideFlags: 0

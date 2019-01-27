@@ -82,21 +82,19 @@ public class PaulMovementPlaceholder : MonoBehaviourPun, IPunObservable {
 
     void Start() {
         
-//        SelectHat(Random.Range(0, 8));
-        PhotonArenaManager.Instance.ConnectAndJoinRoom(PhotonArenaManager.Instance.GetLocalUsername());
+        SelectHat((int)myPersonality);
 
-        if (!photonView.IsMine)
-        {
-            camRef.gameObject.SetActive(false);
+        if (photonView.IsMine) {
+            Cursor.lockState = CursorLockMode.Locked;
         }
-        else
-        {
-            //Cursor.lockState = CursorLockMode.Locked;
+        else {
+            camRef.gameObject.SetActive(false);
         }
 
         if (blockNet)
         {
             Cursor.lockState = CursorLockMode.Locked;
+            camRef.gameObject.SetActive(true);
         }
     }
 
@@ -169,6 +167,21 @@ public class PaulMovementPlaceholder : MonoBehaviourPun, IPunObservable {
             if (!waitForStart)
             {
                 //RAY
+                // Check if on ground
+                /*
+                if (!onGround && Physics.Raycast(transform.position + Vector3.down * 0.9f, Vector3.down, 0.5f))
+                {
+                    //fixNetGuessWork();
+                    onGround = true;
+                    //GravY += 1f;
+                }
+                else
+                {
+                    onGround = Physics.Raycast(transform.position + Vector3.down * 0.9f, Vector3.down, 0.5f);
+                    GravY -= 9.81f * Time.deltaTime;
+                }
+                */
+                
                 bool grounded = (Physics.Raycast(downCaster.position, Vector3.down, .5f, LayerMask.NameToLayer("Ground"))); // raycast down to look for ground is not detecting ground? only works if allowing jump when grounded = false; // return "Ground" layer as layer
 
                 if (grounded == true)
@@ -188,6 +201,7 @@ public class PaulMovementPlaceholder : MonoBehaviourPun, IPunObservable {
                     previouslyInAir = true;
                     GravY -= 9.81f * Time.deltaTime;
                 }
+                
                 //CAST
 
                 if (playerState == PlayerState.Normal || playerState == PlayerState.Holding)
@@ -246,8 +260,8 @@ public class PaulMovementPlaceholder : MonoBehaviourPun, IPunObservable {
 
                     if (Input.GetButton("Jump"))
                     {
-                        Debug.Log("simulate get hit");
-                        GetHit();
+                        //Debug.Log("simulate get hit");
+                        //GetHit();
                     }
                 }
             }

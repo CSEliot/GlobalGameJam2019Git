@@ -280,7 +280,7 @@ MonoBehaviour:
   meshRotater: {fileID: 878523592954971453}
   waitForStart: 0
   downCaster: {fileID: 138098611}
-  blockNet: 1
+  blockNet: 0
   capCol: {fileID: 0}
 --- !u!54 &1373540790373168072
 Rigidbody:
@@ -354,7 +354,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1373540790409306379
 Transform:
   m_ObjectHideFlags: 0
