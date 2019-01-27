@@ -17,9 +17,7 @@ public enum Location
 }
 
 public class PaulMovementPlaceholder : MonoBehaviourPun, IPunObservable {
-
-    public PhotonView photonView;
-
+    
     public PersonalityType myPersonality;
     public PlayerState playerState;
     public Location location;
@@ -121,49 +119,49 @@ public class PaulMovementPlaceholder : MonoBehaviourPun, IPunObservable {
     void Update() {
         float GravY = rby.velocity.y;
 
-        if (!waitForStart) {
-            rVelocity = ((this.transform.forward * speed) * Input.GetAxis("Vertical")) +
-                ((this.transform.right * speed) * Input.GetAxis("Horizontal"));
+        if (photonView.IsMine) {
+            
+            if (!waitForStart) {
+                rVelocity = ((this.transform.forward * speed) * Input.GetAxis("Vertical")) +
+                    ((this.transform.right * speed) * Input.GetAxis("Horizontal"));
 
-            if (Input.GetAxis("Vertical") == 0 && Input.GetAxis("Horizontal") == 0) {
-                targetSpeed = 0f;
-            }
-            else {
-                targetSpeed = 1f;
-            }
-
-            animSpeed = Mathf.Lerp(animSpeed, targetSpeed, Time.deltaTime * 5f);
-            charAnim.SetFloat("Speed", animSpeed);
-
-            rVelocity.y = GravY;
-            rby.velocity = rVelocity;
-
-            this.transform.Rotate(new Vector3(0, Input.GetAxis("Mouse X"), 0));
-
-            if (rVelocity.x == 0 && rVelocity.z == 0) {
-                meshRotater.rotation = Quaternion.LookRotation(this.transform.forward, Vector3.up);
-            }
-            else {
-                meshRotater.rotation = Quaternion.LookRotation(new Vector3(rVelocity.x, 0, rVelocity.z), Vector3.up);
-            }
-
-
-            if (Input.GetMouseButtonDown(0)) {
-                if (!lClickDown) {
-                    lClickDown = true;
-                    Click();
+                if (Input.GetAxis("Vertical") == 0 && Input.GetAxis("Horizontal") == 0) {
+                    targetSpeed = 0f;
                 }
-            }
-            else {
-                lClickDown = false;
-            }
+                else {
+                    targetSpeed = 1f;
+                }
+                animSpeed = Mathf.Lerp(animSpeed, targetSpeed, Time.deltaTime * 5f);
+                charAnim.SetFloat("Speed", animSpeed);
 
-            if (Input.GetMouseButtonDown(1)) {
-                RightClick();
-            }
+                rVelocity.y = GravY;
+                rby.velocity = rVelocity;
+                this.transform.Rotate(new Vector3(0, Input.GetAxis("Mouse X"), 0));
 
-            if (Input.GetButton("Jump")) {
-                Debug.Log("simulate get hit");
+                if (rVelocity.x == 0 && rVelocity.z == 0) {
+                    meshRotater.rotation = Quaternion.LookRotation(this.transform.forward, Vector3.up);
+                }
+                else {
+                    meshRotater.rotation = Quaternion.LookRotation(new Vector3(rVelocity.x, 0, rVelocity.z), Vector3.up);
+                }
+
+                if (Input.GetButtonDown("Attack")) {
+                    if (!lClickDown) {
+                        lClickDown = true;
+                        Click();
+                    }
+                }
+                else {
+                    lClickDown = false;
+                }
+
+                if (Input.GetMouseButtonDown(1)) {
+                    RightClick();
+                }
+
+                if (Input.GetButton("Jump")) {
+                    Debug.Log("simulate get hit");
+                }
             }
         }
     }
