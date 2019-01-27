@@ -236,25 +236,25 @@ public class PaulMovementPlaceholder : MonoBehaviour
             case Location.LivingRoom:
                 {
                     roomLocation = 0;
-                    neighbourhoodMan.DropItemInHouseRoom(myPlayerID, myHome, roomLocation, cItem);
+                    neighbourhoodMan.DropItemInHouseRoom(myPlayerID, currentHome, roomLocation, cItem);
                     break;
                 }
             case Location.Kitchen:
                 {
                     roomLocation = 1;
-                    neighbourhoodMan.DropItemInHouseRoom(myPlayerID, myHome, roomLocation, cItem);
+                    neighbourhoodMan.DropItemInHouseRoom(myPlayerID, currentHome, roomLocation, cItem);
                     break;
                 }
             case Location.Bedroom:
                 {
                     roomLocation = 2;
-                    neighbourhoodMan.DropItemInHouseRoom(myPlayerID, myHome, roomLocation, cItem);
+                    neighbourhoodMan.DropItemInHouseRoom(myPlayerID, currentHome, roomLocation, cItem);
                     break;
                 }
             case Location.Bathroom:
                 {
                     roomLocation = 3;
-                    neighbourhoodMan.DropItemInHouseRoom(myPlayerID, myHome, roomLocation, cItem);
+                    neighbourhoodMan.DropItemInHouseRoom(myPlayerID, currentHome, roomLocation, cItem);
                     break;
                 }
         }
