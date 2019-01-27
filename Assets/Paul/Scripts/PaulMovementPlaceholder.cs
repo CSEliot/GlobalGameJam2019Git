@@ -85,6 +85,7 @@ public class PaulMovementPlaceholder : MonoBehaviourPun, IPunObservable {
     void Start() {
         
         SelectHat((int)myPersonality);
+        hitboxAttack.parent = meshRotater;
 
         if (photonView.IsMine) {
             Cursor.lockState = CursorLockMode.Locked;
