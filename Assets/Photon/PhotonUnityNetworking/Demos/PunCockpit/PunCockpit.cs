@@ -581,7 +581,7 @@ namespace Photon.Pun.Demo.Cockpit
 			bool _result =  PhotonNetwork.JoinLobby();
 
 			if (!_result) {
-				Debug.LogError ("PunCockpit: Could not joinLobby");
+				Debug.LogError ("PunCockpit: Could not join Lobby");
 			}
 
         }

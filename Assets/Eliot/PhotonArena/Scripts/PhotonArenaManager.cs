@@ -133,7 +133,9 @@ public class PhotonArenaManager : Singleton<PhotonArenaManager>
             return _fakeServer.Username;
         }
         else if (CurrentServerUserDepth == ServerDepthLevel.InRoom) {
-            return PhotonNetwork.LocalPlayer.UserId;
+            string username = PhotonNetwork.LocalPlayer.UserId;
+            username = username.Substring(0, username.IndexOf('_'));
+            return username;
         }
         else {
             CBUG.Error("Username only available when Offline or InRoom, this was called at " + CurrentServerUserDepth.ToString() + ".");
@@ -184,22 +186,34 @@ public class PhotonArenaManager : Singleton<PhotonArenaManager>
     #region PUN OVERRIDES
     public override void OnConnected() {
         base.OnConnected();
-
         CBUG.Do("Connected!");
     }
 
+    public override void OnConnectedToMaster() {
+        base.OnConnectedToMaster();
+
+        CBUG.Do("Connected To Master! Joining Lobby ...");
+        bool success = PhotonNetwork.JoinLobby();
+
+        if (!success) {
+            CBUG.Do("PunCockpit: Could not join Lobby ...");
+        }
+    }
 
     public override void OnJoinedLobby() {
-        CBUG.Log("OnJoinedLobby(). This client is connected and does get a room-list, which gets stored as PhotonNetwork.GetRoomList(). This script now calls: PhotonNetwork.JoinRandomRoom();");
+        CBUG.Log("Lobby Joined!");
+        CBUG.Log("Joining Random Room ...");
         PhotonNetwork.JoinRandomRoom();
     }
 
     public override void OnDisconnected(DisconnectCause cause) {
-        Debug.Log("OnDisconnected(" + cause + ")");
+        CBUG.Log("OnDisconnected(" + cause + ")");
     }
 
     public override void OnJoinedRoom() {
-        Debug.Log("OnJoinedRoom() called by PUN. Now this client is in a room. From here on, your game would be running.");
+        CBUG.Log("Joined Room!");
+
+        PhotonNetwork.Instantiate("PhotonArenaPlayer", new Vector3(0.0f, 16.4f, 0.0f), Quaternion.Euler(Vector3.zero));
 
         //if (this.PrefabsToInstantiate != null) {
         //    foreach (GameObject o in this.PrefabsToInstantiate) {
@@ -221,7 +235,7 @@ public class PhotonArenaManager : Singleton<PhotonArenaManager>
     }
 
     public override void OnJoinRandomFailed(short returnCode, string message) {
-        CBUG.Log("OnJoinRandomFailed() was called by PUN. No random room available, so we create one. Calling: PhotonNetwork.CreateRoom(null, new RoomOptions() {maxPlayers = 4}, null);");
+        CBUG.Log("Room Join failed. Creating a room ...");
         PhotonNetwork.CreateRoom(null, new RoomOptions() { MaxPlayers = 100 }, null);
     }
     #endregion
