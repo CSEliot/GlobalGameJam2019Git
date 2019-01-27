@@ -226,7 +226,7 @@ MonoBehaviour:
   myPlayerID: 0
   myHome: 0
   currentHome: 0
-  camRef: {fileID: 1373540790373168074}
+  camRef: {fileID: 1373540790409306379}
   rby: {fileID: 1373540790373168072}
   speed: 15
   detector: {fileID: 1373540790134053541}
@@ -283,7 +283,7 @@ MonoBehaviour:
   OwnershipTransfer: 0
   ObservedComponents:
   - {fileID: 1373540790373168075}
-  viewIdField: 2
+  viewIdField: 0
   InstantiationId: 2
   isRuntimeInstantiated: 0
 --- !u!114 &6634831885614516738
