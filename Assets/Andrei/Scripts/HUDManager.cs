@@ -67,14 +67,6 @@ public class HUDManager : MonoBehaviour
                 checklistPanels[pageIndex].SetActive(true);
             }
         }
-        
-        
-        if(Input.GetKeyDown("o")){
-            ScoreAnimate(false);
-        }
-         if(Input.GetKeyDown("p")){
-            ScoreAnimate(true);
-        }
     }
 
     // To start countdown clock locally

@@ -20863,7 +20863,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1674540491}
+      - m_Target: {fileID: 1040643085}
         m_MethodName: SetActive
         m_Mode: 6
         m_Arguments:
@@ -20998,7 +20998,7 @@ GameObject:
   - component: {fileID: 1674540492}
   - component: {fileID: 1674540493}
   m_Layer: 5
-  m_Name: Screen3Sparkles
+  m_Name: Screen3SparklesUNUSED
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31087,7 +31087,7 @@ GameObject:
   - component: {fileID: 95545565483356520}
   - component: {fileID: 114690614225294954}
   m_Layer: 0
-  m_Name: Btn_New
+  m_Name: Btn_Online
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31220,7 +31220,7 @@ GameObject:
   - component: {fileID: 95948295867278718}
   - component: {fileID: 114725429834383360}
   m_Layer: 0
-  m_Name: Btn_Load
+  m_Name: Btn_Offline
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32365,29 +32365,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 114748391103962114}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1159494698880490}
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 1098779613437734}
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &114072806584749184
@@ -37941,7 +37919,7 @@ MonoBehaviour:
   audioSlider: {fileID: 114792665390314646}
   newSceneName: SecondScene
   loadingBar: {fileID: 114293316511383862}
-  reloadSceneButton: 1
+  reloadSceneButton: 0
   onlineTag: 
   tagInputField: {fileID: 1101299247}
 --- !u!114 &114816564054403742
@@ -38508,7 +38486,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1098779613437734}
+      - m_Target: {fileID: 1303510329}
         m_MethodName: SetActive
         m_Mode: 6
         m_Arguments:

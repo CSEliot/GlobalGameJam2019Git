@@ -62,6 +62,10 @@ public class UIManager : MonoBehaviour {
 
 	public string onlineTag = "";
 	public InputField tagInputField;
+
+	int waitForPlayers = 0;
+	int players = 0;
+	int quizStartTime = -1;
 	
 	// Just for reloading the scene! You can delete this function entirely if you want to
 	void Update(){
@@ -69,6 +73,52 @@ public class UIManager : MonoBehaviour {
 			if(Input.GetKeyDown(KeyCode.R)){
 				SceneManager.LoadScene("Menu");
 			}
+		}
+
+		if (PhotonArenaManager.Instance.CurrentServerUserDepth == PhotonArenaManager.ServerDepthLevel.InRoom)
+		{
+			// Has game already started? 
+			var gameStartData = PhotonArenaManager.Instance.GetData("GameStartTime");
+
+			if (gameStartData != null)
+			{
+				var gameStartTime = (int)gameStartData;
+				if (PhotonArenaManager.Instance.GetClock() > gameStartTime)
+				{
+					SceneManager.LoadScene("Menu");
+				}
+			}
+
+			// if room more than 1 player, load personality test
+			if(PhotonArenaManager.Instance.GetRoom().PlayerCount > 1){
+				SceneManager.LoadScene("PersonalitySelection");
+			}
+
+			/* 
+			if (quizStartTime == -1)
+			{
+				var quizStartData = PhotonArenaManager.Instance.GetData("QuizStartTime");
+
+				if (quizStartData == null)
+				{
+					var startTime = PhotonArenaManager.Instance.GetClock() + 60000;
+					quizStartTime = startTime;
+					PhotonArenaManager.Instance.SaveData("QuizStartTime", quizStartTime);
+				}
+				else
+				{
+					quizStartTime = (int)quizStartData;
+				}
+			}
+
+
+			var curTime = PhotonArenaManager.Instance.GetClock();
+			if (curTime >= quizStartTime)
+			{
+
+				
+			}
+			*/
 		}
 	}
 
@@ -84,6 +134,8 @@ public class UIManager : MonoBehaviour {
 
 		// Get quality settings names
 		qualityNames = QualitySettings.names;
+
+		
 
 		/* 
 		// Get screens possible resolutions
