@@ -17,9 +17,7 @@ public enum Location
 }
 
 public class PaulMovementPlaceholder : MonoBehaviourPun, IPunObservable {
-
-    public PhotonView photonView;
-
+    
     public PersonalityType myPersonality;
     public PlayerState playerState;
     public Location location;
@@ -31,6 +29,8 @@ public class PaulMovementPlaceholder : MonoBehaviourPun, IPunObservable {
     public int myPlayerID;//0-8
     public int myHome;//0-8
     public int currentHome;//0-8
+
+    private bool _playerInitialized = false;
 
     public Transform camRef;
     public Rigidbody rby;
@@ -58,30 +58,71 @@ public class PaulMovementPlaceholder : MonoBehaviourPun, IPunObservable {
 
     public bool waitForStart;
 
+    public Transform downCaster;
+
 
     /// <summary>
     /// flag to force latest data to avoid initial drifts when player is instantiated.
     /// </summary>
     private bool m_firstTake = true; //PHoton-y thing
 
+    public bool blockNet;
+    private bool onGround;
+    public CapsuleCollider capCol;
+
     void Awake() {
+
+        if (!blockNet)
+        {
+
         StartCoroutine("StartNet");
+        }
     }
 
     void Start() {
-        Cursor.lockState = CursorLockMode.Locked;
+        
 //        SelectHat(Random.Range(0, 8));
-        PhotonArenaManager.Instance.ConnectAndJoinRoom("MY NAME");
-
-        myPlayerID = PhotonArenaManager.Instance.GetLocalPlayerID();
-        myPersonality = GetMyPersonality();
-
+        PhotonArenaManager.Instance.ConnectAndJoinRoom(PhotonArenaManager.Instance.GetLocalUsername());
         SelectHat((int)myPersonality);
+
+
+        if (!photonView.IsMine)
+        {
+            camRef.gameObject.SetActive(false);
+        }
+        else
+        {
+            //Cursor.lockState = CursorLockMode.Locked;
+        }
+
+        if (blockNet)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+        }
     }
 
 
-    private PersonalityType GetMyPersonality() {
-        var playerNums = new List<int>(8); // Replace with call to get Player Numbers
+    private void InitPlayer()
+    {
+        var status = PhotonArenaManager.Instance.GetCurrentDepthLevel();
+
+        if (status == PhotonArenaManager.ServerDepthLevel.InRoom)
+        {
+            myPlayerID = PhotonArenaManager.Instance.GetLocalPlayerID();
+            myPersonality = GetMyPersonality();
+
+            SelectHat((int)myPersonality);
+
+            _playerInitialized = true;
+        }
+    }
+
+    private PersonalityType GetMyPersonality()
+    {
+        var room = PhotonArenaManager.Instance.GetRoom();
+
+//        var playerNums = new List<int>(8); // Replace with call to get Player Numbers
+        var playerNums = room.Players.Keys;
         var playerScores = new Dictionary<int, int[]>();
 
         foreach (var playerNum in playerNums) {
@@ -115,57 +156,165 @@ public class PaulMovementPlaceholder : MonoBehaviourPun, IPunObservable {
     }
 
     void Update() {
+
+        if (!_playerInitialized)
+        {
+            InitPlayer();
+        }
+
         float GravY = rby.velocity.y;
 
-        if (!waitForStart) {
-            rVelocity = ((this.transform.forward * speed) * Input.GetAxis("Vertical")) +
-                ((this.transform.right * speed) * Input.GetAxis("Horizontal"));
+        if (photonView.IsMine || blockNet) {
 
-            if (Input.GetAxis("Vertical") == 0 && Input.GetAxis("Horizontal") == 0) {
-                targetSpeed = 0f;
-            }
-            else {
-                targetSpeed = 1f;
-            }
-
-            animSpeed = Mathf.Lerp(animSpeed, targetSpeed, Time.deltaTime * 5f);
-            charAnim.SetFloat("Speed", animSpeed);
-
-            rVelocity.y = GravY;
-            rby.velocity = rVelocity;
-
-            this.transform.Rotate(new Vector3(0, Input.GetAxis("Mouse X"), 0));
-
-            if (rVelocity.x == 0 && rVelocity.z == 0) {
-                meshRotater.rotation = Quaternion.LookRotation(this.transform.forward, Vector3.up);
-            }
-            else {
-                meshRotater.rotation = Quaternion.LookRotation(new Vector3(rVelocity.x, 0, rVelocity.z), Vector3.up);
-            }
-
-
-            if (Input.GetMouseButtonDown(0)) {
-                if (!lClickDown) {
-                    lClickDown = true;
-                    Click();
+            if (!waitForStart)
+            {
+                //RAY
+                bool grounded = (Physics.Raycast(downCaster.position, Vector3.down, 2f, LayerMask.NameToLayer("Ground"))); // raycast down to look for ground is not detecting ground? only works if allowing jump when grounded = false; // return "Ground" layer as layer
+                if (grounded == true)
+                {
+                    GravY += 80f;
+                    
+                    Debug.Log("grounded!");
+                    //jump();
                 }
-            }
-            else {
-                lClickDown = false;
-            }
+                else
+                {
+                    GravY -= 9.81f * Time.deltaTime;
+                }
+                //CAST
 
-            if (Input.GetMouseButtonDown(1)) {
-                RightClick();
-            }
+                if (playerState == PlayerState.Normal || playerState == PlayerState.Holding)
+                {
 
-            if (Input.GetButton("Jump")) {
-                Debug.Log("simulate get hit");
+                    rVelocity = ((this.transform.forward * speed) * Input.GetAxis("Vertical")) +
+                        ((this.transform.right * speed) * Input.GetAxis("Horizontal"));
+
+                    if (Input.GetAxis("Vertical") == 0 && Input.GetAxis("Horizontal") == 0)
+                    {
+                        targetSpeed = 0f;
+                    }
+                    else
+                    {
+                        targetSpeed = 1f;
+                    }
+                    animSpeed = Mathf.Lerp(animSpeed, targetSpeed, Time.deltaTime * 5f);
+                    charAnim.SetFloat("Speed", animSpeed);
+
+                    rVelocity.y = GravY;
+                    rby.velocity = rVelocity;
+                    this.transform.Rotate(new Vector3(0, Input.GetAxis("Mouse X"), 0));
+
+                    if (rVelocity.x == 0 && rVelocity.z == 0)
+                    {
+                        meshRotater.rotation = Quaternion.LookRotation(this.transform.forward, Vector3.up);
+                    }
+                    else
+                    {
+                        meshRotater.rotation = Quaternion.LookRotation(new Vector3(rVelocity.x, 0, rVelocity.z), Vector3.up);
+                    }
+
+                    if (Input.GetButtonDown("Attack"))
+                    {
+                        if (!lClickDown)
+                        {
+                            lClickDown = true;
+                            Click();
+                        }
+                    }
+                    else
+                    {
+                        lClickDown = false;
+                    }
+
+                    if (Input.GetMouseButtonDown(1))
+                    {
+                        RightClick();
+                    }
+
+                    if (Input.GetButton("Jump"))
+                    {
+                        Debug.Log("simulate get hit");
+                        GetHit();
+                    }
+                }
             }
         }
     }
 
-    void GetHit() {
-        //
+    
+
+    void GetHit()
+    {
+        
+
+        if(playerState == PlayerState.Holding)
+        {
+            //DROP IT
+            int roomLocation = 0;
+
+            switch (location)
+            {
+                case Location.Store:
+                    {
+                        neighbourhoodMan.DropItemOutside(myPlayerID, cItem);
+                        break;
+                    }
+                case Location.Outside:
+                    {
+                        neighbourhoodMan.DropItemOutside(myPlayerID, cItem);
+                        break;
+                    }
+                case Location.LivingRoom:
+                    {
+                        roomLocation = 0;
+                        neighbourhoodMan.DropItemInHouseRoom(myPlayerID, currentHome, roomLocation, cItem);
+                        break;
+                    }
+                case Location.Kitchen:
+                    {
+                        roomLocation = 1;
+                        neighbourhoodMan.DropItemInHouseRoom(myPlayerID, currentHome, roomLocation, cItem);
+                        break;
+                    }
+                case Location.Bedroom:
+                    {
+                        roomLocation = 2;
+                        neighbourhoodMan.DropItemInHouseRoom(myPlayerID, currentHome, roomLocation, cItem);
+                        break;
+                    }
+                case Location.Bathroom:
+                    {
+                        roomLocation = 3;
+                        neighbourhoodMan.DropItemInHouseRoom(myPlayerID, currentHome, roomLocation, cItem);
+                        break;
+                    }
+            }
+
+            StopAllCoroutines();
+            charAnim.SetBool("Packing", false);
+            detector.hasNearObj = false;
+            canAttack = false;
+            cItem = null;
+        }
+
+        playerState = PlayerState.Stunned;
+        StartCoroutine(ResetStunned());
+    }
+
+    IEnumerator ResetStunned()
+    {
+        float t = 0;
+
+        while (t < 1f)
+        {
+            t += Time.deltaTime * 2.5f;
+
+            //holdPos.position = Vector3.Lerp(holdPos.position, tempNorm.position, t);
+            //holdPos.rotation = Quaternion.Slerp(holdPos.rotation, tempNorm.rotation, t);
+            yield return null;
+        }
+
+        canAttack = true;
     }
 
     void Click() {

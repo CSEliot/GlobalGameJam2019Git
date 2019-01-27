@@ -29,7 +29,12 @@ public class PhotonArenaManager : Singleton<PhotonArenaManager>
         InRoom
     }
 
+    public static Vector3 DefaultSpawnLocation = new Vector3(0f, 15f, 0f);
+
     public ServerDepthLevel CurrentServerUserDepth = ServerDepthLevel.Offline;
+    public static class Constants {
+        public static readonly Vector3 DefaultSpawnLoc = Vector3.one;
+    }
 
     void Awake() {
         _fakeServer.DataStore = new Dictionary<string, object>();
@@ -79,6 +84,10 @@ public class PhotonArenaManager : Singleton<PhotonArenaManager>
         }
     }
 
+    public ServerDepthLevel GetCurrentDepthLevel() {
+        return CurrentServerUserDepth;
+    }
+
     public Photon.Realtime.Room GetRoom() {
         if (CurrentServerUserDepth == ServerDepthLevel.Offline) {
             return null; //??? TODO HANDLE BETTER
@@ -86,6 +95,7 @@ public class PhotonArenaManager : Singleton<PhotonArenaManager>
         else if ( CurrentServerUserDepth == ServerDepthLevel.InRoom) {
             return PhotonNetwork.CurrentRoom;
         } else {
+            CBUG.Error("We are not currently in a room!");
             return null; //??? TODO HANDLE BETTER!
         }
     }
@@ -128,6 +138,31 @@ public class PhotonArenaManager : Singleton<PhotonArenaManager>
         }
     }
 
+    public void SpawnObject(string resourceName) {
+        if (CurrentServerUserDepth == ServerDepthLevel.Offline) {
+            GameObject instance = Instantiate(Resources.Load(resourceName, typeof(GameObject)), DefaultSpawnLocation, Quaternion.Euler(Vector3.zero)) as GameObject;
+            /// ??? todo make playerlist local ref 
+        }
+        else if (CurrentServerUserDepth == ServerDepthLevel.InRoom) {
+            GameObject PlayerObj = PhotonNetwork.Instantiate(resourceName, DefaultSpawnLocation, Quaternion.Euler(Vector3.zero));
+        }
+        else {
+            CBUG.Error("SpawnObject only available when Offline or InRoom, this was called at " + CurrentServerUserDepth.ToString() + ".");
+        }
+    }
+    public void SpawnObject(string resourceName, Vector3 spawnLoc, Quaternion spawnRot) {
+        if (CurrentServerUserDepth == ServerDepthLevel.Offline) {
+            GameObject instance = Instantiate(Resources.Load(resourceName, typeof(GameObject)), spawnLoc, spawnRot) as GameObject;
+            /// ??? todo make playerlist local ref 
+        }
+        else if (CurrentServerUserDepth == ServerDepthLevel.InRoom) {
+            GameObject PlayerObj = PhotonNetwork.Instantiate(resourceName, spawnLoc, spawnRot);
+        }
+        else {
+            CBUG.Error("SpawnObject only available when Offline or InRoom, this was called at " + CurrentServerUserDepth.ToString() + ".");
+        }
+    }
+
     public string GetLocalUsername() {
         if (CurrentServerUserDepth == ServerDepthLevel.Offline) {
             return _fakeServer.Username;
@@ -146,11 +181,13 @@ public class PhotonArenaManager : Singleton<PhotonArenaManager>
     public int SpawnPlayer(string ResourceName="PhotonArenaPlayer") {
         if (CurrentServerUserDepth == ServerDepthLevel.Offline) {
             _fakeServer.totalPlayers++;
+            //spawn player? ???todo
             return _fakeServer.totalPlayers;
         }
         else if (CurrentServerUserDepth == ServerDepthLevel.InRoom) {
             //ExitGames.Client.Photon.Hashtable roomProps = PhotonNetwork.CurrentRoom.CustomProperties;
             //roomProps.Add(label, data);
+            PhotonNetwork.Instantiate("PhotonArenaPlayer", new Vector3(0.0f, 16.4f, 0.0f), Quaternion.Euler(Vector3.zero));
         }
         else {
             //CBUG.Error("SaveData only available when Offline or InRoom, this was called at " + CurrentServerUserDepth.ToString() + ".");
@@ -187,6 +224,7 @@ public class PhotonArenaManager : Singleton<PhotonArenaManager>
     public override void OnConnected() {
         base.OnConnected();
         CBUG.Do("Connected!");
+        CurrentServerUserDepth = ServerDepthLevel.InServer;
     }
 
     public override void OnConnectedToMaster() {
@@ -204,6 +242,7 @@ public class PhotonArenaManager : Singleton<PhotonArenaManager>
         CBUG.Log("Lobby Joined!");
         CBUG.Log("Joining Random Room ...");
         PhotonNetwork.JoinRandomRoom();
+        CurrentServerUserDepth = ServerDepthLevel.InLobby;
     }
 
     public override void OnDisconnected(DisconnectCause cause) {
@@ -213,8 +252,7 @@ public class PhotonArenaManager : Singleton<PhotonArenaManager>
     public override void OnJoinedRoom() {
         CBUG.Log("Joined Room!");
 
-        PhotonNetwork.Instantiate("PhotonArenaPlayer", new Vector3(0.0f, 16.4f, 0.0f), Quaternion.Euler(Vector3.zero));
-
+        CurrentServerUserDepth = ServerDepthLevel.InRoom;
         //if (this.PrefabsToInstantiate != null) {
         //    foreach (GameObject o in this.PrefabsToInstantiate) {
         //        Debug.Log("Instantiating: " + o.name);
