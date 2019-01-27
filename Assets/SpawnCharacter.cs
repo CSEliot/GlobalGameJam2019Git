@@ -2,8 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
+public class ObjAndPos
+{
+    public string resourceName;
+    public Transform pos;
+}
+
 public class SpawnCharacter : MonoBehaviour
 {
+    public HUDManager hudMan;
+
+    public List<ObjAndPos> objsPos;
+    public List<string> allObjects;
+    public List<Transform> placePoss;
+
     public NeighbourhoodManager nMan;
     public Transform placePos;
     private bool isPlayerCreated;
@@ -28,6 +41,7 @@ public class SpawnCharacter : MonoBehaviour
                 if(newPlayer != null)
                 {
                     newPlayer.GetComponent<PaulMovementPlaceholder>().neighbourhoodMan = nMan;
+                    newPlayer.GetComponent<PaulMovementPlaceholder>().hudMan = hudMan;
                     isPlayerCreated = true;
                     cam.SetActive(false);
                 }
@@ -36,7 +50,12 @@ public class SpawnCharacter : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.K) && isPlayerCreated)
         {
-            PhotonArenaManager.Instance.SpawnObject("Computer", compPlace.position, compPlace.rotation);
+            //PhotonArenaManager.Instance.SpawnObject("Computer", compPlace.position, compPlace.rotation);
+
+            for(int i = 0; i < objsPos.Count; i++)
+            {
+                PhotonArenaManager.Instance.SpawnObject(objsPos[i].resourceName, objsPos[i].pos.position, objsPos[i].pos.rotation);
+            }
         }
     }
 }

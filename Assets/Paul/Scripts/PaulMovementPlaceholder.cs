@@ -22,6 +22,7 @@ public class PaulMovementPlaceholder : MonoBehaviourPun, IPunObservable {
     public PlayerState playerState;
     public Location location;
 
+    public HUDManager hudMan;
     public NeighbourhoodManager neighbourhoodMan;
 
     public Animator charAnim;
@@ -69,20 +70,27 @@ public class PaulMovementPlaceholder : MonoBehaviourPun, IPunObservable {
     public bool blockNet;
     private bool onGround;
     private bool previouslyInAir;
-    public CapsuleCollider capCol;
+
+    public Transform hitboxAttack;
+
+    public int myScore;
 
     void Awake() {
 
         if (!blockNet)
         {
 
-        StartCoroutine("StartNet");
+            StartCoroutine("StartNet");
         }
     }
 
     void Start() {
         
         SelectHat((int)myPersonality);
+        hitboxAttack.parent = meshRotater;
+
+        hudMan.scoreText.text = "0";
+
 
         if (photonView.IsMine) {
             Cursor.lockState = CursorLockMode.Locked;
@@ -268,13 +276,20 @@ public class PaulMovementPlaceholder : MonoBehaviourPun, IPunObservable {
         }
     }
 
-    
+    void OnTriggerEnter(Collider col)
+    {
+        if(col.tag == "Attack")
+        {
+            GetHit();
+        }
+    }
 
     void GetHit()
     {
-        
+        charAnim.SetBool("Stunned", true);
+        charAnim.SetTrigger("GetHit");
 
-        if(playerState == PlayerState.Holding)
+        if (playerState == PlayerState.Holding)
         {
             //DROP IT
             int roomLocation = 0;
@@ -324,8 +339,15 @@ public class PaulMovementPlaceholder : MonoBehaviourPun, IPunObservable {
             cItem = null;
         }
 
+        rby.velocity = new Vector3(0, -5, 0);
         playerState = PlayerState.Stunned;
         StartCoroutine(ResetStunned());
+    }
+
+    void AddScore()
+    {
+        myScore += 1;
+        hudMan.scoreText.text = myScore.ToString();
     }
 
     IEnumerator ResetStunned()
@@ -334,14 +356,15 @@ public class PaulMovementPlaceholder : MonoBehaviourPun, IPunObservable {
 
         while (t < 1f)
         {
-            t += Time.deltaTime * 2.5f;
+            t += Time.deltaTime;
 
             //holdPos.position = Vector3.Lerp(holdPos.position, tempNorm.position, t);
             //holdPos.rotation = Quaternion.Slerp(holdPos.rotation, tempNorm.rotation, t);
             yield return null;
         }
 
-        canAttack = true;
+        charAnim.SetBool("Stunned", false);
+        playerState = PlayerState.Normal;
     }
 
     void Click() {
@@ -402,7 +425,7 @@ public class PaulMovementPlaceholder : MonoBehaviourPun, IPunObservable {
             cItem.rby.isKinematic = true;
             canAttack = true;
             charAnim.SetBool("Packing", true);
-
+            hudMan.SetInstructionText(1);
             playerState = PlayerState.Holding;
         }
     }
@@ -410,6 +433,9 @@ public class PaulMovementPlaceholder : MonoBehaviourPun, IPunObservable {
     void Attack() {
         //holdPos.position = tempAtk.position;
         //holdPos.rotation = tempAtk.rotation;
+        //hitboxAttack.SetActive(true);
+
+        PhotonArenaManager.Instance.SpawnObject("AttackBox", hitboxAttack.position, hitboxAttack.rotation);
         charAnim.SetTrigger("Attack");
         StartCoroutine(ResetAttack());
     }
@@ -425,6 +451,7 @@ public class PaulMovementPlaceholder : MonoBehaviourPun, IPunObservable {
             yield return null;
         }
 
+        //hitboxAttack.SetActive(false);
         canAttack = true;
     }
 
@@ -443,31 +470,37 @@ public class PaulMovementPlaceholder : MonoBehaviourPun, IPunObservable {
             case Location.LivingRoom: {
                     roomLocation = 0;
                     neighbourhoodMan.DropItemInHouseRoom(myPlayerID, currentHome, roomLocation, cItem);
+                    AddScore();
                     break;
                 }
             case Location.Kitchen: {
                     roomLocation = 1;
                     neighbourhoodMan.DropItemInHouseRoom(myPlayerID, currentHome, roomLocation, cItem);
+                    AddScore();
                     break;
                 }
             case Location.Bedroom: {
                     roomLocation = 2;
                     neighbourhoodMan.DropItemInHouseRoom(myPlayerID, currentHome, roomLocation, cItem);
+                    AddScore();
                     break;
                 }
             case Location.Bathroom: {
                     roomLocation = 3;
                     neighbourhoodMan.DropItemInHouseRoom(myPlayerID, currentHome, roomLocation, cItem);
+                    AddScore();
                     break;
                 }
         }
 
         StopAllCoroutines();
+        //hitboxAttack.SetActive(false);
         charAnim.SetBool("Packing", false);
         detector.hasNearObj = false;
         canAttack = false;
         cItem = null;
         playerState = PlayerState.Normal;
+        hudMan.SetInstructionText(0);
     }
     #region IPunObservable implementation
 

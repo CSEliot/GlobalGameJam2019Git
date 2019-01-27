@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using Photon.Realtime;
 using Random = UnityEngine.Random;
+using ExitGames.Client.Photon;
 
 public class PhotonArenaManager : Singleton<PhotonArenaManager>
 {
@@ -31,6 +32,8 @@ public class PhotonArenaManager : Singleton<PhotonArenaManager>
 
     public static Vector3 DefaultSpawnLocation = new Vector3(0f, 15f, 0f);
 
+    private bool newData;
+
     public ServerDepthLevel CurrentServerUserDepth = ServerDepthLevel.Offline;
     public static class Constants {
         public static readonly Vector3 DefaultSpawnLoc = Vector3.one;
@@ -39,6 +42,8 @@ public class PhotonArenaManager : Singleton<PhotonArenaManager>
     void Awake() {
         _fakeServer.DataStore = new Dictionary<string, object>();
         _fakeServer.totalPlayers = 0;
+
+        newData = false;
     }
 
     public void ConnectAndJoinRoom(string username) {
@@ -106,12 +111,14 @@ public class PhotonArenaManager : Singleton<PhotonArenaManager>
             if (_fakeServer.DataStore.ContainsKey(label)) {
                 return _fakeServer.DataStore[label] as System.Object;
             } else {
+                newData = false;
                 containsData = false;
             }
         }
         else if (CurrentServerUserDepth == ServerDepthLevel.InRoom) {
             ExitGames.Client.Photon.Hashtable roomProps = PhotonNetwork.CurrentRoom.CustomProperties;
             if (roomProps.ContainsKey(label)) {
+                newData = false;
                 return roomProps[label] as System.Object;
             } else {
                 containsData = false;
@@ -132,6 +139,7 @@ public class PhotonArenaManager : Singleton<PhotonArenaManager>
         else if (CurrentServerUserDepth == ServerDepthLevel.InRoom) {
             ExitGames.Client.Photon.Hashtable roomProps = PhotonNetwork.CurrentRoom.CustomProperties;
             roomProps.Add(label, data);
+            PhotonNetwork.CurrentRoom.SetCustomProperties(roomProps);
         }
         else {
             CBUG.Error("SaveData only available when Offline or InRoom, this was called at " + CurrentServerUserDepth.ToString() + ".");
@@ -238,6 +246,12 @@ public class PhotonArenaManager : Singleton<PhotonArenaManager>
         }
     }
 
+    public override void OnRoomPropertiesUpdate(Hashtable propertiesThatChanged) {
+        base.OnRoomPropertiesUpdate(propertiesThatChanged);
+
+        newData = true;
+    }
+
     public override void OnJoinedLobby() {
         CBUG.Log("Lobby Joined!");
         CBUG.Log("Joining Random Room ...");
@@ -253,6 +267,7 @@ public class PhotonArenaManager : Singleton<PhotonArenaManager>
         CBUG.Log("Joined Room!");
 
         CurrentServerUserDepth = ServerDepthLevel.InRoom;
+
         //if (this.PrefabsToInstantiate != null) {
         //    foreach (GameObject o in this.PrefabsToInstantiate) {
         //        Debug.Log("Instantiating: " + o.name);
@@ -274,7 +289,7 @@ public class PhotonArenaManager : Singleton<PhotonArenaManager>
 
     public override void OnJoinRandomFailed(short returnCode, string message) {
         CBUG.Log("Room Join failed. Creating a room ...");
-        PhotonNetwork.CreateRoom(null, new RoomOptions() { MaxPlayers = 100 }, null);
+        PhotonNetwork.CreateRoom(null, new RoomOptions() { MaxPlayers = 9, CleanupCacheOnLeave = false }, null);
     }
     #endregion
 }
