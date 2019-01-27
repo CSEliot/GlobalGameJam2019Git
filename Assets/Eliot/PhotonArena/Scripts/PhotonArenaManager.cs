@@ -55,7 +55,8 @@ public class PhotonArenaManager : Singleton<PhotonArenaManager>
     /// <returns>Accurate down to 1/15 of a second.</returns>
     public int GetClock() {
         if (currentServerUserDepth == ServerDepthLevel.Offline) {
-            return DateTime.Now.TimeOfDay.Milliseconds;
+            //            return DateTime.Now.TimeOfDay.Milliseconds;
+            return Convert.ToInt32((DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond) & int.MaxValue);
         }
         else {
             return PhotonNetwork.ServerTimestamp;

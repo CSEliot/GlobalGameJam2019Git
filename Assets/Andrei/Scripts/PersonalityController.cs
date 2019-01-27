@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 [System.Serializable]
 public class PersonalityController : MonoBehaviour
@@ -22,6 +23,7 @@ public class PersonalityController : MonoBehaviour
     private float timeToCompleteTest = 0;
     private bool timerRunning = false;
     private bool hasSoldDog = false;
+    private bool _testEnded = false;
 
     private uint _startTime;
     private uint _timer = 65000;
@@ -71,6 +73,15 @@ public class PersonalityController : MonoBehaviour
     void Update(){
         if(timerRunning){
             UpdateTimer();
+        }
+
+        if(_testEnded)
+        {
+            if ((PhotonArenaManager.Instance.GetClock() - _startTime) >= _timer)
+            {
+                _testEnded = false;
+                SceneManager.LoadScene("World2");
+            }
         }
     }
 
@@ -138,7 +149,13 @@ public class PersonalityController : MonoBehaviour
 
         var score = GetScore();
 
-        //test code
+        int playerNum = 777;
+        var data = new KeyValuePair<int, int[]>(playerNum, score);
+        PhotonArenaManager.Instance.SaveData($"score!{playerNum}", score);
+
+        _testEnded = true;
+
+/*        //test code
         var scores = new Dictionary<int, int[]>();
         scores.Add(0, score);
 
@@ -163,6 +180,7 @@ public class PersonalityController : MonoBehaviour
         scores.Add(44, cheap.GetScore());
 
         var results = SortingHat(scores);
+*/
 
     }
 
