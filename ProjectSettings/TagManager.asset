@@ -18,6 +18,7 @@ TagManager:
   - LocalPlayer
   - RemotePlayer
   - AiPlayer
+  - Attack
   layers:
   - Default
   - TransparentFX

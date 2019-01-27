@@ -268,13 +268,20 @@ public class PaulMovementPlaceholder : MonoBehaviourPun, IPunObservable {
         }
     }
 
-    
+    void OnTriggerEnter(Collider col)
+    {
+        if(col.tag == "Attack")
+        {
+            GetHit();
+        }
+    }
 
     void GetHit()
     {
-        
+        charAnim.SetBool("Stunned", true);
+        charAnim.SetTrigger("GetHit");
 
-        if(playerState == PlayerState.Holding)
+        if (playerState == PlayerState.Holding)
         {
             //DROP IT
             int roomLocation = 0;
@@ -324,6 +331,7 @@ public class PaulMovementPlaceholder : MonoBehaviourPun, IPunObservable {
             cItem = null;
         }
 
+        rby.velocity = new Vector3(0, -5, 0);
         playerState = PlayerState.Stunned;
         StartCoroutine(ResetStunned());
     }
@@ -334,14 +342,15 @@ public class PaulMovementPlaceholder : MonoBehaviourPun, IPunObservable {
 
         while (t < 1f)
         {
-            t += Time.deltaTime * 2.5f;
+            t += Time.deltaTime;
 
             //holdPos.position = Vector3.Lerp(holdPos.position, tempNorm.position, t);
             //holdPos.rotation = Quaternion.Slerp(holdPos.rotation, tempNorm.rotation, t);
             yield return null;
         }
 
-        canAttack = true;
+        charAnim.SetBool("Stunned", false);
+        playerState = PlayerState.Normal;
     }
 
     void Click() {
