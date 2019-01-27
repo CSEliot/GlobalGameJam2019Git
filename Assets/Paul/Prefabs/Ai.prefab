@@ -241,7 +241,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e700287d1355e64794a02a497254fd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerRef: {fileID: 819568138331179200}
+  playerRef: {fileID: 0}
   locations: 
 --- !u!1 &1135188462482003460
 GameObject:
@@ -1433,7 +1433,6 @@ GameObject:
   - component: {fileID: 3288394362270232172}
   - component: {fileID: 460941754726228520}
   - component: {fileID: 5208701338012099054}
-  - component: {fileID: 819568138331179200}
   - component: {fileID: 3066415768287642379}
   - component: {fileID: 7175409495175893662}
   m_Layer: 0
@@ -1519,46 +1518,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &819568138331179200
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7175409495175893661}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76568e1cd81589048b75ce03cb22fe74, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  myPersonality: 0
-  playerState: 0
-  location: 0
-  neighbourhoodMan: {fileID: 0}
-  charAnim: {fileID: 2547946419065235918}
-  myPlayerID: 0
-  myHome: 0
-  currentHome: 0
-  camRef: {fileID: 4771023212422312786}
-  rby: {fileID: 3066415768287642379}
-  speed: 15
-  detector: {fileID: 345541059687815358}
-  holdPos: {fileID: 2494034894633207733}
-  tempAtk: {fileID: 5972795420377045089}
-  tempNorm: {fileID: 7808609781452699779}
-  cItem: {fileID: 0}
-  canAttack: 1
-  locationTxt: {fileID: 0}
-  hats:
-  - {fileID: 1135188462482003460}
-  - {fileID: 775328630044207944}
-  - {fileID: 6115107405107005578}
-  - {fileID: 6121717652271299614}
-  - {fileID: 8646133679169788112}
-  - {fileID: 3115165366771545289}
-  - {fileID: 7973652702425424398}
-  - {fileID: 5126708503571625783}
-  - {fileID: 4745146418258332637}
 --- !u!54 &3066415768287642379
 Rigidbody:
   m_ObjectHideFlags: 0
