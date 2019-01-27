@@ -533,7 +533,7 @@ MonoBehaviour:
   ALL_DEBUG_ENABLED: 1
   SendToConsole: 1
   DisableOnScreen: 0
-  ClearTime: 5
+  ClearTime: 0
   Clear: 0
   ClearAmount: 1
   ClearAll: 0
@@ -570,9 +570,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 'CBUG
-
-'
+  m_Text: CBUG
 --- !u!222 &1720508875
 CanvasRenderer:
   m_ObjectHideFlags: 0

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-
+using Photon.Pun;
 
 [System.Serializable]
 public enum PlayerState
@@ -16,9 +16,10 @@ public enum Location
     Outside, Store, LivingRoom, Kitchen, Bedroom, Bathroom
 }
 
-public class PaulMovementPlaceholder : MonoBehaviour
-{
-    
+public class PaulMovementPlaceholder : MonoBehaviourPun, IPunObservable {
+
+    public PhotonView photonView;
+
     public PersonalityType myPersonality;
     public PlayerState playerState;
     public Location location;
@@ -57,8 +58,17 @@ public class PaulMovementPlaceholder : MonoBehaviour
 
     public bool waitForStart;
 
-    void Start()
-    {
+
+    /// <summary>
+    /// flag to force latest data to avoid initial drifts when player is instantiated.
+    /// </summary>
+    private bool m_firstTake = true; //PHoton-y thing
+
+    void Awake() {
+        StartCoroutine("StartNet");
+    }
+
+    void Start() {
         Cursor.lockState = CursorLockMode.Locked;
 
         SelectHat((int)myPersonality);
@@ -72,17 +82,14 @@ public class PaulMovementPlaceholder : MonoBehaviour
     }
 
 
-    private PersonalityType GetMyPersonality()
-    {
+    private PersonalityType GetMyPersonality() {
         var playerNums = new List<int>(8); // Replace with call to get Player Numbers
         var playerScores = new Dictionary<int, int[]>();
 
-        foreach (var playerNum in playerNums)
-        {
+        foreach (var playerNum in playerNums) {
             var score = PhotonArenaManager.Instance.GetData($"score!{playerNum}") as int[];
 
-            if (score != null)
-            {
+            if (score != null) {
                 playerScores.Add(playerNum, score);
             }
         }
@@ -93,36 +100,28 @@ public class PaulMovementPlaceholder : MonoBehaviour
     }
 
 
-    void SelectHat(int num)
-    {
-        for(int i = 0; i < hats.Count; i++)
-        {
-            if(i != num)
-            {
+    void SelectHat(int num) {
+        for (int i = 0; i < hats.Count; i++) {
+            if (i != num) {
                 hats[i].SetActive(false);
             }
-            else
-            {
+            else {
                 hats[i].SetActive(true);
             }
         }
     }
 
-    void Update()
-    {
+    void Update() {
         float GravY = rby.velocity.y;
 
-        if (!waitForStart)
-        {
+        if (!waitForStart) {
             rVelocity = ((this.transform.forward * speed) * Input.GetAxis("Vertical")) +
                 ((this.transform.right * speed) * Input.GetAxis("Horizontal"));
 
-            if (Input.GetAxis("Vertical") == 0 && Input.GetAxis("Horizontal") == 0)
-            {
+            if (Input.GetAxis("Vertical") == 0 && Input.GetAxis("Horizontal") == 0) {
                 targetSpeed = 0f;
             }
-            else
-            {
+            else {
                 targetSpeed = 1f;
             }
 
@@ -134,81 +133,64 @@ public class PaulMovementPlaceholder : MonoBehaviour
 
             this.transform.Rotate(new Vector3(0, Input.GetAxis("Mouse X"), 0));
 
-            if (rVelocity.x == 0 && rVelocity.z == 0)
-            {
+            if (rVelocity.x == 0 && rVelocity.z == 0) {
                 meshRotater.rotation = Quaternion.LookRotation(this.transform.forward, Vector3.up);
             }
-            else
-            {
+            else {
                 meshRotater.rotation = Quaternion.LookRotation(new Vector3(rVelocity.x, 0, rVelocity.z), Vector3.up);
             }
 
 
-            if (Input.GetMouseButtonDown(0))
-            {
-                if (!lClickDown)
-                {
+            if (Input.GetMouseButtonDown(0)) {
+                if (!lClickDown) {
                     lClickDown = true;
                     Click();
                 }
             }
-            else
-            {
+            else {
                 lClickDown = false;
             }
 
-            if (Input.GetMouseButtonDown(1))
-            {
+            if (Input.GetMouseButtonDown(1)) {
                 RightClick();
             }
 
-            if (Input.GetButton("Jump"))
-            {
+            if (Input.GetButton("Jump")) {
                 Debug.Log("simulate get hit");
             }
         }
     }
 
-    void GetHit()
-    {
+    void GetHit() {
         //
     }
 
-    void Click()
-    {
-        switch (playerState)
-        {
-            case PlayerState.Normal:
-                {
+    void Click() {
+        switch (playerState) {
+            case PlayerState.Normal: {
                     Pickup();
                     break;
                 }
             case PlayerState.Holding://click while holding
                 {
-                    if (canAttack)
-                    {
+                    if (canAttack) {
                         Attack();
                         canAttack = false;
                     }
                     break;
                 }
-            case PlayerState.Stunned:
-                {
+            case PlayerState.Stunned: {
                     break;
                 }
-            case PlayerState.Boosted:
-                {
+            case PlayerState.Boosted: {
                     break;
                 }
         }
     }
 
-    void RightClick()
-    {
-        switch (playerState)
-        {
-            case PlayerState.Normal:
-                {
+    void RightClick() {
+        switch (playerState) {
+            case PlayerState.Normal: {
                     //yell
                     break;
                 }
@@ -217,21 +199,17 @@ public class PaulMovementPlaceholder : MonoBehaviour
                     DropOrPlace();
                     break;
                 }
-            case PlayerState.Stunned:
-                {
+            case PlayerState.Stunned: {
                     break;
                 }
-            case PlayerState.Boosted:
-                {
+            case PlayerState.Boosted: {
                     break;
                 }
         }
     }
 
-    void Pickup()
-    {
-        if (detector.hasNearObj)
-        {
+    void Pickup() {
+        if (detector.hasNearObj) {
             cItem = detector.closeObj;
             cItem.transform.parent = holdPos;
             cItem.transform.localPosition = cItem.localPos;
@@ -245,20 +223,17 @@ public class PaulMovementPlaceholder : MonoBehaviour
         }
     }
 
-    void Attack()
-    {
+    void Attack() {
         //holdPos.position = tempAtk.position;
         //holdPos.rotation = tempAtk.rotation;
         charAnim.SetTrigger("Attack");
         StartCoroutine(ResetAttack());
     }
 
-    IEnumerator ResetAttack()
-    {
+    IEnumerator ResetAttack() {
         float t = 0;
 
-        while(t < 1f)
-        {
+        while (t < 1f) {
             t += Time.deltaTime * 2.5f;
 
             //holdPos.position = Vector3.Lerp(holdPos.position, tempNorm.position, t);
@@ -269,42 +244,34 @@ public class PaulMovementPlaceholder : MonoBehaviour
         canAttack = true;
     }
 
-    void DropOrPlace()
-    {
+    void DropOrPlace() {
         int roomLocation = 0;
 
-        switch (location)
-        {
-            case Location.Store:
-                {
+        switch (location) {
+            case Location.Store: {
                     neighbourhoodMan.DropItemOutside(myPlayerID, cItem);
                     break;
                 }
-            case Location.Outside:
-                {
+            case Location.Outside: {
                     neighbourhoodMan.DropItemOutside(myPlayerID, cItem);
                     break;
                 }
-            case Location.LivingRoom:
-                {
+            case Location.LivingRoom: {
                     roomLocation = 0;
                     neighbourhoodMan.DropItemInHouseRoom(myPlayerID, currentHome, roomLocation, cItem);
                     break;
                 }
-            case Location.Kitchen:
-                {
+            case Location.Kitchen: {
                     roomLocation = 1;
                     neighbourhoodMan.DropItemInHouseRoom(myPlayerID, currentHome, roomLocation, cItem);
                     break;
                 }
-            case Location.Bedroom:
-                {
+            case Location.Bedroom: {
                     roomLocation = 2;
                     neighbourhoodMan.DropItemInHouseRoom(myPlayerID, currentHome, roomLocation, cItem);
                     break;
                 }
-            case Location.Bathroom:
-                {
+            case Location.Bathroom: {
                     roomLocation = 3;
                     neighbourhoodMan.DropItemInHouseRoom(myPlayerID, currentHome, roomLocation, cItem);
                     break;
@@ -318,5 +285,41 @@ public class PaulMovementPlaceholder : MonoBehaviour
         cItem = null;
         playerState = PlayerState.Normal;
     }
+    #region IPunObservable implementation
 
+    /// <summary>
+    /// this is where data is sent and received for this Component from the PUN Network.
+    /// </summary>
+    /// <param name="stream">Stream.</param>
+    /// <param name="info">Info.</param>
+    void IPunObservable.OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
+        // currently there is no strategy to improve on bandwidth, just passing the current distance and speed is enough, 
+        // Input could be passed and then used to better control speed value
+        //  Data could be wrapped as a vector2 or vector3 to save a couple of bytes
+        //if (stream.IsWriting) {
+        //    stream.SendNext(this.curr);
+        //    stream.SendNext(this.CurrentSpeed);
+        //    stream.SendNext(this.m_input);
+        //}
+        //else {
+        //    if (this.m_firstTake) {
+        //        this.m_firstTake = false;
+        //    }
+
+        //    rby.velocity = (Vector3)stream.ReceiveNext();
+        //    rby.rotation = (q)stream.ReceiveNext();
+        //    rby.m_input = (float)stream.ReceiveNext();
+        //}
+    }
+    #endregion IPunObservable implementation
+    private IEnumerator StartNet() {
+        // Wait until a Player Number is assigned
+        // PlayerNumbering component must be in the scene.
+        yield return new WaitUntil(() => this.photonView.Owner.ActorNumber >= 0);
+
+        // depending on wether we control this instance locally, we force the car to become active ( because when you are alone in the room, serialization doesn't happen, but still we want to allow the user to race around)
+        if (PhotonNetwork.CurrentRoom.PlayerCount == 1) {
+            this.m_firstTake = false;
+        }
+    }
 }
