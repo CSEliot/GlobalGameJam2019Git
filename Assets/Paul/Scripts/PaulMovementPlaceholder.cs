@@ -59,7 +59,31 @@ public class PaulMovementPlaceholder : MonoBehaviour
         SelectHat(Random.Range(0, 8));
         PhotonArenaManager.Instance.ConnectAndJoinRoomSingle();
 
+        myPersonality = GetMyPersonality();
+
     }
+
+
+    private PersonalityType GetMyPersonality()
+    {
+        var playerNums = new List<int>(8); // Replace with call to get Player Numbers
+        var playerScores = new Dictionary<int, int[]>();
+
+        foreach (var playerNum in playerNums)
+        {
+            var score = PhotonArenaManager.Instance.GetData($"score!{playerNum}") as int[];
+
+            if (score != null)
+            {
+                playerScores.Add(playerNum, score);
+            }
+        }
+
+        var personalities = PersonalityController.SortingHat(playerScores);
+
+        return personalities[myPlayerID];
+    }
+
 
     void SelectHat(int num)
     {

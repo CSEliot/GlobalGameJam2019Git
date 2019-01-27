@@ -75,7 +75,7 @@ public class PersonalityController : MonoBehaviour
             UpdateTimer();
         }
 
-        if(_testEnded)
+        if (_testEnded)
         {
             if ((PhotonArenaManager.Instance.GetClock() - _startTime) >= _timer)
             {
