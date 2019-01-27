@@ -17,12 +17,14 @@ public class PersonalityController : MonoBehaviour
     public int hoarder = 0;
     public int nerd = 0;
 
+    private float _seconds = 60;
     private float secondsCountDown = 60;
     private float timeToCompleteTest = 0;
     private bool timerRunning = false;
     private bool hasSoldDog = false;
 
-    private long startTime;
+    private uint _startTime;
+    private uint _timer = 65000;
 
     public Text timerText;
 
@@ -73,8 +75,11 @@ public class PersonalityController : MonoBehaviour
     }
 
     void UpdateTimer(){
-        if(secondsCountDown > 0){
-            secondsCountDown -= Time.deltaTime;
+        uint curtime = (uint)PhotonArenaManager.Instance.GetClock();
+
+        if (secondsCountDown > 0){
+            //            secondsCountDown -= Time.deltaTime;
+            secondsCountDown = _seconds - (curtime - _startTime)/1000f;
             secondsCountDown = Mathf.Round(secondsCountDown * 100f) / 100f;
             timerText.text = "" + secondsCountDown;
         }else{
@@ -111,7 +116,7 @@ public class PersonalityController : MonoBehaviour
     }
 
     public void StartTimer(){
-        startTime = 
+        _startTime = (uint)PhotonArenaManager.Instance.GetClock();
         timerRunning = true;
     }
 
