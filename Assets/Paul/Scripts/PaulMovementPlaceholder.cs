@@ -22,6 +22,7 @@ public class PaulMovementPlaceholder : MonoBehaviourPun, IPunObservable {
     public PlayerState playerState;
     public Location location;
 
+    public HUDManager hudMan;
     public NeighbourhoodManager neighbourhoodMan;
 
     public Animator charAnim;
@@ -411,7 +412,7 @@ public class PaulMovementPlaceholder : MonoBehaviourPun, IPunObservable {
             cItem.rby.isKinematic = true;
             canAttack = true;
             charAnim.SetBool("Packing", true);
-
+            hudMan.SetInstructionText(1);
             playerState = PlayerState.Holding;
         }
     }
@@ -482,6 +483,7 @@ public class PaulMovementPlaceholder : MonoBehaviourPun, IPunObservable {
         canAttack = false;
         cItem = null;
         playerState = PlayerState.Normal;
+        hudMan.SetInstructionText(0);
     }
     #region IPunObservable implementation
 

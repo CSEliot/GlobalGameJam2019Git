@@ -5873,6 +5873,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc81f0a8270a60f42b34cba791ad0c11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hudMan: {fileID: 1750117758}
   objsPos:
   - resourceName: Baby
     pos: {fileID: 1211088278}
@@ -14670,6 +14671,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: -88.024, y: 2.1680002, z: -68.271}
+--- !u!114 &1750117758 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8522708322053583333, guid: cb1f4e5970d59db49a1205137b1d3a3e,
+    type: 3}
+  m_PrefabInstance: {fileID: 1394587243}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c29240dd315cc9144937112d93f65a1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1752618379
 GameObject:
   m_ObjectHideFlags: 0

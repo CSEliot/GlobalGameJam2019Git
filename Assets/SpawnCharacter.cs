@@ -11,6 +11,8 @@ public class ObjAndPos
 
 public class SpawnCharacter : MonoBehaviour
 {
+    public HUDManager hudMan;
+
     public List<ObjAndPos> objsPos;
     public List<string> allObjects;
     public List<Transform> placePoss;
@@ -39,6 +41,7 @@ public class SpawnCharacter : MonoBehaviour
                 if(newPlayer != null)
                 {
                     newPlayer.GetComponent<PaulMovementPlaceholder>().neighbourhoodMan = nMan;
+                    newPlayer.GetComponent<PaulMovementPlaceholder>().hudMan = hudMan;
                     isPlayerCreated = true;
                     cam.SetActive(false);
                 }
