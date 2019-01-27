@@ -170,6 +170,21 @@ public class PaulMovementPlaceholder : MonoBehaviourPun, IPunObservable {
             if (!waitForStart)
             {
                 //RAY
+                // Check if on ground
+                /*
+                if (!onGround && Physics.Raycast(transform.position + Vector3.down * 0.9f, Vector3.down, 0.5f))
+                {
+                    //fixNetGuessWork();
+                    onGround = true;
+                    //GravY += 1f;
+                }
+                else
+                {
+                    onGround = Physics.Raycast(transform.position + Vector3.down * 0.9f, Vector3.down, 0.5f);
+                    GravY -= 9.81f * Time.deltaTime;
+                }
+                */
+                
                 bool grounded = (Physics.Raycast(downCaster.position, Vector3.down, .5f, LayerMask.NameToLayer("Ground"))); // raycast down to look for ground is not detecting ground? only works if allowing jump when grounded = false; // return "Ground" layer as layer
 
                 if (grounded == true)
@@ -189,6 +204,7 @@ public class PaulMovementPlaceholder : MonoBehaviourPun, IPunObservable {
                     previouslyInAir = true;
                     GravY -= 9.81f * Time.deltaTime;
                 }
+                
                 //CAST
 
                 if (playerState == PlayerState.Normal || playerState == PlayerState.Holding)
