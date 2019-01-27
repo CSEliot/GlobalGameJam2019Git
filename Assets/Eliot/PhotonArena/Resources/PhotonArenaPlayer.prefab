@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 91726839248018565}
   - component: {fileID: 3877514956198340730}
   m_Layer: 0
-  m_Name: Player
+  m_Name: PhotonArenaPlayer
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

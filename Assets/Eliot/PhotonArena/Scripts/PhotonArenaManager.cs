@@ -3,6 +3,8 @@ using UnityEngine.SceneManagement;
 using Photon.Pun;
 using System;
 using System.Collections.Generic;
+using Photon.Realtime;
+using Random = UnityEngine.Random;
 
 public class PhotonArenaManager : Singleton<PhotonArenaManager>
 {
@@ -11,6 +13,8 @@ public class PhotonArenaManager : Singleton<PhotonArenaManager>
     public struct FakeServer {
         public Dictionary<string, System.Object> DataStore;
         public int totalPlayers;
+
+        public string Username { get; internal set; }
     }
     FakeServer _fakeServer;
     #endregion
@@ -32,13 +36,23 @@ public class PhotonArenaManager : Singleton<PhotonArenaManager>
         _fakeServer.totalPlayers = 0;
     }
 
-    public void ConnectAndJoinRoomSingle() {
-        if(SceneManager.GetActiveScene().name != "Eliot Test") {
-            return;
-        }
+    public void ConnectAndJoinRoom(string username) {
         CBUG.Do("Connecting!");
-        PhotonNetwork.ConnectUsingSettings();
         PhotonNetwork.GameVersion = "BlueCouch";
+
+        PhotonNetwork.NetworkingClient.AppId = PhotonNetwork.PhotonServerSettings.AppSettings.AppIdRealtime;
+
+        PhotonNetwork.AuthValues = new AuthenticationValues();
+        PhotonNetwork.AuthValues.UserId = username + "_"+UnityEngine.Random.Range(0, 9999);
+
+        string region = "us";
+        bool _result = PhotonNetwork.ConnectToRegion(region);
+
+        CBUG.Log("PunCockpit:ConnectToRegion(" + region + ") -> " + _result);
+    }
+
+    public void ConnectAndJoinOffline(string username) {
+        _fakeServer.Username = username;
     }
 
     public bool IsHost {
@@ -114,6 +128,19 @@ public class PhotonArenaManager : Singleton<PhotonArenaManager>
         }
     }
 
+    public string GetLocalUsername() {
+        if (CurrentServerUserDepth == ServerDepthLevel.Offline) {
+            return _fakeServer.Username;
+        }
+        else if (CurrentServerUserDepth == ServerDepthLevel.InRoom) {
+            return PhotonNetwork.LocalPlayer.UserId;
+        }
+        else {
+            CBUG.Error("Username only available when Offline or InRoom, this was called at " + CurrentServerUserDepth.ToString() + ".");
+            return null;
+        }
+    }
+
     public int SpawnPlayer(string ResourceName="PhotonArenaPlayer") {
         if (CurrentServerUserDepth == ServerDepthLevel.Offline) {
             _fakeServer.totalPlayers++;
@@ -159,6 +186,43 @@ public class PhotonArenaManager : Singleton<PhotonArenaManager>
         base.OnConnected();
 
         CBUG.Do("Connected!");
+    }
+
+
+    public override void OnJoinedLobby() {
+        CBUG.Log("OnJoinedLobby(). This client is connected and does get a room-list, which gets stored as PhotonNetwork.GetRoomList(). This script now calls: PhotonNetwork.JoinRandomRoom();");
+        PhotonNetwork.JoinRandomRoom();
+    }
+
+    public override void OnDisconnected(DisconnectCause cause) {
+        Debug.Log("OnDisconnected(" + cause + ")");
+    }
+
+    public override void OnJoinedRoom() {
+        Debug.Log("OnJoinedRoom() called by PUN. Now this client is in a room. From here on, your game would be running.");
+
+        //if (this.PrefabsToInstantiate != null) {
+        //    foreach (GameObject o in this.PrefabsToInstantiate) {
+        //        Debug.Log("Instantiating: " + o.name);
+
+        //        Vector3 spawnPos = Vector3.up;
+        //        if (this.SpawnPosition != null) {
+        //            spawnPos = this.SpawnPosition.position;
+        //        }
+
+        //        Vector3 random = Random.insideUnitSphere;
+        //        random.y = 0;
+        //        random = random.normalized;
+        //        Vector3 itempos = spawnPos + this.PositionOffset * random;
+
+        //        PhotonNetwork.Instantiate(o.name, itempos, Quaternion.identity, 0);
+        //    }
+        //}
+    }
+
+    public override void OnJoinRandomFailed(short returnCode, string message) {
+        CBUG.Log("OnJoinRandomFailed() was called by PUN. No random room available, so we create one. Calling: PhotonNetwork.CreateRoom(null, new RoomOptions() {maxPlayers = 4}, null);");
+        PhotonNetwork.CreateRoom(null, new RoomOptions() { MaxPlayers = 100 }, null);
     }
     #endregion
 }
