@@ -73,12 +73,14 @@ public class PaulMovementPlaceholder : MonoBehaviourPun, IPunObservable {
 
     public Transform hitboxAttack;
 
+    public int myScore;
+
     void Awake() {
 
         if (!blockNet)
         {
 
-        StartCoroutine("StartNet");
+            StartCoroutine("StartNet");
         }
     }
 
@@ -86,6 +88,9 @@ public class PaulMovementPlaceholder : MonoBehaviourPun, IPunObservable {
         
         SelectHat((int)myPersonality);
         hitboxAttack.parent = meshRotater;
+
+        hudMan.scoreText.text = "0";
+
 
         if (photonView.IsMine) {
             Cursor.lockState = CursorLockMode.Locked;
@@ -303,6 +308,8 @@ public class PaulMovementPlaceholder : MonoBehaviourPun, IPunObservable {
                 case Location.LivingRoom:
                     {
                         roomLocation = 0;
+                        AddScore();
+                        
                         neighbourhoodMan.DropItemInHouseRoom(myPlayerID, currentHome, roomLocation, cItem);
                         break;
                     }
@@ -336,6 +343,12 @@ public class PaulMovementPlaceholder : MonoBehaviourPun, IPunObservable {
         rby.velocity = new Vector3(0, -5, 0);
         playerState = PlayerState.Stunned;
         StartCoroutine(ResetStunned());
+    }
+
+    void AddScore()
+    {
+        myScore += 1;
+        hudMan.scoreText.text = myScore.ToString();
     }
 
     IEnumerator ResetStunned()
