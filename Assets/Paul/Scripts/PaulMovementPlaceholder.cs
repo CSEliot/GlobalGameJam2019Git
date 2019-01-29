@@ -77,6 +77,9 @@ public class PaulMovementPlaceholder : MonoBehaviourPun, IPunObservable {
 
     public TextMeshPro floatingUsernameTxt;
 
+    public GameObject positiveObj;//Particle effects
+    public GameObject negativeObj;
+
     void Awake() {
 
         if (!blockNet)
@@ -433,9 +436,47 @@ public class PaulMovementPlaceholder : MonoBehaviourPun, IPunObservable {
             canAttack = true;
             hudMan.SetInstructionText(1);
             playerState = PlayerState.Holding;
+
+            bool pos = false;
+            for(int i = 0; i < cItem.traits.Count; i++)
+            {
+                if(cItem.traits[i] == myPersonality)
+                {
+                    pos = true;
+                }
+            }
+
+            if(pos == true)
+            {
+                positiveObj.SetActive(true);
+                Invoke("TurnOffParticleFx", 3f);
+            }
+            else
+            {
+                bool neg = false;
+                for (int i = 0; i < cItem.negativeTraits.Count; i++)
+                {
+                    if (cItem.negativeTraits[i] == myPersonality)
+                    {
+                        neg = true;
+                    }
+                }
+
+                if (neg == true)
+                {
+                    negativeObj.SetActive(true);
+                    Invoke("TurnOffParticleFx", 3f);
+                }
+            }
         }
     }
     
+    void TurnOffParticleFx()
+    {
+        positiveObj.SetActive(false);
+        negativeObj.SetActive(false);
+    }
+
     void Attack() {
         //holdPos.position = tempAtk.position;
         //holdPos.rotation = tempAtk.rotation;
