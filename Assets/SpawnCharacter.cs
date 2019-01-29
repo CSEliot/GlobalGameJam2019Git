@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Photon.Pun;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 //using UnityEngine.scen;
@@ -44,13 +45,15 @@ public class SpawnCharacter : MonoBehaviour
             {
 
                 Debug.Log("Set player pos fix");
-                //GameObject newPlayer = PhotonArenaManager.Instance.SpawnPlayer(spawnPlayerPos[photonView.ViewID].position, spawnPlayerPos[photonView.ViewID].rotation);
-                GameObject newPlayer = PhotonArenaManager.Instance.SpawnPlayer(placePos.position, placePos.rotation);
+                GameObject newPlayer = PhotonArenaManager.Instance.SpawnPlayer(spawnPlayerPos[PhotonNetwork.LocalPlayer.ActorNumber].position, spawnPlayerPos[PhotonNetwork.LocalPlayer.ActorNumber].rotation);
+                //GameObject newPlayer = PhotonArenaManager.Instance.SpawnPlayer(placePos.position, placePos.rotation);
 
                 if(newPlayer != null)
                 {
                     newPlayer.GetComponent<PaulMovementPlaceholder>().neighbourhoodMan = nMan;
                     newPlayer.GetComponent<PaulMovementPlaceholder>().hudMan = hudMan;
+                    //Debug.Log(PhotonNetwork.LocalPlayer.ActorNumber);
+                    //newPlayer.GetComponent<PaulMovementPlaceholder>().myPersonality = (PersonalityType)PhotonNetwork.LocalPlayer.ActorNumber;
                     hudMan.scoreText.text = "0";
 
                     isPlayerCreated = true;
