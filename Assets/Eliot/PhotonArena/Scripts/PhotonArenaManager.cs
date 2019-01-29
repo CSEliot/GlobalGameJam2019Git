@@ -6,7 +6,18 @@ using System.Collections.Generic;
 using Photon.Realtime;
 using Random = UnityEngine.Random;
 using ExitGames.Client.Photon;
-
+/*
+todo provide structure for setting up scene items and other stuff.
+Problem: When referencing a singleton, several variables that exist that could cause issue.
+ - Are you grabbing the CORRECT reference? Copies could exist because you got the reference before they deleted. OR they didn't delete.
+ - The reference doesn't exist at all because the OG hasn't even been loaded in yet.
+Solution:
+ - The call to the server requires a list of all singletons (managers) that must eventually be spawned eventually.
+ - Wrap ALL singleton references in PhotonArenaManager.instance.UseSingleton("ManagerName");
+ For example, certain manager objects should exist only one per scene.
+ roomProp "firstTimeSetupComplete = true"
+ if true, 
+ */
 public class PhotonArenaManager : Singleton<PhotonArenaManager>
 {
 
@@ -29,10 +40,12 @@ public class PhotonArenaManager : Singleton<PhotonArenaManager>
         InLobby,
         InRoom
     }
-
+    
     public static Vector3 DefaultSpawnLocation = new Vector3(0f, 15f, 0f);
 
     private bool newData;
+    private List<string> singletonNames;
+    private Dictionary<string, GameObject> singletons;
 
     public ServerDepthLevel CurrentServerUserDepth = ServerDepthLevel.Offline;
     public static class Constants {
@@ -44,9 +57,11 @@ public class PhotonArenaManager : Singleton<PhotonArenaManager>
         _fakeServer.totalPlayers = 0;
 
         newData = false;
+        singletonNames = new List<string>();
+        singletons = new Dictionary<string, GameObject>();
     }
 
-    public void ConnectAndJoinRoom(string username) {
+    public void ConnectAndJoinRoom(string username, string[] singletons) {
         CBUG.Do("Connecting!");
         PhotonNetwork.GameVersion = "BlueCouch";
 
@@ -63,6 +78,16 @@ public class PhotonArenaManager : Singleton<PhotonArenaManager>
 
     public void ConnectAndJoinOffline(string username) {
         _fakeServer.Username = username;
+    }
+
+    public GameObject UseSingleton(string singletonName) {
+        //todo ??? checkifnull!
+        //if (singletons.ContainsKey(singletonName)) {
+        //    return singletons[singletonName];
+        //} else {
+        //    //todo ??? what do we do if a singleton doesn't exist? just spawn it? How does everyone else know to put it into their list?
+        //}
+        return GameObject.FindGameObjectWithTag(singletonName);
     }
 
     public bool IsHost {
@@ -144,6 +169,17 @@ public class PhotonArenaManager : Singleton<PhotonArenaManager>
         else {
             CBUG.Error("SaveData only available when Offline or InRoom, this was called at " + CurrentServerUserDepth.ToString() + ".");
         }
+    }
+
+    public GameObject SpawnSingletonResource(string singletonName) {
+        //todo ??? network-ize this.
+        GameObject singleton = SpawnObject(singletonName);
+        if(singleton == null) {
+            CBUG.SrsError("No singleton is available for name: " + singletonName);
+            return null;
+        }
+        singletons.Add(singleton);
+        return singleton;
     }
 
     public GameObject SpawnObject(string resourceName) {
@@ -274,23 +310,15 @@ public class PhotonArenaManager : Singleton<PhotonArenaManager>
 
         CurrentServerUserDepth = ServerDepthLevel.InRoom;
 
-        //if (this.PrefabsToInstantiate != null) {
-        //    foreach (GameObject o in this.PrefabsToInstantiate) {
-        //        Debug.Log("Instantiating: " + o.name);
+        SaveData("FirstTimeSetupDone", false);
 
-        //        Vector3 spawnPos = Vector3.up;
-        //        if (this.SpawnPosition != null) {
-        //            spawnPos = this.SpawnPosition.position;
-        //        }
-
-        //        Vector3 random = Random.insideUnitSphere;
-        //        random.y = 0;
-        //        random = random.normalized;
-        //        Vector3 itempos = spawnPos + this.PositionOffset * random;
-
-        //        PhotonNetwork.Instantiate(o.name, itempos, Quaternion.identity, 0);
-        //    }
-        //}
+        if (PhotonNetwork.IsMasterClient) {
+            //spawn singletons 
+            foreach (var singleton in singletonNames) {
+                SpawnObject(singleton);
+            }
+        }
+        SaveData("FirstTimeSetupDone", true);
     }
 
     public override void OnJoinRandomFailed(short returnCode, string message) {

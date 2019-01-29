@@ -265,7 +265,10 @@ public class UIManager : MonoBehaviour {
 
 	public void ConfirmOnlineTag(){
 		if(tagInputField.text != ""){
-            PhotonArenaManager.Instance.ConnectAndJoinRoom(onlineTag);
+            string[] singletons = {
+                "neighborhoodManager"
+            };
+            PhotonArenaManager.Instance.ConnectAndJoinRoom(onlineTag, singletons);
 		}
 	}
 }
