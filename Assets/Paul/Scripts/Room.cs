@@ -35,6 +35,7 @@ public class Room : MonoBehaviour
 
 
     public int nextSlot = 0;
+    public bool roomFull;//CANT drop more objects here
 
     public void TakeThisObject(Collectable collecto)
     {
@@ -45,7 +46,31 @@ public class Room : MonoBehaviour
         slots[nextSlot].taken = true;
         nextSlot++;
 
+        if(nextSlot >= slots.Count)
+        {
+            roomFull = true;
+        }
         objects.Add(collecto);
+    }
+
+    public void RemoveObjectFromRoom(int collectoSlotSpace)
+    {
+        slots[collectoSlotSpace].taken = false;
+
+        int newNextSlot = 0;
+        bool foundNext = false;
+
+        for(int i = 0; i < slots.Count; i++)
+        {
+            if (!slots[i].taken && !foundNext)
+            {
+                newNextSlot = i;
+                foundNext = true;
+            }
+        }
+
+        nextSlot = newNextSlot;
+        roomFull = false;
     }
 }
 

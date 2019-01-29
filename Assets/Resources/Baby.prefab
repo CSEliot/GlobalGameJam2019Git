@@ -108,8 +108,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 1155845728}
   - {fileID: 1155845727}
-  viewIdField: 13
-  InstantiationId: 13
+  viewIdField: 38
+  InstantiationId: 38
   isRuntimeInstantiated: 0
 --- !u!114 &1155845728
 MonoBehaviour:
@@ -209,10 +209,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 40.81116
       objectReference: {fileID: 0}
-    - target: {fileID: 9500000, guid: c578adffbbb3c1446b74cb1b187d3cfc, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 22b52474224f0ad4791555bd2cfcdaec, type: 2}
     - target: {fileID: 2300000, guid: c578adffbbb3c1446b74cb1b187d3cfc, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -237,6 +233,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 19b57e7cc32ea2b4291de6b9c26700b3, type: 2}
+    - target: {fileID: 9500000, guid: c578adffbbb3c1446b74cb1b187d3cfc, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 22b52474224f0ad4791555bd2cfcdaec, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c578adffbbb3c1446b74cb1b187d3cfc, type: 3}
 --- !u!4 &5672103742186977715 stripped

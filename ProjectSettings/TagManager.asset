@@ -19,6 +19,8 @@ TagManager:
   - RemotePlayer
   - AiPlayer
   - Attack
+  - HudManager
+  - NeighbourhoodManager
   layers:
   - Default
   - TransparentFX

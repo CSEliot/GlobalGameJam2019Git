@@ -42,6 +42,8 @@ public class SpawnCharacter : MonoBehaviour
                 {
                     newPlayer.GetComponent<PaulMovementPlaceholder>().neighbourhoodMan = nMan;
                     newPlayer.GetComponent<PaulMovementPlaceholder>().hudMan = hudMan;
+                    hudMan.scoreText.text = "0";
+
                     isPlayerCreated = true;
                     cam.SetActive(false);
                 }
@@ -54,7 +56,9 @@ public class SpawnCharacter : MonoBehaviour
 
             for(int i = 0; i < objsPos.Count; i++)
             {
-                PhotonArenaManager.Instance.SpawnObject(objsPos[i].resourceName, objsPos[i].pos.position, objsPos[i].pos.rotation);
+                Collectable newC = PhotonArenaManager.Instance.SpawnObject(objsPos[i].resourceName, objsPos[i].pos.position, objsPos[i].pos.rotation).GetComponent<Collectable>();
+                newC.myItemRef = i;
+                nMan.allItems.Add(newC);
             }
         }
     }

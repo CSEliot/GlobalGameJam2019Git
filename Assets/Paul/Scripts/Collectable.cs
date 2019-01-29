@@ -11,7 +11,7 @@ public enum CurrentPlace
 public class Collectable : MonoBehaviour
 {
     public int hitPts = 5;
-
+    public int myItemRef;
 
     public List<PersonalityType> traits = new List<PersonalityType>();
 

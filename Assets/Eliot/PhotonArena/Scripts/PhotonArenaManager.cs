@@ -146,28 +146,34 @@ public class PhotonArenaManager : Singleton<PhotonArenaManager>
         }
     }
 
-    public void SpawnObject(string resourceName) {
+    public GameObject SpawnObject(string resourceName) {
         if (CurrentServerUserDepth == ServerDepthLevel.Offline) {
             GameObject instance = Instantiate(Resources.Load(resourceName, typeof(GameObject)), DefaultSpawnLocation, Quaternion.Euler(Vector3.zero)) as GameObject;
+            return instance;
             /// ??? todo make playerlist local ref 
         }
         else if (CurrentServerUserDepth == ServerDepthLevel.InRoom) {
             GameObject PlayerObj = PhotonNetwork.Instantiate(resourceName, DefaultSpawnLocation, Quaternion.Euler(Vector3.zero));
+            return PlayerObj;
         }
         else {
             CBUG.Error("SpawnObject only available when Offline or InRoom, this was called at " + CurrentServerUserDepth.ToString() + ".");
+            return null;
         }
     }
-    public void SpawnObject(string resourceName, Vector3 spawnLoc, Quaternion spawnRot) {
+    public GameObject SpawnObject(string resourceName, Vector3 spawnLoc, Quaternion spawnRot) {
         if (CurrentServerUserDepth == ServerDepthLevel.Offline) {
             GameObject instance = Instantiate(Resources.Load(resourceName, typeof(GameObject)), spawnLoc, spawnRot) as GameObject;
+            return instance;
             /// ??? todo make playerlist local ref 
         }
         else if (CurrentServerUserDepth == ServerDepthLevel.InRoom) {
             GameObject PlayerObj = PhotonNetwork.Instantiate(resourceName, spawnLoc, spawnRot);
+            return PlayerObj;
         }
         else {
             CBUG.Error("SpawnObject only available when Offline or InRoom, this was called at " + CurrentServerUserDepth.ToString() + ".");
+            return null;
         }
     }
 

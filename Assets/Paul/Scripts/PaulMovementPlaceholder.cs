@@ -89,10 +89,6 @@ public class PaulMovementPlaceholder : MonoBehaviourPun, IPunObservable {
         SelectHat((int)myPersonality);
         hitboxAttack.parent = meshRotater;
 
-        hudMan = GameObject.FindGameObjectWithTag("HudManager").GetComponent<HUDManager>();
-        hudMan.scoreText.text = "0";
-
-
         if (photonView.IsMine) {
             Cursor.lockState = CursorLockMode.Locked;
         }
@@ -285,6 +281,7 @@ public class PaulMovementPlaceholder : MonoBehaviourPun, IPunObservable {
         }
     }
 
+
     void GetHit()
     {
         charAnim.SetBool("Stunned", true);
@@ -371,7 +368,10 @@ public class PaulMovementPlaceholder : MonoBehaviourPun, IPunObservable {
     void Click() {
         switch (playerState) {
             case PlayerState.Normal: {
-                    Pickup();
+                    if(detector.hasNearObj)
+                    {
+                        photonView.RPC("Pickup", RpcTarget.AllBuffered, detector.closeObj.myItemRef);
+                    }
                     break;
                 }
             case PlayerState.Holding://click while holding
@@ -411,26 +411,27 @@ public class PaulMovementPlaceholder : MonoBehaviourPun, IPunObservable {
         }
     }
 
-    void Pickup() {
+    [PunRPC]
+    void Pickup(int itemId, PhotonMessageInfo info) {
+        cItem = neighbourhoodMan.allItems[itemId] = detector.closeObj;
 
+        CBUG.Do("MY PHOTRON ID IS " + photonView.ViewID);
 
-        if (detector.hasNearObj) {
+        charAnim.SetBool("Packing", true);
 
+        cItem.transform.parent = holdPos;
+        cItem.transform.localPosition = cItem.localPos;
+        cItem.transform.localEulerAngles = cItem.localErot;
+        cItem.collido.enabled = false;
+        cItem.rby.isKinematic = true;
 
-
-            cItem = detector.closeObj;
-            cItem.transform.parent = holdPos;
-            cItem.transform.localPosition = cItem.localPos;
-            cItem.transform.localEulerAngles = cItem.localErot;
-            cItem.collido.enabled = false;
-            cItem.rby.isKinematic = true;
+        if (photonView.IsMine) {
             canAttack = true;
-            charAnim.SetBool("Packing", true);
             hudMan.SetInstructionText(1);
             playerState = PlayerState.Holding;
         }
     }
-
+    
     void Attack() {
         //holdPos.position = tempAtk.position;
         //holdPos.rotation = tempAtk.rotation;

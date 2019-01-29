@@ -128,8 +128,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 314979466524474067}
   - {fileID: 8664829528864604407}
-  viewIdField: 52
-  InstantiationId: 52
+  viewIdField: 45
+  InstantiationId: 45
   isRuntimeInstantiated: 0
 --- !u!54 &351894806397241693
 Rigidbody:
