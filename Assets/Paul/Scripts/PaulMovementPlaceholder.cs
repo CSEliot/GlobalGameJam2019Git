@@ -75,6 +75,8 @@ public class PaulMovementPlaceholder : MonoBehaviourPun, IPunObservable {
 
     public int myScore;
 
+    public TextMeshPro floatingUsernameTxt;
+
     void Awake() {
 
         if (!blockNet)
@@ -101,8 +103,9 @@ public class PaulMovementPlaceholder : MonoBehaviourPun, IPunObservable {
             Cursor.lockState = CursorLockMode.Locked;
             camRef.gameObject.SetActive(true);
         }
-    }
 
+        floatingUsernameTxt.enableCulling = true;
+    }
 
     private void InitPlayer()
     {
@@ -111,6 +114,7 @@ public class PaulMovementPlaceholder : MonoBehaviourPun, IPunObservable {
         if ((status == PhotonArenaManager.ServerDepthLevel.InRoom) && (neighbourhoodMan != null))
         {
             myPlayerID = PhotonArenaManager.Instance.GetLocalPlayerID();
+            floatingUsernameTxt.text = PhotonArenaManager.Instance.GetLocalUsername();
             myPersonality = GetMyPersonality();
 
             SelectHat((int)myPersonality);
@@ -147,7 +151,7 @@ public class PaulMovementPlaceholder : MonoBehaviourPun, IPunObservable {
     }
 
 
-    void SelectHat(int num) {
+    public void SelectHat(int num) {
         for (int i = 0; i < hats.Count; i++) {
             if (i != num) {
                 hats[i].SetActive(false);

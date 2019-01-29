@@ -51,6 +51,8 @@ public class NeighbourhoodManager : MonoBehaviourPunCallbacks, IPunObservable  {
             if (isPositive)
             {
                 //+4 points
+                allHomes[house].currentPoints += 4;
+                allHomes[house].myPointsTxt.text = allHomes[house].currentPoints.ToString() + " pts";
             }
             else
             {
@@ -64,12 +66,16 @@ public class NeighbourhoodManager : MonoBehaviourPunCallbacks, IPunObservable  {
 
                 if (isNegative)
                 {
-                    //-2 points
-                }
+                //-2 points
+                allHomes[house].currentPoints -= 2;
+                allHomes[house].myPointsTxt.text = allHomes[house].currentPoints.ToString() + " pts";
+            }
                 else
                 {
-                    //+1 point
-                }
+                //+1 point
+                allHomes[house].currentPoints += 1;
+                allHomes[house].myPointsTxt.text = allHomes[house].currentPoints.ToString() + " pts";
+            }
             }
 
 
