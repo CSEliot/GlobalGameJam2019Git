@@ -13,13 +13,13 @@ GameObject:
   - component: {fileID: 114279444750442864}
   - component: {fileID: 114634581006805402}
   - component: {fileID: 82214865821627116}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Template
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &224823351978631840
 RectTransform:
   m_ObjectHideFlags: 0
@@ -207,7 +207,7 @@ GameObject:
   - component: {fileID: 224586095064020068}
   - component: {fileID: 222251883462266756}
   - component: {fileID: 114093898776031844}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: BackBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -254,7 +254,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.6509434, g: 0.6509434, b: 0.6509434, a: 1}
+  m_Color: {r: 0.5411765, g: 1, b: 0.9882353, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -281,7 +281,7 @@ GameObject:
   - component: {fileID: 224849802471246472}
   - component: {fileID: 222856669104568474}
   - component: {fileID: 114347989922920210}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Arrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -355,7 +355,7 @@ GameObject:
   - component: {fileID: 224850118998314362}
   - component: {fileID: 222821230173016790}
   - component: {fileID: 114119941532330148}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: BackBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -402,7 +402,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.6509434, g: 0.6509434, b: 0.6509434, a: 1}
+  m_Color: {r: 0.5411765, g: 1, b: 0.9882353, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -427,7 +427,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 224159286104126740}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: ArrowMain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -466,7 +466,7 @@ GameObject:
   - component: {fileID: 224255628245296278}
   - component: {fileID: 222463928791790046}
   - component: {fileID: 114840778743663776}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Arrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -540,7 +540,7 @@ GameObject:
   - component: {fileID: 224695993563198962}
   - component: {fileID: 222208490847276920}
   - component: {fileID: 114921210275887474}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Arrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -617,7 +617,7 @@ GameObject:
   - component: {fileID: 114146307415534800}
   - component: {fileID: 95011303169488860}
   - component: {fileID: 114203530152084154}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Btn_Template
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -788,7 +788,7 @@ GameObject:
   - component: {fileID: 114066565557662330}
   - component: {fileID: 95728273395114266}
   - component: {fileID: 114370456453595094}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Btn_Template
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -954,7 +954,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 224206662218034460}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: ArrowMain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -993,7 +993,7 @@ GameObject:
   - component: {fileID: 224201965175428680}
   - component: {fileID: 222466171034623394}
   - component: {fileID: 114681743687866916}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1049,9 +1049,8 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: BUTTON
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 4204c0f834288a947a570b6b3f3a83c4, type: 2}
-  m_sharedMaterial: {fileID: 21512098272273928, guid: 4204c0f834288a947a570b6b3f3a83c4,
-    type: 2}
+  m_fontAsset: {fileID: 0}
+  m_sharedMaterial: {fileID: 0}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1125,11 +1124,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -1157,7 +1156,7 @@ GameObject:
   - component: {fileID: 114316700380192388}
   - component: {fileID: 95361555961528332}
   - component: {fileID: 114453778198291466}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Btn_Template
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1323,7 +1322,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 224171177826539488}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: ArrowMain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1362,7 +1361,7 @@ GameObject:
   - component: {fileID: 224216975377490018}
   - component: {fileID: 222502807039061358}
   - component: {fileID: 114571555191590430}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1418,9 +1417,8 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: CUSTOM
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 4204c0f834288a947a570b6b3f3a83c4, type: 2}
-  m_sharedMaterial: {fileID: 21512098272273928, guid: 4204c0f834288a947a570b6b3f3a83c4,
-    type: 2}
+  m_fontAsset: {fileID: 0}
+  m_sharedMaterial: {fileID: 0}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1494,11 +1492,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -1523,7 +1521,7 @@ GameObject:
   - component: {fileID: 224682740958024614}
   - component: {fileID: 222037511269552706}
   - component: {fileID: 114242791676226434}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: BackBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1570,7 +1568,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.6509434, g: 0.6509434, b: 0.6509434, a: 1}
+  m_Color: {r: 0.5411765, g: 1, b: 0.9882353, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1597,7 +1595,7 @@ GameObject:
   - component: {fileID: 224156800827496424}
   - component: {fileID: 222229297630683604}
   - component: {fileID: 114251134367264938}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1653,9 +1651,8 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: TEXT
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 4204c0f834288a947a570b6b3f3a83c4, type: 2}
-  m_sharedMaterial: {fileID: 21512098272273928, guid: 4204c0f834288a947a570b6b3f3a83c4,
-    type: 2}
+  m_fontAsset: {fileID: 0}
+  m_sharedMaterial: {fileID: 0}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1729,11 +1726,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -1759,7 +1756,7 @@ GameObject:
   - component: {fileID: 222350534940228910}
   - component: {fileID: 114863877848433382}
   - component: {fileID: 95191804887096516}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Panel_Parent
   m_TagString: Untagged
   m_Icon: {fileID: 0}

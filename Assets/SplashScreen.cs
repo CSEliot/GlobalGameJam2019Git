@@ -9,6 +9,9 @@ public class SplashScreen : MonoBehaviour
     bool hasFaded = false;
     bool canFade = false;
 
+    public Camera Cam;
+    public AudioListener AudioL;
+
     void Start(){
         StartCoroutine(WaitToGiveControl());
     }
@@ -25,7 +28,9 @@ public class SplashScreen : MonoBehaviour
     IEnumerator Fade(){
         fade.SetBool("fade",true);
         yield return new WaitForSeconds(1.5f);
-        SceneManager.UnloadSceneAsync("SplashScreen");//.LoadScene("Menu");
+        //SceneManager.UnloadSceneAsync("SplashScreen");//.LoadScene("Menu");
+        Cam.depth = -100;
+        AudioL.GetComponent<AudioListener>().enabled = (false);
     }
 
     IEnumerator WaitToGiveControl(){

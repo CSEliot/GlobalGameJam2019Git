@@ -1431,7 +1431,7 @@ GameObject:
   - component: {fileID: 8522708322053583333}
   m_Layer: 5
   m_Name: HUD
-  m_TagString: Untagged
+  m_TagString: HudManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1479,7 +1479,7 @@ Canvas:
   m_GameObject: {fileID: 8522708322053583328}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
@@ -2202,7 +2202,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 983, y: -178.17}
+  m_AnchoredPosition: {x: 983, y: -178.16998}
   m_SizeDelta: {x: -1275.1, y: -384.53}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8522708322423515059
@@ -2276,7 +2276,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -38.95, y: -120}
+  m_AnchoredPosition: {x: -38.94995, y: -120}
   m_SizeDelta: {x: 77.9, y: 90.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8522708322511637265

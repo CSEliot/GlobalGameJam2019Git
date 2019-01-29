@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-//using UnityEngine.scen;
+using UnityEngine.SceneManagement;
 
 [System.Serializable]
 public class ObjAndPos
@@ -33,8 +33,9 @@ public class SpawnCharacter : MonoBehaviour
         string[] singletons = {
                 "neighborhoodManager"
             };
-
-        PhotonArenaManager.Instance.ConnectAndJoinRoom("paul", singletons);
+        if(SceneManager.sceneCount == 1) {
+            PhotonArenaManager.Instance.ConnectAndJoinRoom("paul", singletons);
+        } 
     }
 
     void Update()
