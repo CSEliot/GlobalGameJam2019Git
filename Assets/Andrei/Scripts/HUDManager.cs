@@ -39,6 +39,11 @@ public class HUDManager : MonoBehaviour
         //pageIndex = startingChecklist;
         //checklistPanels[startingChecklist].SetActive(true);
 
+        
+    }
+
+    public void StartSyncedCountdownTimer()
+    {
         StartCoundownTimer();
     }
 

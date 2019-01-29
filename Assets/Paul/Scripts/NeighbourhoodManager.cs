@@ -34,14 +34,41 @@ public class NeighbourhoodManager : MonoBehaviour, IPunObservable
 
     public void DropItemInHouseRoom(int player, int house, int room, Collectable collecto)
     {
-        if(player == house)//placing in their house evaluate for postive points
-        {
+            bool isPositive = false;
+            bool isNegative = false;
+            
+            for(int i = 0; i < collecto.traits.Count; i++)
+            {
+                if(allHomes[house].houseType == collecto.traits[i])
+                {
+                    isPositive = true;
+                }
+            }
 
-        }
-        else //placing in someone elses house
-        {
+            if (isPositive)
+            {
+                //+4 points
+            }
+            else
+            {
+                for (int i = 0; i < collecto.negativeTraits.Count; i++)
+                {
+                    if (allHomes[house].houseType == collecto.negativeTraits[i])
+                    {
+                        isNegative = true;
+                    }
+                }
 
-        }
+                if (isNegative)
+                {
+                    //-2 points
+                }
+                else
+                {
+                    //+1 point
+                }
+            }
+
 
         RemoveFromAllRooms(collecto);
         allHomes[house].allRooms[room].TakeThisObject(collecto);

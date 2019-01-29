@@ -50,7 +50,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitPts: 5
-  traits: 00000000000000000000000000000000
+  myItemRef: 0
+  traits: 030000000100000007000000
+  negativeTraits: 05000000
   roomAffinity: 4
   rby: {fileID: 7105407394822106561}
   collido: {fileID: 7105407394822106560}
@@ -108,8 +110,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 1466822140}
   - {fileID: 1466822139}
-  viewIdField: 36
-  InstantiationId: 36
+  viewIdField: 0
+  InstantiationId: 18
   isRuntimeInstantiated: 0
 --- !u!114 &1466822140
 MonoBehaviour:

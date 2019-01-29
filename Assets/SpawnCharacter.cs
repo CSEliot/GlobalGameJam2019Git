@@ -15,10 +15,10 @@ public class SpawnCharacter : MonoBehaviour
 
     public List<ObjAndPos> objsPos;
     public List<string> allObjects;
-    public List<Transform> placePoss;
 
     public NeighbourhoodManager nMan;
     public Transform placePos;
+    public List<Transform> spawnPlayerPos = new List<Transform>();
     private bool isPlayerCreated;
     public GameObject cam;
 
@@ -36,6 +36,9 @@ public class SpawnCharacter : MonoBehaviour
         {
             if (PhotonArenaManager.Instance.CurrentServerUserDepth == PhotonArenaManager.ServerDepthLevel.InRoom)
             {
+
+                Debug.Log("Set player pos fix");
+                //GameObject newPlayer = PhotonArenaManager.Instance.SpawnPlayer(spawnPlayerPos[photonView.ViewID].position, spawnPlayerPos[photonView.ViewID].rotation);
                 GameObject newPlayer = PhotonArenaManager.Instance.SpawnPlayer(placePos.position, placePos.rotation);
 
                 if(newPlayer != null)

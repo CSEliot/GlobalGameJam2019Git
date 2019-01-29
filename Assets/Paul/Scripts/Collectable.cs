@@ -15,6 +15,8 @@ public class Collectable : MonoBehaviour
 
     public List<PersonalityType> traits = new List<PersonalityType>();
 
+    public List<PersonalityType> negativeTraits = new List<PersonalityType>();
+
     public RoomType roomAffinity = RoomType.Store;
 
     public Rigidbody rby;

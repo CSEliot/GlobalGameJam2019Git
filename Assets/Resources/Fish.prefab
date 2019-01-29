@@ -178,6 +178,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitPts: 5
+  myItemRef: 0
   traits: 00000000000000000000000000000000
   roomAffinity: 4
   rby: {fileID: 3387254534178351601}
