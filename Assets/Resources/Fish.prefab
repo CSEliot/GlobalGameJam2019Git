@@ -180,6 +180,7 @@ MonoBehaviour:
   hitPts: 5
   myItemRef: 0
   traits: 00000000000000000000000000000000
+  negativeTraits: 
   roomAffinity: 4
   rby: {fileID: 3387254534178351601}
   collido: {fileID: 8581895957267986731}

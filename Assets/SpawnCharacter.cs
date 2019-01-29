@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+//using UnityEngine.scen;
 
 [System.Serializable]
 public class ObjAndPos
@@ -27,7 +28,12 @@ public class SpawnCharacter : MonoBehaviour
     void Start()
     {
         isPlayerCreated = false;
-        //PhotonArenaManager.Instance.ConnectAndJoinRoom("paul");
+
+        string[] singletons = {
+                "neighborhoodManager"
+            };
+
+        PhotonArenaManager.Instance.ConnectAndJoinRoom("paul", singletons);
     }
 
     void Update()

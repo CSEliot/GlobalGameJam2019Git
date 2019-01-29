@@ -62,6 +62,11 @@ public class PhotonArenaManager : Singleton<PhotonArenaManager>
     }
 
     public void ConnectAndJoinRoom(string username, string[] singletons) {
+        if(CurrentServerUserDepth != ServerDepthLevel.Offline) {
+            CBUG.Do("Redundant connect call! Already at " + CurrentServerUserDepth.ToString());
+            return;
+        }
+
         CBUG.Do("Connecting!");
         PhotonNetwork.GameVersion = "BlueCouch";
 
@@ -159,10 +164,12 @@ public class PhotonArenaManager : Singleton<PhotonArenaManager>
 
     public void SaveData(string label, System.Object data) {
         if (CurrentServerUserDepth == ServerDepthLevel.Offline) {
+            _fakeServer.DataStore.Remove(label);
             _fakeServer.DataStore.Add(label, data);
         }
         else if (CurrentServerUserDepth == ServerDepthLevel.InRoom) {
             ExitGames.Client.Photon.Hashtable roomProps = PhotonNetwork.CurrentRoom.CustomProperties;
+            roomProps.Remove(label);
             roomProps.Add(label, data);
             PhotonNetwork.CurrentRoom.SetCustomProperties(roomProps);
         }

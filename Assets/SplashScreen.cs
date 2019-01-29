@@ -25,7 +25,7 @@ public class SplashScreen : MonoBehaviour
     IEnumerator Fade(){
         fade.SetBool("fade",true);
         yield return new WaitForSeconds(1.5f);
-        SceneManager.LoadScene("Menu");
+        SceneManager.UnloadSceneAsync("SplashScreen");//.LoadScene("Menu");
     }
 
     IEnumerator WaitToGiveControl(){

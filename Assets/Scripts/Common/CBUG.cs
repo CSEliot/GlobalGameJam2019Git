@@ -260,7 +260,9 @@ public class CBUG : MonoBehaviour {
     {
         _Print("ERROR <~> " + line);
         Debug.Log("ERROR <~> " + line);
-        logText.color = Color.red;
+        if (logText != null) {
+            logText.color = Color.red;
+        }
     }
 
     private void _SrsError(string line)
