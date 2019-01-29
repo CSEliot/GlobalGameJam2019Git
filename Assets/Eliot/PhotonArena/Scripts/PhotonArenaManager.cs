@@ -178,7 +178,7 @@ public class PhotonArenaManager : Singleton<PhotonArenaManager>
             CBUG.SrsError("No singleton is available for name: " + singletonName);
             return null;
         }
-        singletons.Add(singleton);
+        singletons.Add(singletonName, singleton);
         return singleton;
     }
 

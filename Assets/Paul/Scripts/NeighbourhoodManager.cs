@@ -22,9 +22,6 @@ public class NeighbourhoodManager : MonoBehaviourPunCallbacks, IPunObservable  {
         }
     }
 
-    public override void OnConnected() {
-    }
-
     void IPunObservable.OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
 
     }
