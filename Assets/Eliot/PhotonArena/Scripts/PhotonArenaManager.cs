@@ -48,6 +48,12 @@ public class PhotonArenaManager : Singleton<PhotonArenaManager>
     private Dictionary<string, GameObject> singletons;
     private bool needsNewRoom;
 
+    private RoomOptions roomOptions = new RoomOptions() {
+        MaxPlayers = 9,
+        CustomRoomProperties = new Hashtable() { {"GameStartTime", -1} },
+        CustomRoomPropertiesForLobby = new string[] { "GameStartTime"}
+    };
+
     private ServerDepthLevel currentServerUserDepth = ServerDepthLevel.Offline;
     public static class Constants {
         public static readonly Vector3 DefaultSpawnLoc = Vector3.one;
@@ -324,7 +330,8 @@ public class PhotonArenaManager : Singleton<PhotonArenaManager>
         base.OnConnectedToMaster();
 
         CBUG.Do("Connected To Master! Joining Lobby ...");
-        bool success = PhotonNetwork.JoinLobby();
+        TypedLobby sqlLobby = new TypedLobby("Lobby", LobbyType.SqlLobby);
+        bool success = PhotonNetwork.JoinLobby(sqlLobby);
 
         if (!success) {
             CBUG.Do("PunCockpit: Could not join Lobby ...");
@@ -341,9 +348,12 @@ public class PhotonArenaManager : Singleton<PhotonArenaManager>
         CBUG.Log("Lobby Joined!");
         CBUG.Log("Joining Random Room ...");
         if(needsNewRoom) {
+
             PhotonNetwork.CreateRoom(null, new RoomOptions() { MaxPlayers = 9, CleanupCacheOnLeave = false }, null);
+
         }
         else {
+            //string sqlLobbyFilter = "GameStartTime = -1"; //todo ??? implement sql lobbying
             PhotonNetwork.JoinRandomRoom();
         }
         currentServerUserDepth = ServerDepthLevel.InLobby;

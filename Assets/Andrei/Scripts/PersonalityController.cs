@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using Photon.Pun;
 
 [System.Serializable]
 public class PersonalityController : MonoBehaviour
@@ -162,6 +163,8 @@ public class PersonalityController : MonoBehaviour
         PhotonArenaManager.Instance.SaveData($"score!{playerNum}", score);
 
         _testEnded = true;
+
+        PhotonNetwork.CurrentRoom.IsVisible = false;
 
 /*        //test code
         var scores = new Dictionary<int, int[]>();

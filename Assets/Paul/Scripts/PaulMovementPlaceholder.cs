@@ -107,8 +107,10 @@ public class PaulMovementPlaceholder : MonoBehaviourPun, IPunObservable {
 
         if (photonView.IsMine) {
             Cursor.lockState = CursorLockMode.Locked;
+            gameObject.tag = "LocalPlayer";
         }
         else {
+            gameObject.tag = "RemotePlayer";
             camRef.gameObject.SetActive(false);
         }
 
