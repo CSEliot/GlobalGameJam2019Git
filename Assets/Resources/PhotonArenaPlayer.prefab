@@ -291,6 +291,16 @@ MonoBehaviour:
   floatingUsernameTxt: {fileID: 2694148372652176193}
   positiveObj: {fileID: 9168332278496904127}
   negativeObj: {fileID: 9097965256997298856}
+  isGroundedRayLength: 0.1
+  layerMaskForGrounded:
+    serializedVersion: 2
+    m_Bits: 8193
+  VerticalVector: 0
+  GravityVector: 0
+  JumpVector: 0
+  transVector: {x: 0, y: 0, z: 0}
+  sideVector: {x: 0, y: 0, z: 0}
+  MovementVector: {x: 0, y: 0, z: 0}
 --- !u!54 &1373540790373168072
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -327,7 +337,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 1373540790373168075}
   - {fileID: 6634831885614516738}
-  viewIdField: 49
+  viewIdField: 0
   InstantiationId: 49
   isRuntimeInstantiated: 0
 --- !u!114 &6634831885614516738
@@ -929,10 +939,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1373540790373168074}
     m_Modifications:
-    - target: {fileID: 100012, guid: e49ad34d026fd6742b785c450bf00d6a, type: 3}
-      propertyPath: m_Name
-      value: CharacterMesh
-      objectReference: {fileID: 0}
     - target: {fileID: 9500000, guid: e49ad34d026fd6742b785c450bf00d6a, type: 3}
       propertyPath: m_Controller
       value: 
@@ -992,6 +998,10 @@ PrefabInstance:
     - target: {fileID: 400012, guid: e49ad34d026fd6742b785c450bf00d6a, type: 3}
       propertyPath: m_LocalScale.z
       value: 0.33961
+      objectReference: {fileID: 0}
+    - target: {fileID: 100012, guid: e49ad34d026fd6742b785c450bf00d6a, type: 3}
+      propertyPath: m_Name
+      value: CharacterMesh
       objectReference: {fileID: 0}
     - target: {fileID: 2300016, guid: e49ad34d026fd6742b785c450bf00d6a, type: 3}
       propertyPath: m_Materials.Array.data[0]

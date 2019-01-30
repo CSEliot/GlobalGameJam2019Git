@@ -84,6 +84,13 @@ public class PaulMovementPlaceholder : MonoBehaviourPun, IPunObservable {
     public float isGroundedRayLength = 0.1f;
     public LayerMask layerMaskForGrounded;
 
+    public float VerticalVector;
+    public float GravityVector;
+    public float JumpVector;
+    public Vector3 transVector;
+    public Vector3 sideVector;
+    public Vector3 MovementVector;
+
 
     void Awake() {
 
@@ -183,9 +190,8 @@ public class PaulMovementPlaceholder : MonoBehaviourPun, IPunObservable {
             return grounded;
         }
     }
-    /*
+    
     void CalculateFalling()
-
     {
         if (isGrounded)
         {
@@ -194,36 +200,39 @@ public class PaulMovementPlaceholder : MonoBehaviourPun, IPunObservable {
             {
                 Jump();
             }
-            VerticalVector = rb.velocity.y - GravityVector + JumpVector;
-            if (JumpVector < .9)
+            VerticalVector = rby.velocity.y - GravityVector + JumpVector;
+            if (JumpVector < .1f)
             {
                 JumpVector = 0;
+            }
+            else
+            {
+                JumpVector = Mathf.Lerp(JumpVector, 0f, Time.deltaTime * Mathf.Clamp(9f / JumpVector, .1f, 2f));
             }
 
         }
         else
         {
-            VerticalVector = rb.velocity.y - GravityVector + JumpVector;
-            GravityVector += Time.deltaTime * 3;
+            VerticalVector = rby.velocity.y - GravityVector + JumpVector;
+            GravityVector = Mathf.Clamp(GravityVector + (Time.deltaTime * 3), 0f, 50f);
 
-            JumpVector = Mathf.Lerp(JumpVector, 0, Time.deltaTime * 1.5f / JumpVector);
+            JumpVector = Mathf.Lerp(JumpVector, 0f, Time.deltaTime * Mathf.Clamp(9f / JumpVector, .1f, 2f));
         }
     }
 
     
     void CalculateCamPlayerRotation()
     {
-        CamRotation = transform.localEulerAngles;
+        //CamRotation = transform.localEulerAngles;
 
-        CamRotation.y += Input.GetAxis("Mouse_X") * 1.5f;
+        //CamRotation.y += Input.GetAxis("Mouse_X") * 1.5f;
 
-        transform.localEulerAngles = CamRotation;
-
+        //transform.localEulerAngles = CamRotation;
     }
 
     void Jump()
     {
-        JumpVector = 1f;
+        JumpVector = .7f;
     }
 
     void CalculatePlayerMovement()
@@ -234,13 +243,22 @@ public class PaulMovementPlaceholder : MonoBehaviourPun, IPunObservable {
         if (isGrounded)
         {
 
-            MovementVector = (transVector * Input.GetAxis("Vertical") * Speed) + (sideVector * Input.GetAxis("Horizontal") * Speed * .8f);
+            MovementVector = (transVector * Input.GetAxis("Vertical") * speed) + (sideVector * Input.GetAxis("Horizontal") * speed);
         }
         MovementVector.y = VerticalVector;
 
+        if (MovementVector.x == 0 && MovementVector.z == 0)
+        {
+            meshRotater.rotation = Quaternion.LookRotation(this.transform.forward, Vector3.up);
+        }
+        else
+        {
+            meshRotater.rotation = Quaternion.LookRotation(new Vector3(MovementVector.x, 0, MovementVector.z), Vector3.up);
+        }
+
 
     }
-    */
+
     void Update() {
 
         /* CalculateFalling();
@@ -262,80 +280,28 @@ public class PaulMovementPlaceholder : MonoBehaviourPun, IPunObservable {
 
             if (!waitForStart)
             {
-                //RAY
-                // Check if on ground
-                /*
-                if (!onGround && Physics.Raycast(transform.position + Vector3.down * 0.9f, Vector3.down, 0.5f))
-                {
-                    //fixNetGuessWork();
-                    onGround = true;
-                    //GravY += 1f;
-                }
-                else
-                {
-                    onGround = Physics.Raycast(transform.position + Vector3.down * 0.9f, Vector3.down, 0.5f);
-                    GravY -= 9.81f * Time.deltaTime;
-                }
-                */
 
-        bool grounded = (Physics.Raycast(downCaster.position, Vector3.down, .5f, LayerMask.NameToLayer("Ground"))); // raycast down to look for ground is not detecting ground? only works if allowing jump when grounded = false; // return "Ground" layer as layer
-
-                if (grounded == true)
-                {
-                    if (previouslyInAir)
-                    {
-                        GravY = 0;
-                        previouslyInAir = false;
-                    }
-                    GravY += 1f;
-
-                    Debug.Log("grounded!");
-                    //jump();
-                }
-                else
-                {
-                    previouslyInAir = true;
-                    GravY -= 9.81f * Time.deltaTime;
-                }
-                
-                //CAST
+                CalculateFalling();
+                //CalculateCamPlayerRotation();
 
                 if (playerState == PlayerState.Normal || playerState == PlayerState.Holding)
                 {
 
-                    rVelocity = ((this.transform.forward * speed) * Input.GetAxis("Vertical")) +
-                        ((this.transform.right * speed) * Input.GetAxis("Horizontal"));
+                    CalculatePlayerMovement();
 
                     if (Input.GetAxis("Vertical") == 0 && Input.GetAxis("Horizontal") == 0)
                     {
-                        //previouslyInAir = true;
-                        //GravY = -9.81f;
                         targetSpeed = 0f;
                     }
                     else
                     {
                         targetSpeed = 1f;
                     }
-                    animSpeed = Mathf.Lerp(animSpeed, targetSpeed, Time.deltaTime * 5f);
-                    charAnim.SetFloat("Speed", animSpeed);
+                    
+                   
+                    this.transform.Rotate(new Vector3(0, Input.GetAxis("Mouse X") * 1.5f, 0));
 
-                    rVelocity.y = GravY;
-                    rby.velocity = rVelocity;
-                    this.transform.Rotate(new Vector3(0, Input.GetAxis("Mouse X"), 0));
-
-                    if (rVelocity.x == 0 && rVelocity.z == 0)
-                    {
-                        meshRotater.rotation = Quaternion.LookRotation(this.transform.forward, Vector3.up);
-                        
-                            
-                    }
-                    else
-                    {
-                        meshRotater.rotation = Quaternion.LookRotation(new Vector3(rVelocity.x, 0, rVelocity.z), Vector3.up);
-
-                        
-                    }
-
+                   
                     if (Input.GetButtonDown("Attack"))
                     {
                         if (!lClickDown)
@@ -353,13 +319,13 @@ public class PaulMovementPlaceholder : MonoBehaviourPun, IPunObservable {
                     {
                         RightClick();
                     }
-
-                    if (Input.GetButton("Jump"))
-                    {
-                        //Debug.Log("simulate get hit");
-                        //GetHit();
-                    }
                 }
+
+                animSpeed = Mathf.Lerp(animSpeed, targetSpeed, Time.deltaTime * 5f);
+                charAnim.SetFloat("Speed", animSpeed);
+
+
+                rby.velocity = Vector3.Lerp(rby.velocity, MovementVector, Time.deltaTime * 100);
             }
         }
     }
