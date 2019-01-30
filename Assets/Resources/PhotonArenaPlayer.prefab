@@ -294,7 +294,13 @@ MonoBehaviour:
   isGroundedRayLength: 0.1
   layerMaskForGrounded:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8193
+  VerticalVector: 0
+  GravityVector: 0
+  JumpVector: 0
+  transVector: {x: 0, y: 0, z: 0}
+  sideVector: {x: 0, y: 0, z: 0}
+  MovementVector: {x: 0, y: 0, z: 0}
 --- !u!54 &1373540790373168072
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -331,7 +337,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 1373540790373168075}
   - {fileID: 6634831885614516738}
-  viewIdField: 49
+  viewIdField: 0
   InstantiationId: 49
   isRuntimeInstantiated: 0
 --- !u!114 &6634831885614516738
