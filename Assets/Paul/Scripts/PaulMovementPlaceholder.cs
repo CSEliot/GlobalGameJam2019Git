@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using TMPro;
 using Photon.Pun;
 
@@ -91,6 +92,7 @@ public class PaulMovementPlaceholder : MonoBehaviourPun, IPunObservable {
     public Vector3 sideVector;
     public Vector3 MovementVector;
 
+    public bool gameOver;
 
     void Awake() {
 
@@ -225,6 +227,7 @@ public class PaulMovementPlaceholder : MonoBehaviourPun, IPunObservable {
     
     void CalculateCamPlayerRotation()
     {
+        
         //CamRotation = transform.localEulerAngles;
 
         //CamRotation.y += Input.GetAxis("Mouse_X") * 1.5f;
@@ -245,7 +248,8 @@ public class PaulMovementPlaceholder : MonoBehaviourPun, IPunObservable {
         if (isGrounded)
         {
 
-            MovementVector = (transVector * Input.GetAxis("Vertical") * speed) + (sideVector * Input.GetAxis("Horizontal") * speed);
+            MovementVector = (transVector * Input.GetAxis("Vertical") ) + (sideVector * Input.GetAxis("Horizontal") * speed);
+            MovementVector = MovementVector.normalized * speed;
         }
         MovementVector.y = VerticalVector;
 
@@ -328,8 +332,31 @@ public class PaulMovementPlaceholder : MonoBehaviourPun, IPunObservable {
 
 
                 rby.velocity = Vector3.Lerp(rby.velocity, MovementVector, Time.deltaTime * 100);
+
             }
         }
+    }
+
+    void CalculateEndGame()
+    {
+
+        if (!gameOver)
+        {
+
+            int TimeRemainingInSeconds = (5 * 60 * 1000) - PhotonArenaManager.Instance.GetClock() - ((int)PhotonArenaManager.Instance.GetData("GameStartTime") + (63 * 1000));
+
+            if (TimeRemainingInSeconds <= 0)
+            {
+                gameOver = true;
+                ShowEndGame();
+            }
+        }
+    }
+
+    void ShowEndGame()
+    {
+        waitForStart = true;
+        SceneManager.LoadScene(0);
     }
 
     void OnTriggerEnter(Collider col)
