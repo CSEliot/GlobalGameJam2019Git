@@ -4,6 +4,7 @@ using UnityEditor;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
+using Photon.Pun;
 
 public class UIManager : MonoBehaviour {
 
@@ -99,6 +100,9 @@ public class UIManager : MonoBehaviour {
                         SceneManager.LoadScene("PersonalitySelection");
                         SceneManager.UnloadSceneAsync("Menu");
                     } else {
+                        foreach (var photonObj in GameObject.FindGameObjectsWithTag("LocalPlayer")) {
+                            PhotonNetwork.LocalCleanPhotonView(photonObj.GetComponent<PhotonView>());
+                        }
                         PhotonArenaManager.Instance.NewRoom();
                     }
                 }
