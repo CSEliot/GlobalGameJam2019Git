@@ -518,6 +518,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f41fee04e72bf24d96dc881c9a059d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentPoints: 0
   homeRef: 1
   houseType: 1
   allRooms:
@@ -2472,7 +2473,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &8200295675343144821
 Transform:
@@ -2549,7 +2550,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &8200295675343144823
 Transform:
