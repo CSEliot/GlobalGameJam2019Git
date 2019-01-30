@@ -80,11 +80,15 @@ public class PaulMovementPlaceholder : MonoBehaviourPun, IPunObservable {
     public GameObject positiveObj;//Particle effects
     public GameObject negativeObj;
 
+    //new movement
+    public float isGroundedRayLength = 0.1f;
+    public LayerMask layerMaskForGrounded;
+
+
     void Awake() {
 
         if (!blockNet)
         {
-
             StartCoroutine("StartNet");
         }
     }
@@ -165,7 +169,87 @@ public class PaulMovementPlaceholder : MonoBehaviourPun, IPunObservable {
         }
     }
 
+    //new movement:
+    public bool isGrounded
+    {
+        get
+        {
+            Vector3 position = transform.position;
+            position.y = GetComponent<Collider>().bounds.min.y + 0.1f;
+            float length = isGroundedRayLength + 0.1f;
+            Debug.DrawRay(position, Vector3.down * length);
+            bool grounded = Physics.Raycast(position, Vector3.down, length, layerMaskForGrounded.value);
+
+            return grounded;
+        }
+    }
+    /*
+    void CalculateFalling()
+
+    {
+        if (isGrounded)
+        {
+            GravityVector = 0;
+            if (Input.GetButton("Jump"))
+            {
+                Jump();
+            }
+            VerticalVector = rb.velocity.y - GravityVector + JumpVector;
+            if (JumpVector < .9)
+            {
+                JumpVector = 0;
+            }
+
+        }
+        else
+        {
+            VerticalVector = rb.velocity.y - GravityVector + JumpVector;
+            GravityVector += Time.deltaTime * 3;
+
+            JumpVector = Mathf.Lerp(JumpVector, 0, Time.deltaTime * 1.5f / JumpVector);
+        }
+    }
+
+    
+    void CalculateCamPlayerRotation()
+    {
+        CamRotation = transform.localEulerAngles;
+
+        CamRotation.y += Input.GetAxis("Mouse_X") * 1.5f;
+
+        transform.localEulerAngles = CamRotation;
+
+    }
+
+    void Jump()
+    {
+        JumpVector = 1f;
+    }
+
+    void CalculatePlayerMovement()
+    {
+        transVector = this.transform.TransformDirection(0, 0, 1);
+        sideVector = this.transform.TransformDirection(1, 0, 0);
+
+        if (isGrounded)
+        {
+
+            MovementVector = (transVector * Input.GetAxis("Vertical") * Speed) + (sideVector * Input.GetAxis("Horizontal") * Speed * .8f);
+        }
+        MovementVector.y = VerticalVector;
+
+
+    }
+    */
     void Update() {
+
+        /* CalculateFalling();
+        CalculateCamPlayerRotation();
+        CalculatePlayerMovement();
+
+        rb.velocity = Vector3.Lerp(rb.velocity, MovementVector, Time.deltaTime * 100);
+        */
+
 
         if (!_playerInitialized)
         {
@@ -193,8 +277,8 @@ public class PaulMovementPlaceholder : MonoBehaviourPun, IPunObservable {
                     GravY -= 9.81f * Time.deltaTime;
                 }
                 */
-                
-                bool grounded = (Physics.Raycast(downCaster.position, Vector3.down, .5f, LayerMask.NameToLayer("Ground"))); // raycast down to look for ground is not detecting ground? only works if allowing jump when grounded = false; // return "Ground" layer as layer
+
+        bool grounded = (Physics.Raycast(downCaster.position, Vector3.down, .5f, LayerMask.NameToLayer("Ground"))); // raycast down to look for ground is not detecting ground? only works if allowing jump when grounded = false; // return "Ground" layer as layer
 
                 if (grounded == true)
                 {
