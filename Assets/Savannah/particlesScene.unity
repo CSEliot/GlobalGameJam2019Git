@@ -20364,6 +20364,11 @@ PrefabInstance:
       propertyPath: ColorModule.gradient.maxGradient.ctime2
       value: 41056
       objectReference: {fileID: 0}
+    - target: {fileID: 7401847257196933935, guid: 276d9bcc6e9c8854797bf2fcf5084c8f,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 63
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 276d9bcc6e9c8854797bf2fcf5084c8f, type: 3}
 --- !u!1001 &2803741896254335678

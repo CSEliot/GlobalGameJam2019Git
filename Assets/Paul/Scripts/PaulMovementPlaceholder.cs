@@ -499,7 +499,7 @@ public class PaulMovementPlaceholder : MonoBehaviourPun, IPunObservable {
             if(pos == true)
             {
                 positiveObj.SetActive(true);
-                Invoke("TurnOffParticleFx", 3f);
+                Invoke("TurnOffParticleFx", 1.5f);
             }
             else
             {
@@ -515,7 +515,7 @@ public class PaulMovementPlaceholder : MonoBehaviourPun, IPunObservable {
                 if (neg == true)
                 {
                     negativeObj.SetActive(true);
-                    Invoke("TurnOffParticleFx", 3f);
+                    Invoke("TurnOffParticleFx", 1.5f);
                 }
             }
         }
@@ -591,6 +591,7 @@ public class PaulMovementPlaceholder : MonoBehaviourPun, IPunObservable {
         }
 
         StopAllCoroutines();
+        TurnOffParticleFx();
         //hitboxAttack.SetActive(false);
         charAnim.SetBool("Packing", false);
         detector.hasNearObj = false;
