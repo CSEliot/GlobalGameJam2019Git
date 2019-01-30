@@ -30,12 +30,10 @@ public class SpawnCharacter : MonoBehaviour
     {
         isPlayerCreated = false;
 
-        string[] singletons = {
-                "neighborhoodManager"
-            };
+        string[] singletons = {};
         if(SceneManager.sceneCount == 1) {
             PhotonArenaManager.Instance.ConnectAndJoinRoom("paul", singletons);
-        } 
+        }
     }
 
     void Update()

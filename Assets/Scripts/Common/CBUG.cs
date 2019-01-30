@@ -205,7 +205,10 @@ public class CBUG : MonoBehaviour {
         GameObject myCBUG = GameObject.FindGameObjectWithTag("CBUG");
         if(myCBUG == null)
         {
-            return new CBUG(true);
+            myCBUG = Instantiate(Resources.Load("CBUG_Canvas") as GameObject);
+            GameObject cbugCam = Instantiate(Resources.Load("CBUG_Camera") as GameObject);
+            myCBUG.GetComponent<Canvas>().worldCamera = cbugCam.GetComponent<Camera>();
+            return myCBUG.GetComponent<CBUG>();
         }
         else
         {

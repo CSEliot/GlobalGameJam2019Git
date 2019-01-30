@@ -136,6 +136,7 @@ public class PhotonArenaManager : Singleton<PhotonArenaManager>
     }
 
     public System.Object GetData(string label) {
+        //todo ??? Make generic
         bool containsData = true;
         if (CurrentServerUserDepth == ServerDepthLevel.Offline) {
             if (_fakeServer.DataStore.ContainsKey(label)) {
@@ -187,6 +188,12 @@ public class PhotonArenaManager : Singleton<PhotonArenaManager>
         }
         singletons.Add(singletonName, singleton);
         return singleton;
+    }
+
+    public void NewRoom() {
+        PhotonNetwork.LeaveRoom();
+        CBUG.Log("Creating new room. Creating a room ...");
+        PhotonNetwork.CreateRoom(null, new RoomOptions() { MaxPlayers = 9, CleanupCacheOnLeave = false }, null);
     }
 
     public GameObject SpawnObject(string resourceName) {
@@ -277,6 +284,10 @@ public class PhotonArenaManager : Singleton<PhotonArenaManager>
         }
     }
 
+    public bool IsNewDataAvailable() {
+        return newData;
+    }
+
     #region PUN OVERRIDES
     public override void OnConnected() {
         base.OnConnected();
@@ -311,6 +322,8 @@ public class PhotonArenaManager : Singleton<PhotonArenaManager>
     public override void OnDisconnected(DisconnectCause cause) {
         CBUG.Log("OnDisconnected(" + cause + ")");
     }
+
+    //public override void On
 
     public override void OnJoinedRoom() {
         CBUG.Log("Joined Room!");

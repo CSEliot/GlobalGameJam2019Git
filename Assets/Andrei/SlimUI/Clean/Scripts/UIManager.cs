@@ -66,6 +66,10 @@ public class UIManager : MonoBehaviour {
 	int waitForPlayers = 0;
 	int players = 0;
 	int quizStartTime = -1;
+
+    int quizTimeLength = 60;
+    int waitForPlayersTimeLength = 5;
+    int waitToFinishTesTimeLength = 3;
 	
 	// Just for reloading the scene! You can delete this function entirely if you want to
 	void Update(){
@@ -77,48 +81,23 @@ public class UIManager : MonoBehaviour {
 
 		if (PhotonArenaManager.Instance.CurrentServerUserDepth == PhotonArenaManager.ServerDepthLevel.InRoom)
 		{
-			// Has game already started? 
-			var gameStartData = PhotonArenaManager.Instance.GetData("GameStartTime");
+            if (PhotonArenaManager.Instance.GetRoom().PlayerCount > 1){
+                // Has game already started? 
+                var gameStartData = PhotonArenaManager.Instance.GetData("GameStartTime");
 
-			if (gameStartData != null)
-			{
-				var gameStartTime = (int)gameStartData;
-				if (PhotonArenaManager.Instance.GetClock() > gameStartTime)
-				{
-					SceneManager.LoadScene("Menu");
-				}
-			}
+                if( gameStartData == null) {
+                    PhotonArenaManager.Instance.SaveData("GameStartTime", PhotonArenaManager.Instance.GetClock());
+                } else {
+				    int gameStartTime = (int)gameStartData;
+				    if (PhotonArenaManager.Instance.GetClock() - gameStartTime > quizTimeLength)
+				    {
+                        PhotonArenaManager.Instance.NewRoom();
 
-			// if room more than 1 player, load personality test
-			if(PhotonArenaManager.Instance.GetRoom().PlayerCount > 1){
-				SceneManager.LoadScene("PersonalitySelection");
-			}
-
-			/* 
-			if (quizStartTime == -1)
-			{
-				var quizStartData = PhotonArenaManager.Instance.GetData("QuizStartTime");
-
-				if (quizStartData == null)
-				{
-					var startTime = PhotonArenaManager.Instance.GetClock() + 60000;
-					quizStartTime = startTime;
-					PhotonArenaManager.Instance.SaveData("QuizStartTime", quizStartTime);
-				}
-				else
-				{
-					quizStartTime = (int)quizStartData;
-				}
-			}
-
-
-			var curTime = PhotonArenaManager.Instance.GetClock();
-			if (curTime >= quizStartTime)
-			{
-
-				
-			}
-			*/
+				        SceneManager.LoadScene("PersonalitySelection");
+                        SceneManager.UnloadSceneAsync("Menu");
+				    }
+                }
+            }
 		}
 	}
 
@@ -266,7 +245,7 @@ public class UIManager : MonoBehaviour {
 	public void ConfirmOnlineTag(){
 		if(tagInputField.text != ""){
             string[] singletons = {
-                "neighborhoodManager"
+                ""
             };
             PhotonArenaManager.Instance.ConnectAndJoinRoom(onlineTag, singletons);
 		}
