@@ -100,7 +100,8 @@ public class NeighbourhoodManager : MonoBehaviourPunCallbacks, IPunObservable  {
     }
 
 
- /*   Foreach(house.rooms)
+ /*
+        Foreach(house.rooms)
 
         Foreach(obj)
 
@@ -112,7 +113,8 @@ public class NeighbourhoodManager : MonoBehaviourPunCallbacks, IPunObservable  {
 				Sub 6
 				
 		If(objs.count(obj.affinity == room.type) == room.slots)
-			Add room.points */
+			Add room.points
+*/
 
 
     public int GetHouseScore(int house)

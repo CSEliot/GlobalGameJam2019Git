@@ -46,8 +46,9 @@ public class PhotonArenaManager : Singleton<PhotonArenaManager>
     private bool newData;
     private List<string> singletonNames;
     private Dictionary<string, GameObject> singletons;
+    private bool needsNewRoom;
 
-    public ServerDepthLevel CurrentServerUserDepth = ServerDepthLevel.Offline;
+    private ServerDepthLevel currentServerUserDepth = ServerDepthLevel.Offline;
     public static class Constants {
         public static readonly Vector3 DefaultSpawnLoc = Vector3.one;
     }
@@ -59,6 +60,7 @@ public class PhotonArenaManager : Singleton<PhotonArenaManager>
         newData = false;
         singletonNames = new List<string>();
         singletons = new Dictionary<string, GameObject>();
+        needsNewRoom = false;
     }
 
     public void ConnectAndJoinRoom(string username, string[] singletons) {
@@ -105,6 +107,19 @@ public class PhotonArenaManager : Singleton<PhotonArenaManager>
         }
     }
 
+    public ServerDepthLevel CurrentServerUserDepth {
+        get {
+            if(PhotonNetwork.InRoom) {
+                currentServerUserDepth = ServerDepthLevel.InRoom;
+            } else if (PhotonNetwork.InLobby) {
+                currentServerUserDepth = ServerDepthLevel.InLobby;
+            } else if (!PhotonNetwork.IsConnectedAndReady) {
+                currentServerUserDepth = ServerDepthLevel.Offline;
+            }
+            return currentServerUserDepth;
+        }
+    }
+
     /// <summary>
     /// Time in Milliseconds. Use this to sync!
     /// </summary>
@@ -113,6 +128,16 @@ public class PhotonArenaManager : Singleton<PhotonArenaManager>
         if (CurrentServerUserDepth == ServerDepthLevel.Offline) {
             //            return DateTime.Now.TimeOfDay.Milliseconds;
             return Convert.ToInt32((DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond) & int.MaxValue);
+        }
+        else {
+            return PhotonNetwork.ServerTimestamp;
+        }
+    }
+
+    public int GetClockInSeconds() {
+        if (CurrentServerUserDepth == ServerDepthLevel.Offline) {
+            //            return DateTime.Now.TimeOfDay.Milliseconds;
+            return Convert.ToInt32((DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond) & int.MaxValue) / 60;
         }
         else {
             return PhotonNetwork.ServerTimestamp;
@@ -175,7 +200,7 @@ public class PhotonArenaManager : Singleton<PhotonArenaManager>
             PhotonNetwork.CurrentRoom.SetCustomProperties(roomProps);
         }
         else {
-            CBUG.Error("SaveData only available when Offline or InRoom, this was called at " + CurrentServerUserDepth.ToString() + ".");
+            CBUG.Error("SaveData only available when Offline or InRoom, this was called at  " + CurrentServerUserDepth.ToString() + ".");
         }
     }
 
@@ -192,8 +217,8 @@ public class PhotonArenaManager : Singleton<PhotonArenaManager>
 
     public void NewRoom() {
         PhotonNetwork.LeaveRoom();
-        CBUG.Log("Creating new room. Creating a room ...");
-        PhotonNetwork.CreateRoom(null, new RoomOptions() { MaxPlayers = 9, CleanupCacheOnLeave = false }, null);
+        CBUG.Log("Leaving current room ...");
+        needsNewRoom = true;
     }
 
     public GameObject SpawnObject(string resourceName) {
@@ -292,7 +317,7 @@ public class PhotonArenaManager : Singleton<PhotonArenaManager>
     public override void OnConnected() {
         base.OnConnected();
         CBUG.Do("Connected!");
-        CurrentServerUserDepth = ServerDepthLevel.InServer;
+        currentServerUserDepth = ServerDepthLevel.InServer;
     }
 
     public override void OnConnectedToMaster() {
@@ -315,8 +340,13 @@ public class PhotonArenaManager : Singleton<PhotonArenaManager>
     public override void OnJoinedLobby() {
         CBUG.Log("Lobby Joined!");
         CBUG.Log("Joining Random Room ...");
-        PhotonNetwork.JoinRandomRoom();
-        CurrentServerUserDepth = ServerDepthLevel.InLobby;
+        if(needsNewRoom) {
+            PhotonNetwork.CreateRoom(null, new RoomOptions() { MaxPlayers = 9, CleanupCacheOnLeave = false }, null);
+        }
+        else {
+            PhotonNetwork.JoinRandomRoom();
+        }
+        currentServerUserDepth = ServerDepthLevel.InLobby;
     }
 
     public override void OnDisconnected(DisconnectCause cause) {
@@ -326,9 +356,9 @@ public class PhotonArenaManager : Singleton<PhotonArenaManager>
     //public override void On
 
     public override void OnJoinedRoom() {
-        CBUG.Log("Joined Room!");
+        CBUG.Log("Joined Room! Total Players: " + PhotonNetwork.CurrentRoom.PlayerCount);
 
-        CurrentServerUserDepth = ServerDepthLevel.InRoom;
+        currentServerUserDepth = ServerDepthLevel.InRoom;
 
         SaveData("FirstTimeSetupDone", false);
 

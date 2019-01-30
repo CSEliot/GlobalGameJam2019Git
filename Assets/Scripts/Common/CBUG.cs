@@ -37,6 +37,7 @@ public class CBUG : MonoBehaviour {
     private bool isTemp;
     #endregion
 
+    public static GameObject self;
 
     // Use this for initialization
     void Awake()
@@ -61,6 +62,7 @@ public class CBUG : MonoBehaviour {
         maxLines = 33; //Tested, based on 24pt Min.
         tapsUntilEnable = 10;
         currentTaps = 0;
+        DontDestroyOnLoad(transform.parent);
     }
 
     private CBUG( bool isTemp)
@@ -208,7 +210,10 @@ public class CBUG : MonoBehaviour {
             myCBUG = Instantiate(Resources.Load("CBUG_Canvas") as GameObject);
             GameObject cbugCam = Instantiate(Resources.Load("CBUG_Camera") as GameObject);
             myCBUG.GetComponent<Canvas>().worldCamera = cbugCam.GetComponent<Camera>();
-            return myCBUG.GetComponent<CBUG>();
+            self = myCBUG;
+            DontDestroyOnLoad(cbugCam);
+            DontDestroyOnLoad(myCBUG);
+            return myCBUG.GetComponentInChildren<CBUG>();
         }
         else
         {
@@ -263,14 +268,14 @@ public class CBUG : MonoBehaviour {
     {
         _Print("ERROR <~> " + line);
         Debug.Log("ERROR <~> " + line);
-        if (logText != null) {
-            logText.color = Color.red;
-        }
     }
 
     private void _SrsError(string line)
     {
         _Error(line);
+        //if (logText != null) {
+        //    logText.color = Color.red;
+        //}
         throw new System.Exception("ERROR <~> " + line);
     }
     #endregion

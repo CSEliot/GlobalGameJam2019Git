@@ -25,15 +25,16 @@ public class PersonalityController : MonoBehaviour
     private bool hasSoldDog = false;
     private bool _testEnded = false;
 
-    private uint _startTime;
     private uint _timer = 65000;
-    private int _gameStartTime;
+    private uint _gameStartTime;
 
     public Text timerText;
 
     [Header("Other display information")]
     public int money = 1000;
     public Text moneyText;
+
+    int quizTimeLength;
 
     public void AddPointToPersonality(int num){
         switch (num)
@@ -73,35 +74,31 @@ public class PersonalityController : MonoBehaviour
 
     void Update()
     {
-        var gameStartData = PhotonArenaManager.Instance.GetData("GameStartTime");
+        if (PhotonArenaManager.Instance.CurrentServerUserDepth == PhotonArenaManager.ServerDepthLevel.InRoom) {
 
-        if (gameStartData == null)
-        {
-//            var gameStartTime
-        }
+            if (timerRunning){
+                UpdateTimer();
+            } else {
+                StartTimer();
+            }
 
-
-
-        if (timerRunning){
-            UpdateTimer();
-        }
-
-        if (_testEnded)
-        {
-            if ((PhotonArenaManager.Instance.GetClock() - _startTime) >= _timer)
+            if (_testEnded)
             {
-                _testEnded = false;
-                SceneManager.LoadScene("World2");
+                if ((PhotonArenaManager.Instance.GetClock() - _gameStartTime) >= _timer)
+                {
+                    _testEnded = false;
+                    SceneManager.LoadScene("World2");
+                }
             }
         }
     }
 
     void UpdateTimer(){
-        uint curtime = (uint)PhotonArenaManager.Instance.GetClock();
+        uint curtime = checked((uint)(int)PhotonArenaManager.Instance.GetClock());
 
         if (secondsCountDown > 0){
             //            secondsCountDown -= Time.deltaTime;
-            secondsCountDown = _seconds - (curtime - _startTime)/1000f;
+            secondsCountDown = _seconds - (curtime - _gameStartTime)/1000f;
             secondsCountDown = Mathf.Round(secondsCountDown * 100f) / 100f;
             timerText.text = "" + secondsCountDown;
         }else{
@@ -138,7 +135,7 @@ public class PersonalityController : MonoBehaviour
     }
 
     public void StartTimer(){
-        _startTime = (uint)PhotonArenaManager.Instance.GetClock();
+        _gameStartTime = checked((uint)(int)PhotonArenaManager.Instance.GetData("GameStartTime"));
         timerRunning = true;
     }
 

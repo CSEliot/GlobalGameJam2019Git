@@ -69,8 +69,12 @@ public class UIManager : MonoBehaviour {
 
     int quizTimeLength = 60;
     int waitForPlayersTimeLength = 5;
-    int waitToFinishTesTimeLength = 3;
-	
+    int waitToFinishTimeLength = 3;
+
+    public GameObject WaitingForPlayersText;
+
+    public GameObject  InputScreen;
+
 	// Just for reloading the scene! You can delete this function entirely if you want to
 	void Update(){
 		if(reloadSceneButton){
@@ -89,13 +93,14 @@ public class UIManager : MonoBehaviour {
                     PhotonArenaManager.Instance.SaveData("GameStartTime", PhotonArenaManager.Instance.GetClock());
                 } else {
 				    int gameStartTime = (int)gameStartData;
-				    if (PhotonArenaManager.Instance.GetClock() - gameStartTime > quizTimeLength)
-				    {
-                        PhotonArenaManager.Instance.NewRoom();
+                    CBUG.Do("start time is " + gameStartTime);
 
-				        SceneManager.LoadScene("PersonalitySelection");
+                    if ((PhotonArenaManager.Instance.GetClock() - gameStartTime)/1000 < quizTimeLength) {
+                        SceneManager.LoadScene("PersonalitySelection");
                         SceneManager.UnloadSceneAsync("Menu");
-				    }
+                    } else {
+                        PhotonArenaManager.Instance.NewRoom();
+                    }
                 }
             }
 		}
@@ -244,9 +249,13 @@ public class UIManager : MonoBehaviour {
 
 	public void ConfirmOnlineTag(){
 		if(tagInputField.text != ""){
+
+            InputScreen.SetActive(false);
+
             string[] singletons = {
                 ""
             };
+            WaitingForPlayersText.SetActive(true);
             PhotonArenaManager.Instance.ConnectAndJoinRoom(onlineTag, singletons);
 		}
 	}

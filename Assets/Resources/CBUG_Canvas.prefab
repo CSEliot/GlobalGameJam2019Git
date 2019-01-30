@@ -114,7 +114,7 @@ GameObject:
   - component: {fileID: 6988858463525095526}
   m_Layer: 16
   m_Name: CBUG_Canvas
-  m_TagString: CBUG
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
